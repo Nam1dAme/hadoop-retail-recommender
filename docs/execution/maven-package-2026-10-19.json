@@ -1,0 +1,11 @@
+{
+  "source_run": "var/artifacts/host-bootstrap-20261019T140446Z-24975",
+  "command": "mvn -Dmaven.repo.local=/home/hadoop/hadoop-lab/var/cache/maven -f mapreduce/pom.xml package",
+  "status": "PASS",
+  "result": "BUILD SUCCESS",
+  "artifact": "mapreduce/target/retail-mapreduce-0.1.0-SNAPSHOT.jar",
+  "artifact_sha256": "00e8bb2b2d4620d32d86fa4e2796b81443188b433fb72a170af46041cdd0889d",
+  "pom_sha256": "19d7900414dcf37c328dd0b139ffd6d48eaa294d7725fb26fa29339ba4605d2b",
+  "java_class_count": 0,
+  "scope": "Engineering skeleton package only; no business Java sources or YARN job implemented."
+}

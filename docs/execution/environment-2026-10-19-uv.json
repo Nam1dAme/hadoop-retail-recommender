@@ -1,0 +1,367 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T14:08:51.896002Z",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "config_sha256": "f40631b9f533b1ed1a9f33b844eae23507faebe3242cc5c518dc2372c279077f",
+  "effective_config": {
+    "baseline_version": "HL-DOC-1.0.0",
+    "database": {
+      "host": "127.0.0.1",
+      "port": 3306,
+      "name": "retail_analytics"
+    },
+    "hdfs": {
+      "uri": "hdfs://localhost:9000",
+      "root": "/retail/v1"
+    },
+    "paths": {
+      "work_dir": "/home/hadoop/hadoop-lab/var"
+    },
+    "api": {
+      "host": "127.0.0.1",
+      "port": 8000,
+      "url": "http://127.0.0.1:8000/api/v1"
+    },
+    "ui": {
+      "host": "127.0.0.1",
+      "port": 8501
+    },
+    "runtime": {
+      "java_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+      "hadoop_home": "/usr/local/hadoop",
+      "hadoop_conf_dir": "/home/hadoop/hadoop-lab/config/hadoop",
+      "cuda_home": "/usr/local/cuda"
+    }
+  },
+  "effective_config_sha256": "e902eb12c215147e27cec60109f7b432d78bd64b75c64919872c17688698d093",
+  "checks": [
+    {
+      "check": "frozen_baseline",
+      "status": "PASS",
+      "evidence": {
+        "00-governance.md": true,
+        "01-prd.md": true,
+        "02-ux.md": true,
+        "03-architecture.md": true,
+        "04-data-contracts.md": true,
+        "05-pipeline.md": true,
+        "06-database.md": true,
+        "07-models.md": true,
+        "08-api.md": true,
+        "09-environment.md": true,
+        "10-operations.md": true,
+        "11-acceptance.md": true,
+        "12-agent-plan.md": true,
+        "13-decisions-risks.md": true,
+        "14-traceability.md": true,
+        "15-evidence.md": true,
+        "16-freeze-review.md": true,
+        "README.md": true
+      }
+    },
+    {
+      "check": "python_venv",
+      "status": "PASS",
+      "evidence": {
+        "version": "3.12.3",
+        "executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
+        "isolated": true
+      }
+    },
+    {
+      "check": "java",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "openjdk version \"1.8.0_504\"\nOpenJDK Runtime Environment (build 1.8.0_504-8u504-ga-1ubuntu1~24.04.3-b01)\nOpenJDK 64-Bit Server VM (build 25.504-b01, mixed mode)"
+      }
+    },
+    {
+      "check": "maven",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "\u001b[1mApache Maven 3.8.7\u001b[m\nMaven home: /usr/share/maven\nJava version: 1.8.0_504, vendor: Ubuntu, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre\nDefault locale: en, platform encoding: UTF-8\nOS name: \"linux\", version: \"6.6.87.2-microsoft-standard-wsl2\", arch: \"amd64\", family: \"unix\""
+      }
+    },
+    {
+      "check": "hadoop",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "Hadoop 3.3.5\nSource code repository https://github.com/apache/hadoop.git -r 706d88266abcee09ed78fbaa0ad5f74d818ab0e9\nCompiled by stevel on 2023-03-15T15:56Z\nCompiled with protoc 3.7.1\nFrom source with checksum 6bbd9afcf4838a0eb12a5f189e9bd7\nThis command was run using /usr/local/hadoop/share/hadoop/common/hadoop-common-3.3.5.jar"
+      }
+    },
+    {
+      "check": "cuda_toolkit",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:19:38_PST_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0"
+      }
+    },
+    {
+      "check": "mariadb_client",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "mariadb  Ver 15.1 Distrib 10.11.14-MariaDB, for debian-linux-gnu (x86_64) using  EditLine wrapper"
+      }
+    },
+    {
+      "check": "gpu_visibility",
+      "status": "PASS",
+      "evidence": {
+        "dev_dxg": true,
+        "exit_code": 0,
+        "output": "Mon Oct 19 22:08:33 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 565.65                 Driver Version: 566.07         CUDA Version: 12.7     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4060 ...    On  |   00000000:01:00.0  On |                  N/A |\n| N/A   53C    P5              9W /   59W |    1848MiB /   8188MiB |     23%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+"
+      }
+    },
+    {
+      "check": "package:torch",
+      "status": "PASS",
+      "evidence": {
+        "installed": "2.6.0+cu124",
+        "expected": "2.6.0+cu124"
+      }
+    },
+    {
+      "check": "package:pyspark",
+      "status": "PASS",
+      "evidence": {
+        "installed": "3.5.7",
+        "expected": "3.5.7"
+      }
+    },
+    {
+      "check": "package:numpy",
+      "status": "PASS",
+      "evidence": {
+        "installed": "1.26.4",
+        "expected": "1.26.4"
+      }
+    },
+    {
+      "check": "package:pandas",
+      "status": "PASS",
+      "evidence": {
+        "installed": "2.2.3",
+        "expected": "2.2.3"
+      }
+    },
+    {
+      "check": "package:openpyxl",
+      "status": "PASS",
+      "evidence": {
+        "installed": "3.1.5",
+        "expected": "3.1.5"
+      }
+    },
+    {
+      "check": "package:fastapi",
+      "status": "PASS",
+      "evidence": {
+        "installed": "0.115.14",
+        "expected": "0.115."
+      }
+    },
+    {
+      "check": "package:pydantic",
+      "status": "PASS",
+      "evidence": {
+        "installed": "2.14.1",
+        "expected": "2."
+      }
+    },
+    {
+      "check": "package:uvicorn",
+      "status": "PASS",
+      "evidence": {
+        "installed": "0.34.3",
+        "expected": "0.34."
+      }
+    },
+    {
+      "check": "package:streamlit",
+      "status": "PASS",
+      "evidence": {
+        "installed": "1.40.2",
+        "expected": "1.40."
+      }
+    },
+    {
+      "check": "package:PyMySQL",
+      "status": "PASS",
+      "evidence": {
+        "installed": "1.1.3",
+        "expected": "1.1."
+      }
+    },
+    {
+      "check": "package:plotly",
+      "status": "PASS",
+      "evidence": {
+        "installed": "5.24.1",
+        "expected": "5.24."
+      }
+    },
+    {
+      "check": "package:PyYAML",
+      "status": "PASS",
+      "evidence": {
+        "installed": "6.0.3",
+        "expected": "6."
+      }
+    },
+    {
+      "check": "package:pytest",
+      "status": "PASS",
+      "evidence": {
+        "installed": "8.4.2",
+        "expected": "8."
+      }
+    },
+    {
+      "check": "package:httpx",
+      "status": "PASS",
+      "evidence": {
+        "installed": "0.28.1",
+        "expected": "0.28."
+      }
+    },
+    {
+      "check": "core-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "fs.defaultFS": "hdfs://localhost:9000"
+        },
+        "required": {
+          "fs.defaultFS": "hdfs://localhost:9000"
+        }
+      }
+    },
+    {
+      "check": "hdfs-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "dfs.replication": "1"
+        },
+        "required": {
+          "dfs.replication": "1"
+        }
+      }
+    },
+    {
+      "check": "mapred-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "mapreduce.framework.name": "yarn"
+        },
+        "required": {
+          "mapreduce.framework.name": "yarn"
+        }
+      }
+    },
+    {
+      "check": "yarn-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "yarn.nodemanager.aux-services": "mapreduce_shuffle"
+        },
+        "required": {
+          "yarn.nodemanager.aux-services": "mapreduce_shuffle"
+        }
+      }
+    },
+    {
+      "check": "hadoop_env_java_home",
+      "status": "PASS",
+      "evidence": "hadoop-env.sh must explicitly export the configured JAVA_HOME"
+    },
+    {
+      "check": "tcp:hdfs_rpc",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "ConnectionRefusedError",
+        "errno": 111
+      }
+    },
+    {
+      "check": "tcp:namenode_ui",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "ConnectionRefusedError",
+        "errno": 111
+      }
+    },
+    {
+      "check": "tcp:yarn_ui",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "ConnectionRefusedError",
+        "errno": 111
+      }
+    },
+    {
+      "check": "tcp:database",
+      "status": "PASS",
+      "evidence": {
+        "host": "127.0.0.1",
+        "port": 3306,
+        "scope": "TCP only, not service readiness"
+      }
+    },
+    {
+      "check": "hdfs_datanodes",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "exit_code": 255,
+        "output": "report: Call From LAPTOP-OMM0KTB5/127.0.1.1 to localhost:9000 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused"
+      }
+    },
+    {
+      "check": "yarn_nodes",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "exit_code": null,
+        "output": "TimeoutExpired"
+      }
+    },
+    {
+      "check": "uv",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "uv 0.13.1 (x86_64-unknown-linux-gnu)"
+      }
+    },
+    {
+      "check": "dependency_lock",
+      "status": "PASS",
+      "evidence": {
+        "exists": true,
+        "path": "uv.lock",
+        "packages": 84,
+        "artifact_hashes_present": true,
+        "torch_source_matches": true,
+        "sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "freshness": {
+          "exit_code": 0,
+          "output": "Resolved 84 packages in 6ms"
+        }
+      }
+    }
+  ],
+  "manual_gates": [
+    "VHDX host volume and >=15 GiB free",
+    "database server version/roles/migrations (W02)",
+    "real CUDA matmul and backward",
+    "PySpark ALS fit/save/load",
+    "HDFS live DataNode and YARN NodeManager/WordCount"
+  ],
+  "g_env_complete": false
+}

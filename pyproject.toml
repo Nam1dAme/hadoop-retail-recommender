@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=75,<76"]
+requires = ["setuptools==75.9.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,10 +8,41 @@ version = "0.1.0"
 description = "Hadoop and CUDA retail analytics engineering foundation"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-dynamic = ["dependencies"]
+dependencies = [
+    "torch==2.6.0+cu124",
+    "pyspark==3.5.7",
+    "fastapi>=0.115,<0.116",
+    "pydantic>=2,<3",
+    "uvicorn>=0.34,<0.35",
+    "streamlit>=1.40,<1.41",
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "openpyxl==3.1.5",
+    "PyMySQL>=1.1,<1.2",
+    "plotly>=5.24,<5.25",
+    "PyYAML>=6,<7",
+]
 
-[tool.setuptools.dynamic]
-dependencies = {file = ["config/requirements.in"]}
+[dependency-groups]
+dev = ["pytest>=8,<9", "httpx>=0.28,<0.29"]
+
+[tool.uv]
+required-version = ">=0.13.1"
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+build-constraint-dependencies = ["setuptools==75.9.1"]
+
+[tool.uv.sources]
+torch = {index = "pytorch-cu124"}
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
 
 [tool.setuptools.packages.find]
 include = ["etl*", "ml*", "service*", "app*", "orchestration*"]

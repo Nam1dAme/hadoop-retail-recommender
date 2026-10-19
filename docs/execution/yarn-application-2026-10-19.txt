@@ -1,0 +1,27 @@
+Application Report : 
+	Application-Id : application_1792419165578_0001
+	Application-Name : word count
+	Application-Type : MAPREDUCE
+	User : hadoop
+	Queue : default
+	Application Priority : 0
+	Start-Time : 1792419198687
+	Finish-Time : 1792419215970
+	Progress : 100%
+	State : FINISHED
+	Final-State : SUCCEEDED
+	Tracking-URL : http://LAPTOP-OMM0KTB5.localdomain:19888/jobhistory/job/job_1792419165578_0001
+	RPC Port : 44963
+	AM Host : LAPTOP-OMM0KTB5.localdomain
+	Aggregate Resource Allocation : 19317 MB-seconds, 29 vcore-seconds
+	Aggregate Resource Preempted : 0 MB-seconds, 0 vcore-seconds
+	Log Aggregation Status : DISABLED
+	Diagnostics : 
+	Unmanaged Application : false
+	Application Node Label Expression : <Not set>
+	AM container Node Label Expression : <DEFAULT_PARTITION>
+	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
+
+2026-10-19 22:13:43,534 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032
+2026-10-19 22:13:44,078 INFO conf.Configuration: resource-types.xml not found
+2026-10-19 22:13:44,079 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.

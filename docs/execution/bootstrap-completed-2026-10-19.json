@@ -1,0 +1,6 @@
+{
+  "finished_at": "2026-10-19T14:08:51.982598+00:00",
+  "dependency_install_cuda_als_maven": "PASS",
+  "g_env_complete": false,
+  "note": "Database privileges/migrations, HDFS/YARN live nodes/WordCount and manual gates need separate acceptance."
+}

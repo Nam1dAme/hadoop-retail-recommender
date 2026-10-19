@@ -1,0 +1,1 @@
+{"status": "PASS", "torch": "2.6.0+cu124", "cuda_runtime": "12.4", "device": "NVIDIA GeForce RTX 4060 Laptop GPU", "memory_bytes": 8585216000, "compute_capability": [8, 9], "loss": 10.93730640411377, "matmul_and_backward": true}

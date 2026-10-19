@@ -20,6 +20,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from orchestration.settings import BASELINE, ConfigError, load_config
+from orchestration.environment_lock import inspect_uv_lock
 
 
 def command(args: list[str]) -> dict:
@@ -108,8 +109,15 @@ def main() -> int:
         result = command(argv)
         # Even exit 0 needs human confirmation of live DataNode/NodeManager counts.
         add(name, "NOT_VERIFIED", result)
-    lock = ROOT / "config/requirements-linux-py312.lock"
-    add("dependency_lock", "PASS" if lock.exists() and "--hash=sha256:" in lock.read_text() else "FAIL", {"exists": lock.exists(), "path": str(lock.relative_to(ROOT))})
+    uv = command(["uv", "--version"])
+    add("uv", "PASS" if uv["exit_code"] == 0 else "FAIL", uv)
+    lock = ROOT / "uv.lock"
+    lock_ok, lock_evidence = inspect_uv_lock(lock)
+    if lock_ok:
+        freshness = command(["uv", "--cache-dir", str(ROOT / "var/cache/uv"), "lock", "--check", "--offline", "--project", str(ROOT)])
+        lock_evidence["freshness"] = freshness
+        lock_ok = freshness["exit_code"] == 0
+    add("dependency_lock", "PASS" if lock_ok else "FAIL", lock_evidence)
     result = {
         "baseline_version": BASELINE,
         "observed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),

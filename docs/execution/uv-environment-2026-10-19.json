@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-10-19T13:56:03.455516+00:00",
+  "manager": "uv 0.13.1 (x86_64-unknown-linux-gnu)",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "lock_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+  "pyproject_sha256": "937d4f9d61b15549e7a6e1a2dd3495002b0c1943800ca6925c44156b264a930c",
+  "python_pin": "3.12",
+  "code_commit": "d313151cc512662a09f620ef877f955ab058f65a",
+  "code_dirty": true
+}

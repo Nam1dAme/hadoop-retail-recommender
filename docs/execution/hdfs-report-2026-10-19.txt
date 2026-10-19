@@ -1,0 +1,43 @@
+Safe mode is ON
+Configured Capacity: 1081101176832 (1006.85 GB)
+Present Capacity: 969273843712 (902.71 GB)
+DFS Remaining: 969273700352 (902.71 GB)
+DFS Used: 143360 (140 KB)
+DFS Used%: 0.00%
+Replicated Blocks:
+	Under replicated blocks: 0
+	Blocks with corrupt replicas: 0
+	Missing blocks: 0
+	Missing blocks (with replication factor 1): 0
+	Low redundancy blocks with highest priority to recover: 0
+	Pending deletion blocks: 0
+Erasure Coded Block Groups: 
+	Low redundancy block groups: 0
+	Block groups with corrupt internal blocks: 0
+	Missing block groups: 0
+	Low redundancy blocks with highest priority to recover: 0
+	Pending deletion blocks: 0
+
+-------------------------------------------------
+Live datanodes (1):
+
+Name: 127.0.0.1:9866 (localhost)
+Hostname: LAPTOP-OMM0KTB5.localdomain
+Decommission Status : Normal
+Configured Capacity: 1081101176832 (1006.85 GB)
+DFS Used: 143360 (140 KB)
+Non DFS Used: 56834977792 (52.93 GB)
+DFS Remaining: 969273700352 (902.71 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 89.66%
+Configured Cache Capacity: 0 (0 B)
+Cache Used: 0 (0 B)
+Cache Remaining: 0 (0 B)
+Cache Used%: 100.00%
+Cache Remaining%: 0.00%
+Xceivers: 0
+Last contact: Mon Oct 19 22:12:45 CST 2026
+Last Block Report: Mon Oct 19 22:12:40 CST 2026
+Num of Blocks: 11
+
+

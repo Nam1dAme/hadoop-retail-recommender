@@ -1,0 +1,14 @@
+26586 sun.tools.jps.Jps -Denv.class.path=.:/usr/lib/jvm/java-8-openjdk-amd64/lib:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib -Dapplication.home=/usr/lib/jvm/java-8-openjdk-amd64 -Xms8m
+State  Recv-Q Send-Q  Local Address:Port  Peer Address:PortProcess                          
+LISTEN 0      80          127.0.0.1:3306       0.0.0.0:*                                    
+LISTEN 0      511           0.0.0.0:80         0.0.0.0:*                                    
+LISTEN 0      4096          0.0.0.0:22         0.0.0.0:*                                    
+LISTEN 0      511         127.0.0.1:6379       0.0.0.0:*                                    
+LISTEN 0      1000   10.255.255.254:53         0.0.0.0:*                                    
+LISTEN 0      128         127.0.0.1:46483      0.0.0.0:*    users:(("codex",pid=8972,fd=38))
+LISTEN 0      4096    127.0.0.53%lo:53         0.0.0.0:*                                    
+LISTEN 0      4096       127.0.0.54:53         0.0.0.0:*                                    
+LISTEN 0      128         127.0.0.1:45583      0.0.0.0:*    users:(("codex",pid=1552,fd=14))
+LISTEN 0      511              [::]:80            [::]:*                                    
+LISTEN 0      4096             [::]:22            [::]:*                                    
+LISTEN 0      511             [::1]:6379          [::]:*                                    

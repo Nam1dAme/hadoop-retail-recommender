@@ -97,7 +97,7 @@ def collect():
     if mount.get("exit_code") == 0:
         mount = json.loads(mount["output"])
     packages = {}
-    for name in ("pip", "pip-tools", "setuptools", "torch", "pyspark"):
+    for name in ("torch", "pyspark"):
         try:
             packages[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
@@ -115,6 +115,7 @@ def collect():
         "gpu": {"dev_dxg": Path("/dev/dxg").exists(), "nvidia_smi": run(["/usr/lib/wsl/lib/nvidia-smi"])},
         "git": {"author_configured": identity.get("exit_code") == 0, "head": commit.get("output") if commit.get("exit_code") == 0 else None, "standard_metadata_mount": mount},
         "packages": packages,
+        "uv": run(["uv", "--version"]),
         "boundaries": [
             "Socket creation or connect permission errors occur before service authentication.",
             "Seccomp presence alone does not identify an individual filter rule.",

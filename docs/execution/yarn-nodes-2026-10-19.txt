@@ -1,0 +1,4 @@
+Total Nodes:1
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+LAPTOP-OMM0KTB5.localdomain:46465	        RUNNING	LAPTOP-OMM0KTB5.localdomain:8042	                           0
+2026-10-19 22:12:48,540 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032

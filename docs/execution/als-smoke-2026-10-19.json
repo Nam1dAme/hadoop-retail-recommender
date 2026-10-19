@@ -1,0 +1,1 @@
+{"status": "PASS", "fixture": true, "spark": "3.5.7", "java": "1.8.0_504", "python": "3.12.3", "filesystem": "file:///", "fit_save_load": true, "predictions": 6}

@@ -3,11 +3,15 @@
 set -euo pipefail
 retail_project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$retail_project_root"
+printf '[1/5] Checking uv, Python 3.12 and network socket access\n'
+command -v uv >/dev/null || { echo 'Install uv before running this script.' >&2; exit 3; }
+export UV_CACHE_DIR="$retail_project_root/var/cache/uv"
+export UV_PROJECT_ENVIRONMENT="$retail_project_root/.venv"
 if [[ ! -f .venv/bin/activate ]]; then
-    python3.12 -m venv .venv
+    uv venv --python 3.12 --no-python-downloads
 fi
 source scripts/dev-env.sh
-python - <<'PY'
+uv run --no-project --python 3.12 python - <<'PY'
 import socket, sys
 try:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM):
@@ -20,6 +24,7 @@ retail_run_dir="$retail_project_root/var/artifacts/host-bootstrap-$(date -u +%Y%
 mkdir -p "$retail_run_dir"
 exec > >(tee "$retail_run_dir/bootstrap.log") 2>&1
 printf 'Evidence directory: %s\n' "$retail_run_dir"
+printf '[2/5] Checking the VHDX host volume and 15 GiB storage gate\n'
 retail_powershell=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
 if [[ ! -x "$retail_powershell" ]]; then
     echo 'Windows PowerShell unavailable; host storage gate cannot be verified.' >&2
@@ -30,7 +35,7 @@ fi
         cat scripts/check-host-storage.ps1
         printf '\n'
     ) > "$retail_run_dir/host-storage.json"
-python - "$retail_run_dir/host-storage.json" <<'PY'
+uv run --no-project --python 3.12 python - "$retail_run_dir/host-storage.json" <<'PY'
 import json, os, sys
 with open(sys.argv[1], encoding='utf-8-sig') as stream:
     rows = json.load(stream)
@@ -46,12 +51,16 @@ print(json.dumps(row, ensure_ascii=False, indent=2))
 if not row.get('gate_passed') or row.get('available_free_bytes', 0) < 15 * 1024**3:
     raise SystemExit('Host storage gate failed: require a confirmed WSL2 VHDX and at least 15 GiB free on its host volume. No package download started.')
 PY
+printf '[3/5] Resolving uv.lock and syncing the project environment\n'
 ./scripts/lock-dependencies.sh
-python scripts/smoke-cuda.py > "$retail_run_dir/cuda-smoke.json"
+cp uv.lock pyproject.toml var/artifacts/uv-environment.json var/artifacts/uv-packages.json "$retail_run_dir/"
+printf '[4/5] Running CUDA, ALS and Maven checks sequentially\n'
+uv run --locked --no-sync python scripts/smoke-cuda.py > "$retail_run_dir/cuda-smoke.json"
 SPARK_LOCAL_IP=127.0.0.1 PYSPARK_PYTHON="$VIRTUAL_ENV/bin/python" \
-    python scripts/smoke-als.py > "$retail_run_dir/als-smoke.json"
+    uv run --locked --no-sync python scripts/smoke-als.py > "$retail_run_dir/als-smoke.json"
 mvn -Dmaven.repo.local="$retail_project_root/var/cache/maven" -f mapreduce/pom.xml package
-python scripts/check-environment.py --config config/development.toml \
+printf '[5/5] Collecting environment evidence and remaining gates\n'
+uv run --locked --no-sync python scripts/check-environment.py --config config/development.toml \
     --output "$retail_run_dir/environment.json" || {
         retail_check_exit=$?
         if [[ "$retail_check_exit" -ne 3 ]]; then
@@ -59,7 +68,7 @@ python scripts/check-environment.py --config config/development.toml \
         fi
         echo 'Environment inventory collected; manual/service gates remain. See environment.json.'
     }
-python - "$retail_run_dir" <<'PY'
+uv run --locked --no-sync python - "$retail_run_dir" <<'PY'
 from datetime import datetime, timezone
 import json, pathlib, sys
 directory = pathlib.Path(sys.argv[1])
