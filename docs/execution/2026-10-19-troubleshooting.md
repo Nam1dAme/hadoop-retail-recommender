@@ -62,3 +62,11 @@ bash scripts/bootstrap-host.sh
 本次宿主流程证据目录为 var/artifacts/host-bootstrap-20261019T130114Z-18900。已记录 pip-tools/setuptools 安装完成，并观察到 PySpark/CUDA 包下载产物；完整依赖锁、框架计算与 Maven package 结果尚待同一流程产出，不能根据安静日志判失败或重复运行。
 
 新增 `scripts/connect-git.sh`，在普通 WSL 为现有 `.git-local` 建立标准 `.git` 指针文件，让普通 Git 使用同一份历史。脚本不覆盖已存在的其他元数据；当前只读挂载保持原样。独立临时仓库中实测：首次连接、重复调用、保留其他 `.git` 内容均通过。真实项目的标准入口仍需普通 WSL 执行该脚本后核实。
+
+## 依赖解析耗时原因与修复
+
+用户确认原宿主命令仍在运行后，继续检查已安装 pip-tools 7.4.1 的源码：`repositories/pypi.py` 中 `allow_all_wheels`、`_get_req_hashes` 会针对没有 PyPI JSON 摘要的候选文件计算 hash；CUDA 通用附加索引会引入其他 Python/平台候选的实际下载。`scripts/compile.py` 又用 pip-tools 自己的 cache_dir 覆盖 PIP_CACHE_DIR，导致解析与安装缓存分离。观察到解析器缓存约 2 GiB，安装器缓存仍约 2 MiB。
+
+已把 17 个 HTTP Content-Length 匹配、写入后保持稳定的大缓存条目（约 1968.9 MiB）复制到项目 pip 缓存，不改源缓存；目标安装仍须通过锁的 hash 校验。随后请求用户取消原解析任务，用户明确回复“已停止”后才修改执行脚本，没有并发重跑。
+
+修复为：单独的 Linux/Python3.12 输入固定 [官方 CUDA12.4 wheel 索引](https://download.pytorch.org/whl/cu124/torch/)中的 torch 2.6.0+cu124 / cp312 / linux_x86_64 artifact，并使用其公布的 SHA-256 `a393b506844035c0dac2f30ea8478c343b8e95a429f06f3b3cadfc7f53adb597`；其余依赖仅用 PyPI；解析器与安装器共享项目缓存；增加日志可见性及 CPython3.12/Linux x86_64 平台检查。版本要求和完整传递依赖/hash 门禁均保留，不使用 CPU 构建，也没有将输入文件当成已解析锁。原始宿主日志保留在原 run 目录，后续恢复使用新的 run 目录。

@@ -1,5 +1,5 @@
 # HL-DOC-1.0.0 / docs/09-environment.md. Resolver input, NOT an installed lock.
-# Use PyPI plus the official PyTorch cu124 index (see scripts/lock-dependencies.sh).
+# The platform resolver input pins the official PyTorch cu124 artifact directly.
 # Include build/lock tools so their transitive dependencies are locked as well.
 pip==24.0
 pip-tools==7.4.1

@@ -25,5 +25,6 @@ export CUDA_HOME="${CUDA_HOME:-/usr/local/cuda}"
 export CUDA_PATH="$CUDA_HOME"
 export RETAIL_WORK_DIR="${RETAIL_WORK_DIR:-$_retail_project_root/var}"
 export PIP_CACHE_DIR="$_retail_project_root/var/cache/pip"
+export PIP_TOOLS_CACHE_DIR="$PIP_CACHE_DIR"
 export PATH="$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$CUDA_HOME/bin:/usr/lib/wsl/lib:$PATH"
 unset _retail_project_root
