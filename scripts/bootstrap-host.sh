@@ -26,7 +26,10 @@ if [[ ! -x "$retail_powershell" || -z "${WSL_DISTRO_NAME:-}" ]]; then
     exit 3
 fi
 "$retail_powershell" -NoLogo -NoProfile -NonInteractive -Command - \
-    < scripts/check-host-storage.ps1 > "$retail_run_dir/host-storage.json"
+    < <(
+        cat scripts/check-host-storage.ps1
+        printf '\n'
+    ) > "$retail_run_dir/host-storage.json"
 python - "$retail_run_dir/host-storage.json" <<'PY'
 import json, os, sys
 with open(sys.argv[1], encoding='utf-8-sig') as stream:
