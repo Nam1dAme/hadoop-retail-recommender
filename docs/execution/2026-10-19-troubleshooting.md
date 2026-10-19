@@ -44,7 +44,7 @@ python scripts/diagnose-environment.py --output var/artifacts/host-diagnostics.j
 
 这些对照证据将网络/数据库连接/GPU 访问失败定位到当前代理执行会话；宿主 WSL 在这些检查中正常。数据库账号权限、迁移、真实 CUDA 算子和 ALS 仍未因此验收。
 
-新增 `scripts/check-host-storage.ps1` 只读查询 Windows 注册表中各 WSL 发行版 BasePath、VHDX 文件与所属宿主卷可用字节。`scripts/bootstrap-host.sh` 在普通 WSL 调用它并匹配当前 WSL_DISTRO_NAME；未确认 VHDX 或不足 15 GiB 时立即停止，不下载依赖。通过后串行执行依赖锁/安装、CUDA、ALS、Maven package 和环境采集，证据保存到 var/artifacts/host-bootstrap-UTC时间-PID，全部自动阶段通过后才生成 completed.json。不会启动系统服务、迁移数据库、重启 WSL、清理用户文件或修改驱动。
+新增 `scripts/check-host-storage.ps1` 只读查询 Windows 注册表中各 WSL 发行版 BasePath、VHDX 文件与所属宿主卷可用字节。`scripts/bootstrap-host.sh` 在普通 WSL 调用它，优先匹配 RETAIL_WSL_DISTRIBUTION 或 WSL_DISTRO_NAME；变量均缺失时仅在唯一 WSL2 发行版的情况下自动选择，多发行版需明确名称。未确认 VHDX 或不足 15 GiB 时立即停止，不下载依赖。通过后串行执行依赖锁/安装、CUDA、ALS、Maven package 和环境采集，证据保存到 var/artifacts/host-bootstrap-UTC时间-PID，全部自动阶段通过后才生成 completed.json。不会启动系统服务、迁移数据库、重启 WSL、清理用户文件或修改驱动。
 
 诊断分类的 4 项测试与原配置 9 项测试全部通过。测试中模拟握手/HTTP 状态仅验证分类，不替代上述普通 WSL 实测。Bootstrap 已通过 Bash 语法检查，并在当前受限会话按预期拒绝执行；PowerShell 宿主盘检查、安装与真实框架计算仍待普通 WSL 执行：
 
