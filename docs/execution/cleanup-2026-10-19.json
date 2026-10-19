@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-10-19T15:19:58.724733+00:00",
+  "base_commit": "f62b3ccae86e26453ed88dbb9144395095434a6a",
+  "filesystem_available_bytes_before": 969267113984,
+  "legacy_pip_cache_allocated_bytes_before": 2067668992,
+  "uv_cache_allocated_bytes_before": 7375310848,
+  "removed": [
+    "var/cache/pip",
+    ".pytest_cache",
+    "orchestration/__pycache__",
+    "service/__pycache__",
+    "tests/__pycache__",
+    "etl/__pycache__",
+    "scripts/__pycache__",
+    "ml/__pycache__",
+    "app/__pycache__"
+  ],
+  "uv_cache_prune": {
+    "exit_code": 0,
+    "output": "Pruning cache at: var/cache/uv\nNo unused entries found"
+  },
+  "uv_cache_allocated_bytes_after": 7375310848,
+  "filesystem_available_bytes_after": 971334938624,
+  "filesystem_available_bytes_delta": 2067824640,
+  "preserved": [
+    ".venv",
+    "uv.lock",
+    ".git-local",
+    "var/cache/maven",
+    "var/artifacts",
+    "var/logs/hadoop",
+    "var/tmp/hadoop-pids",
+    "HDFS data and metadata"
+  ],
+  "note": "Filesystem delta may include concurrent service writes. uv cache archives shared by hardlinks with installed packages are retained."
+}

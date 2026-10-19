@@ -16,7 +16,9 @@ bash scripts/bootstrap-host.sh
 
 本机 Hadoop 服务已启动，活 DataNode、RUNNING NodeManager 及真实 YARN WordCount 均通过，见 [Hadoop 续检记录](docs/execution/2026-10-19-hadoop-startup.md)。`bash scripts/start-hadoop-host.sh` 用于普通 WSL 中启动已停止的本地集群并运行 WordCount 环境冒烟；会先检查进程、备份元数据，保留已有 HDFS 数据。发现已有 Hadoop 进程时会拒绝重复启动。
 
-当前标准 `.git` 指针已接通 `.git-local`，普通 Git 可使用现有提交历史；该元数据目录已忽略，不应清理。当前未配置远程。`scripts/connect-git.sh` 可在缺少标准入口时建立指针，遇到其他 `.git` 会拒绝覆盖。
+当前标准 `.git` 指针已接通 `.git-local`，普通 Git 可使用现有提交历史；该元数据目录已忽略，不应清理。远程仓库为 [hadoop-retail-recommender](https://github.com/Nam1dAme/hadoop-retail-recommender)，本地 origin 以 `git remote -v` 为准。`scripts/connect-git.sh` 可在缺少标准入口时建立指针，遇到其他 `.git` 会拒绝覆盖。
+
+W01 已归档至 `f62b3cc`；清理及网络/GPU 复查和推送流程见 [收尾记录](docs/execution/2026-10-19-cleanup.md)。普通 WSL 执行 `bash scripts/push-host.sh https://github.com/Nam1dAme/hadoop-retail-recommender.git`，通过实测检查后提交本次报告并推送 main，最后核对远程 commit。
 
 用户配置提交作者后已创建首次提交 `02d564b`。只读诊断脚本可用于对比普通 WSL 与代理会话的网络/GPU/服务访问差异，采集成功不代表 G-ENV 通过。
 
