@@ -1,0 +1,84 @@
+{
+  "observed_at": "2026-10-19T12:53:31.975996Z",
+  "project_root": "/home/hadoop/hadoop-lab",
+  "python": {
+    "executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
+    "version": "3.12.3",
+    "venv": true
+  },
+  "process_isolation": {
+    "NoNewPrivs": "1",
+    "Seccomp": "2",
+    "Seccomp_filters": "2"
+  },
+  "socket_creation": {
+    "ipv4": {
+      "status": "PERMISSION_DENIED",
+      "error": "PermissionError",
+      "errno": 1
+    },
+    "ipv6": {
+      "status": "PERMISSION_DENIED",
+      "error": "PermissionError",
+      "errno": 1
+    },
+    "unix": {
+      "status": "CREATED"
+    }
+  },
+  "package_sources": {
+    "https://pypi.org/simple/pip-tools/": {
+      "status": "SKIPPED_SOCKET_PERMISSION_DENIED"
+    },
+    "https://download.pytorch.org/whl/cu124/": {
+      "status": "SKIPPED_SOCKET_PERMISSION_DENIED"
+    },
+    "https://repo.maven.apache.org/maven2/": {
+      "status": "SKIPPED_SOCKET_PERMISSION_DENIED"
+    }
+  },
+  "database_unix_greeting": {
+    "path": "/run/mysqld/mysqld.sock",
+    "exists": true,
+    "authenticated": false,
+    "status": "PERMISSION_DENIED",
+    "error": "PermissionError",
+    "errno": 1
+  },
+  "gpu": {
+    "dev_dxg": false,
+    "nvidia_smi": {
+      "exit_code": 255,
+      "output": "Failed to initialize NVML: GPU access blocked by the operating system\nFailed to properly shut down NVML: GPU access blocked by the operating system"
+    }
+  },
+  "git": {
+    "author_configured": true,
+    "head": "02d564b12464914ed18e6b8e7e3306de3c41e498",
+    "standard_metadata_mount": {
+      "filesystems": [
+        {
+          "target": "/home/hadoop/hadoop-lab/.git",
+          "fstype": "tmpfs",
+          "options": "ro,nosuid,nodev,relatime,mode=555,uid=1001,gid=1001"
+        }
+      ]
+    }
+  },
+  "packages": {
+    "pip": "24.0",
+    "pip-tools": null,
+    "setuptools": null,
+    "torch": null,
+    "pyspark": null
+  },
+  "boundaries": [
+    "Socket creation or connect permission errors occur before service authentication.",
+    "Seccomp presence alone does not identify an individual filter rule.",
+    "A database greeting proves transport/server version, not account privileges or migrations.",
+    "HTTP reachability does not prove package resolution or installation.",
+    "GPU visibility here does not establish Windows or ordinary WSL GPU availability.",
+    "VHDX host volume and >=15 GiB free still require host verification."
+  ],
+  "g_env_complete": false
+}

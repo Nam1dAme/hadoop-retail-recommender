@@ -1,0 +1,77 @@
+{
+  "observed_at": "2026-10-19T12:54:30.952439Z",
+  "project_root": "/home/hadoop/hadoop-lab",
+  "python": {
+    "executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
+    "version": "3.12.3",
+    "venv": true
+  },
+  "process_isolation": {
+    "NoNewPrivs": "0",
+    "Seccomp": "2",
+    "Seccomp_filters": "1"
+  },
+  "socket_creation": {
+    "ipv4": {
+      "status": "CREATED"
+    },
+    "ipv6": {
+      "status": "CREATED"
+    },
+    "unix": {
+      "status": "CREATED"
+    }
+  },
+  "package_sources": {
+    "https://pypi.org/simple/pip-tools/": {
+      "status": "HTTP_REACHED",
+      "http_status": 200
+    },
+    "https://download.pytorch.org/whl/cu124/": {
+      "status": "HTTP_REACHED",
+      "http_status": 200
+    },
+    "https://repo.maven.apache.org/maven2/": {
+      "status": "HTTP_REACHED",
+      "http_status": 200
+    }
+  },
+  "database_unix_greeting": {
+    "path": "/run/mysqld/mysqld.sock",
+    "exists": true,
+    "authenticated": false,
+    "status": "GREETING_RECEIVED",
+    "server_version": "5.5.5-10.11.14-MariaDB-0ubuntu0.24.04.1"
+  },
+  "gpu": {
+    "dev_dxg": true,
+    "nvidia_smi": {
+      "exit_code": 0,
+      "output": "Mon Oct 19 20:54:39 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 565.65                 Driver Version: 566.07         CUDA Version: 12.7     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4060 ...    On  |   00000000:01:00.0  On |                  N/A |\n| N/A   53C    P3             16W /   62W |    2060MiB /   8188MiB |      4%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+"
+    }
+  },
+  "git": {
+    "author_configured": true,
+    "head": "02d564b12464914ed18e6b8e7e3306de3c41e498",
+    "standard_metadata_mount": {
+      "exit_code": 1,
+      "output": ""
+    }
+  },
+  "packages": {
+    "pip": "24.0",
+    "pip-tools": null,
+    "setuptools": null,
+    "torch": null,
+    "pyspark": null
+  },
+  "boundaries": [
+    "Socket creation or connect permission errors occur before service authentication.",
+    "Seccomp presence alone does not identify an individual filter rule.",
+    "A database greeting proves transport/server version, not account privileges or migrations.",
+    "HTTP reachability does not prove package resolution or installation.",
+    "GPU visibility here does not establish Windows or ordinary WSL GPU availability.",
+    "VHDX host volume and >=15 GiB free still require host verification."
+  ],
+  "g_env_complete": false
+}
