@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-19T15:49:43.770776Z",
+  "observed_at": "2026-10-19T15:50:59.488429Z",
   "project_root": "/home/hadoop/hadoop-lab",
   "python": {
     "executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
@@ -47,12 +47,12 @@
     "dev_dxg": true,
     "nvidia_smi": {
       "exit_code": 0,
-      "output": "Mon Oct 19 23:49:54 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 565.65                 Driver Version: 566.07         CUDA Version: 12.7     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4060 ...    On  |   00000000:01:00.0  On |                  N/A |\n| N/A   50C    P5              8W /   62W |    1995MiB /   8188MiB |     34%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+"
+      "output": "Mon Oct 19 23:51:08 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 565.65                 Driver Version: 566.07         CUDA Version: 12.7     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4060 ...    On  |   00000000:01:00.0  On |                  N/A |\n| N/A   51C    P5              8W /   63W |    1710MiB /   8188MiB |      8%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+"
     }
   },
   "git": {
     "author_configured": true,
-    "head": "f62b3ccae86e26453ed88dbb9144395095434a6a",
+    "head": "5c61803284e01cfbd1e394d835d85514f460a0f1",
     "standard_metadata_mount": {
       "filesystems": [
         {
