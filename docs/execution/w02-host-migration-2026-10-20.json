@@ -1,0 +1,168 @@
+{
+  "observed_at": "2026-10-19T18:37:13.948393Z",
+  "identity": {
+    "version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+    "account": "codex@localhost",
+    "db": "retail_analytics"
+  },
+  "schema_current": true,
+  "tables": [
+    {
+      "TABLE_NAME": "current_release",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "customer_recommendation",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "customer_rfm",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "customer_seen_item",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "data_batch",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "data_quality",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "data_release",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "experiment",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "experiment_model",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "gpu_benchmark",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "item_similarity",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "model_epoch",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "model_metric",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "model_run",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "product_dim",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "product_popularity",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "release_event",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "release_model",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "sales_cube",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "sale_order",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "sale_order_item",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "schema_migration",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    },
+    {
+      "TABLE_NAME": "task_run",
+      "ENGINE": "InnoDB",
+      "TABLE_COLLATION": "utf8mb4_bin"
+    }
+  ],
+  "history": [
+    {
+      "version": "001",
+      "checksum": "9adaef7dd6dcc41c085fabacbbd786b3aa668adc6ba04a5e8ac045586df86f4d",
+      "applied_at": "2026-10-19 18:35:27.865672"
+    }
+  ],
+  "current_release": [
+    {
+      "singleton_id": 1,
+      "release_id": null,
+      "updated_at": "2026-10-19 18:35:27.674841"
+    }
+  ],
+  "constraints": {
+    "status_enum": {
+      "status": "PASS",
+      "errno": 4025
+    },
+    "nonnegative": {
+      "status": "PASS",
+      "errno": 4025
+    },
+    "singleton_check": {
+      "status": "PASS",
+      "errno": 4025
+    },
+    "foreign_key": {
+      "status": "PASS",
+      "errno": 1452
+    },
+    "primary_key": {
+      "status": "PASS",
+      "errno": 1062
+    },
+    "delete_restrict": {
+      "status": "PASS",
+      "errno": 1451
+    }
+  },
+  "probe_rows_rolled_back": true,
+  "role_separation": "PENDING administrator installation"
+}

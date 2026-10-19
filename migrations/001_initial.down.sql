@@ -1,0 +1,23 @@
+-- Only for an empty, backed-up schema; runner refuses nonempty tables.
+DROP TABLE customer_recommendation;
+DROP TABLE product_popularity;
+DROP TABLE item_similarity;
+DROP TABLE customer_seen_item;
+DROP TABLE customer_rfm;
+DROP TABLE sale_order_item;
+DROP TABLE sale_order;
+DROP TABLE sales_cube;
+DROP TABLE product_dim;
+DROP TABLE release_event;
+DROP TABLE current_release;
+DROP TABLE release_model;
+DROP TABLE data_release;
+DROP TABLE gpu_benchmark;
+DROP TABLE model_metric;
+DROP TABLE model_epoch;
+DROP TABLE data_quality;
+DROP TABLE experiment_model;
+DROP TABLE model_run;
+DROP TABLE experiment;
+DROP TABLE task_run;
+DROP TABLE data_batch;

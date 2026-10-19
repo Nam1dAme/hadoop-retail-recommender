@@ -1,0 +1,108 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T18:48:46.126119Z",
+  "checks": {
+    "migration": {
+      "status": "PASS",
+      "identity": {
+        "version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+        "account": "codex@localhost",
+        "db": "retail_analytics"
+      },
+      "history": [
+        {
+          "version": "001",
+          "checksum": "9adaef7dd6dcc41c085fabacbbd786b3aa668adc6ba04a5e8ac045586df86f4d",
+          "applied_at": "2026-10-19 18:35:27.865672"
+        }
+      ],
+      "innodb_tables": 23
+    },
+    "writer": {
+      "status": "PASS",
+      "account": "retail_writer@localhost",
+      "minimum_grants_match": true,
+      "probes": {
+        "create_denied": true,
+        "migration_history_write_denied": true,
+        "control_write_allowed": true
+      }
+    },
+    "reader": {
+      "status": "PASS",
+      "account": "retail_reader@localhost",
+      "minimum_grants_match": true,
+      "probes": {
+        "create_denied": true,
+        "migration_history_write_denied": true,
+        "write_denied": true,
+        "private_source_denied": true,
+        "private_pid_denied": true
+      }
+    }
+  },
+  "account_separation": true,
+  "database_gate_complete": true,
+  "source_sha256": {
+    "migrations/001_initial.down.sql": "e74b196c75b3056f34e8fef9ec5747571f3b552089b2a6540401bb8c35d9b076",
+    "migrations/001_initial.up.sql": "733010e98713f11ae8c2decdf92e10753095398269dc3bba35e5749b4f6dba07",
+    "orchestration/__init__.py": "6051ee64073f9414b75d01a86ff35f6e5db7e1b6d14f8510b0052859d79dc98d",
+    "orchestration/cli.py": "b7d8549541ddb5f2f5484350bcf845b40082b1f9301c0296ead3cee47b8359bd",
+    "orchestration/control.py": "cd11747b9e3585442e18f37c1695a6481eec90e8f00dbe3c90d3d52b82a97e89",
+    "orchestration/database.py": "bdc0c04b8ea0d83f6904a75cb79a93506c43442e0ece4937281f6098e446a7ff",
+    "orchestration/db_backup.py": "d69a1745e54fed289d9785a65878b544350021c8dd127fb60420fac9e658622a",
+    "orchestration/environment_lock.py": "e6916c2447d74f46703efeb8f3c41eb4e51edb97199d1619c3201c0e7eeb7df2",
+    "orchestration/manifests.py": "7fb5452fdf966f3099cd9a2705fd503664979b7b6c11fde0e63447d5812e8254",
+    "orchestration/migrations.py": "8278dd791582d9f00eb7a1f31476d04eb0dfe54f2921ca28aba3a4c17f6d967b",
+    "orchestration/provision.py": "14071d2a483b684c0a1f7916b88ce4158482bc151cdc0c9f7527aec38050dc5e",
+    "orchestration/quality.py": "a7c53d91f1c329861e6c8f65bcd0c51fae5123878f68da3cab0fb135b457797b",
+    "orchestration/settings.py": "01da2dfdfaba3c0e08dd4a1b1f8ae7d5161c1acad0a7d34d5374ef90f3106ead",
+    "orchestration/storage.py": "df2c415023274790e314c9346e1e3d305980b832f79d29b8e0f08ab18bca3369",
+    "scripts/verify-w02.py": "60e632a1bf607c588aa7d8744375e83d1f98b9f069d570d4e93c1f42fd0a7af8"
+  },
+  "automated_tests": {
+    "tests": "33",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "10.825"
+  },
+  "tested_sources_sha256": {
+    "tests/conftest.py": "18097635c929bf5db708b460023ec2dc1d7bccaf5b145d36e9629994b487a790",
+    "tests/test_database.py": "98a77fd671138eac4761f5b9edfd13e2dbdee781d0a251f935791fb3aaa6b260",
+    "tests/test_database_defaults.py": "dafbfba0dce2f34362ed0f6500dd595a1efd1696643e45ed72c49b29a3e6ffcc",
+    "tests/test_diagnostics.py": "4371bf3ffe2b0665c2972c444fa348aa4b055c6db2831cc1e77270dddd4356ff",
+    "tests/test_environment_lock.py": "dd048f09850ee7e7a7d42784313c8d4cb3742b00a13f925efce1d28e26a0a56f",
+    "tests/test_manifests.py": "bfaf03a31362691e07bc31368ff612d79e14d0dfb9b0f42714deadac26ef7916",
+    "tests/test_settings.py": "058af65fed058be4a41a3a2f29b472f160d2e568f7670998b1dc3e3eb3dcde38"
+  },
+  "frozen_baseline_files_verified": 18,
+  "migration_backups": [
+    {
+      "path": "/home/hadoop/hadoop-lab/var/backups/20261019T183527329465.sql",
+      "bytes": 1351,
+      "sha256": "8ac679b129d9883f625509772c2013999297adb02e53939cce4eaf1baba624b1"
+    }
+  ],
+  "role_installation": {
+    "state": "APPLIED_AND_VERIFIED",
+    "migration_account": "codex@localhost",
+    "writer_account": "retail_writer@localhost",
+    "reader_account": "retail_reader@localhost"
+  },
+  "w02_complete": true,
+  "completion_audit": {
+    "frozen_baseline": "18 hashes verified; docs/12 W02 requirements preserved",
+    "version_and_database": "MariaDB 10.11.14 / retail_analytics",
+    "schema": "001 applied with matching up/down checksum and 23 InnoDB tables",
+    "constraints": "Real host probes in w02-host-migration-2026-10-20.json; PK/FK/CHECK/RESTRICT and transactional rollback passed",
+    "migration_rehearsal": "Real isolated MariaDB integration tests cover mandatory backup, down/up, drift refusal and dump restore",
+    "accounts": "Three real accounts verified, exact table/column grants match and denial probes passed",
+    "batch_task_experiment": "Tested control state machines, retries, heartbeat, provenance, four-algorithm model selection, metrics and sealing",
+    "manifests": "Tested version/schema/hash/count/provenance checks, local traversal and synthetic rejection; real HDFS fixture checked in w02-verification-2026-10-20.json",
+    "storage": "Eight real HDFS 750 namespace directories; no synthetic business data in production namespace",
+    "automated_validation": "33 passed, no failures/errors/skips; accepted code/test hashes unchanged since that run",
+    "handoff": "README, migrations/README and docs/execution/2026-10-20-w02.md updated",
+    "scope": "W02 only; W03-W11 and model/GPU training acceptance remain later tasks"
+  }
+}

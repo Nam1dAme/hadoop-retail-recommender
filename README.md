@@ -4,6 +4,8 @@
 
 设计依据：[docs/README.md](docs/README.md)，冻结基线 `HL-DOC-1.0.0`。2026-10-19 起按新用户指令建立工程基础，保留冻结文档历史；实测进度见 [执行记录](docs/execution/2026-10-19-foundation.md)、[故障排查记录](docs/execution/2026-10-19-troubleshooting.md)、[uv 迁移记录](docs/execution/2026-10-19-uv-migration.md)。
 
+2026-10-20 已复查当前会话：PyPI/PyTorch/Maven/GitHub HTTPS、Git 远程读取、真实 CUDA 矩阵计算和反向传播正常。W02 已实现完整 001 迁移、角色配置、批次/任务/实验控制和 manifest 核验；33 项测试通过，其中数据库测试使用独立 MariaDB 10.11.14 实例。正式 HDFS `/retail/v1` 命名空间已建立。现有 MariaDB 已按用户授权完成正式 001 迁移；migration/writer/reader 三账号最小权限均已实测通过，W02 及 G-ENV 对应的数据库门禁已完成，详见 [W02 执行记录](docs/execution/2026-10-20-w02.md) 和 [迁移使用说明](migrations/README.md)。
+
 Python 版本、虚拟环境和依赖统一由 uv 管理：`.python-version` 固定 3.12，`pyproject.toml` 为唯一依赖声明，`uv.lock` 为已解析生成的完整锁。PyTorch 仅从官方 cu124 索引解析；其他依赖默认 PyPI。旧 pip-tools 输入已移除。
 
 首次在普通 WSL、hadoop 用户终端执行：
@@ -35,9 +37,9 @@ git status
 
 添加或调整依赖使用 `uv add` / `uv remove`，随后检查 pyproject.toml 与 uv.lock 的变更。测试工具位于 dev 依赖组，默认同步安装。Python 选择/建环境使用 `uv python` / `uv venv`；不再调用 pip 或 pip-compile 管理本项目。项目缓存位于 `var/cache/uv`。
 
-安装需要网络和 VHDX 宿主卷至少 15 GiB 余量；已实测 VHDX 位于 E 盘且空间门禁通过。完整脚本每次重新核实空间。普通 WSL 的网络、GPU 可见性和 MariaDB 握手已通过，当前代理会话仍存在访问隔离。uv.lock 已生成，依赖同步、兼容性检查与真实 CUDA 计算通过，见 uv 迁移记录中的原始报告。
+安装需要网络和 VHDX 宿主卷至少 15 GiB 余量；已实测 VHDX 位于 E 盘且空间门禁通过。完整脚本每次重新核实空间。当前会话的网络、GPU 可见性、MariaDB 登录及角色权限均已通过实测。uv.lock 已生成，依赖同步、兼容性检查与真实 CUDA 计算通过，见 uv 迁移记录中的原始报告。
 
-CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用隔离小样本在本地文件系统做 fit/save/load，不代表业务模型验收。首次 ALS 的保存路径问题已修复，真实重跑、Maven package 及 Hadoop WordCount 均通过，W01 工程基础检查通过。W02 数据库角色/迁移尚待验收，G-ENV 保持未完成；不代表业务系统已实现。配置说明见 [config/README.md](config/README.md)。
+CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用隔离小样本在本地文件系统做 fit/save/load，不代表业务模型验收。首次 ALS 的保存路径问题已修复，真实重跑、Maven package 及 Hadoop WordCount 均通过，W01 工程基础检查通过。W02 数据库角色/迁移已验收，详见 W02 执行记录；业务系统仍需后续任务实现。配置说明见 [config/README.md](config/README.md)。
 
 数据库凭据由相应角色进程显式注入，示例在 `.env.example`。需要本地文件时用 `umask 077; cp .env.example .env`，填写后仅在相应进程的 shell 显式加载；不要让 UI 继承 writer/migration 凭据。
 
@@ -52,4 +54,4 @@ CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用�
 | migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
 | var/ | 忽略的运行数据、缓存、日志与导出 |
 
-当前只实现工程配置与环境工具，各业务目录按 W02—W11 后续开发，不提供占位接口或模拟训练结果。
+当前 W01 工程基础及 W02 存储/控制库已完成，正式库迁移和三账号权限均已验收。W03—W11 的数据导入、业务计算、训练、发布与应用尚未实现。

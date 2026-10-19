@@ -1,0 +1,58 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T18:29:52.638275Z",
+  "credentials_file": "/home/hadoop/.config/agent-db/client.cnf",
+  "credentials_mode": "0o600",
+  "login_success": true,
+  "server_version_requirement_pass": true,
+  "checks": {
+    "identity": [
+      {
+        "server_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+        "authenticated_account": "codex@localhost",
+        "selected_database": "hadoop_retail_recommender"
+      }
+    ],
+    "storage": [
+      {
+        "default_storage_engine": "InnoDB",
+        "database_charset": "utf8mb4",
+        "database_collation": "utf8mb4_general_ci"
+      }
+    ],
+    "innodb": [
+      {
+        "SUPPORT": "DEFAULT",
+        "TRANSACTIONS": "YES",
+        "XA": "YES",
+        "SAVEPOINTS": "YES"
+      }
+    ],
+    "permissions": [
+      {
+        "PRIVILEGE_TYPE": "DELETE",
+        "IS_GRANTABLE": "NO"
+      },
+      {
+        "PRIVILEGE_TYPE": "INSERT",
+        "IS_GRANTABLE": "NO"
+      },
+      {
+        "PRIVILEGE_TYPE": "SELECT",
+        "IS_GRANTABLE": "NO"
+      },
+      {
+        "PRIVILEGE_TYPE": "UPDATE",
+        "IS_GRANTABLE": "NO"
+      }
+    ],
+    "tables": []
+  },
+  "w02_complete": false,
+  "remaining_requirements": [
+    "Current account has DML privileges only; W02 requires an offline migration account with DDL permissions.",
+    "User-created database hadoop_retail_recommender differs from frozen default retail_analytics; deployment configuration and execution decision must explicitly reflect the selected name.",
+    "Migration/writer/reader separation and real schema migration/permission verification remain pending."
+  ],
+  "scope": "Read-only verification; no schema, account, grants, passwords or project configuration changed. No credentials or authentication hashes included."
+}

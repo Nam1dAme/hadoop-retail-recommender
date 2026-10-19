@@ -1,0 +1,321 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T17:16:24.909468Z",
+  "code_commit": "32b4c8b3551b51299ca9d5f7b50dbfd960a4dbe2",
+  "worktree_changes": "W02 implementation is uncommitted; file hashes below identify tested sources",
+  "source_sha256": {
+    "migrations/001_initial.down.sql": "e74b196c75b3056f34e8fef9ec5747571f3b552089b2a6540401bb8c35d9b076",
+    "migrations/001_initial.up.sql": "733010e98713f11ae8c2decdf92e10753095398269dc3bba35e5749b4f6dba07",
+    "orchestration/__init__.py": "6051ee64073f9414b75d01a86ff35f6e5db7e1b6d14f8510b0052859d79dc98d",
+    "orchestration/cli.py": "2520686e41a57a72aa09965b9766b7397797e320b83990ab3724395dacd965b0",
+    "orchestration/control.py": "cd11747b9e3585442e18f37c1695a6481eec90e8f00dbe3c90d3d52b82a97e89",
+    "orchestration/database.py": "86809318f7d01dca5f0b1f7844e556a8fca2ba09907e6e3aab99bfacc4a53840",
+    "orchestration/db_backup.py": "d69a1745e54fed289d9785a65878b544350021c8dd127fb60420fac9e658622a",
+    "orchestration/environment_lock.py": "e6916c2447d74f46703efeb8f3c41eb4e51edb97199d1619c3201c0e7eeb7df2",
+    "orchestration/manifests.py": "7fb5452fdf966f3099cd9a2705fd503664979b7b6c11fde0e63447d5812e8254",
+    "orchestration/migrations.py": "8278dd791582d9f00eb7a1f31476d04eb0dfe54f2921ca28aba3a4c17f6d967b",
+    "orchestration/provision.py": "5e41215edd7e55ca75706fca051b628c895b4dcb77c326f25c842af38e77acb7",
+    "orchestration/quality.py": "a7c53d91f1c329861e6c8f65bcd0c51fae5123878f68da3cab0fb135b457797b",
+    "orchestration/settings.py": "01da2dfdfaba3c0e08dd4a1b1f8ae7d5161c1acad0a7d34d5374ef90f3106ead",
+    "orchestration/storage.py": "df2c415023274790e314c9346e1e3d305980b832f79d29b8e0f08ab18bca3369",
+    "tests/conftest.py": "18097635c929bf5db708b460023ec2dc1d7bccaf5b145d36e9629994b487a790",
+    "tests/test_database.py": "98a77fd671138eac4761f5b9edfd13e2dbdee781d0a251f935791fb3aaa6b260",
+    "tests/test_diagnostics.py": "4371bf3ffe2b0665c2972c444fa348aa4b055c6db2831cc1e77270dddd4356ff",
+    "tests/test_environment_lock.py": "dd048f09850ee7e7a7d42784313c8d4cb3742b00a13f925efce1d28e26a0a56f",
+    "tests/test_manifests.py": "bfaf03a31362691e07bc31368ff612d79e14d0dfb9b0f42714deadac26ef7916",
+    "tests/test_settings.py": "058af65fed058be4a41a3a2f29b472f160d2e568f7670998b1dc3e3eb3dcde38"
+  },
+  "checks": {
+    "pytest": {
+      "command": [
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--junitxml=var/w02/pytest.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "...............................                                          [100%]\n-------- generated xml file: /home/hadoop/hadoop-lab/var/w02/pytest.xml --------\n31 passed in 10.48s\n",
+      "stderr": ""
+    },
+    "cuda": {
+      "command": [
+        "uv",
+        "run",
+        "--locked",
+        "python",
+        "scripts/smoke-cuda.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"torch\": \"2.6.0+cu124\", \"cuda_runtime\": \"12.4\", \"device\": \"NVIDIA GeForce RTX 4060 Laptop GPU\", \"memory_bytes\": 8585216000, \"compute_capability\": [8, 9], \"loss\": 10.93730640411377, \"matmul_and_backward\": true}\n",
+      "stderr": ""
+    },
+    "git_remote": {
+      "command": [
+        "git",
+        "ls-remote",
+        "origin",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "32b4c8b3551b51299ca9d5f7b50dbfd960a4dbe2\tHEAD\n",
+      "stderr": ""
+    },
+    "git_integrity": {
+      "command": [
+        "git",
+        "fsck",
+        "--no-progress"
+      ],
+      "exit_code": 0,
+      "stdout": "dangling blob 1fce5c11739e9b47615cfab7ade76449ec568b6c\ndangling blob 46c693bc7a7f8c6658cafa9cf8d8efa323e6abe2\ndangling blob 5152be80737b7c9772d58c3898e15b4f02ec688d\ndangling blob be704ebd1da5cb3334ddacf7ffa8f2b6b566a515\ndangling blob decc6a6f82e6bd8c2d12e5c49372685202146698\ndangling blob e1640f97546ac8dc285a49ca324fec3723368525\ndangling blob 67ad851d027c4b938ef251217eadcff3f4acd1ae\ndangling blob e8712525ed28ee8c80ba9fe868d1e8766b7b7b6e\n",
+      "stderr": ""
+    },
+    "nvidia_smi": {
+      "command": [
+        "nvidia-smi"
+      ],
+      "exit_code": 0,
+      "stdout": "Tue Oct 20 01:16:14 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 565.65                 Driver Version: 566.07         CUDA Version: 12.7     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4060 ...    On  |   00000000:01:00.0  On |                  N/A |\n| N/A   52C    P5              9W /   61W |    2365MiB /   8188MiB |     39%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+      "stderr": ""
+    },
+    "hdfs_report": {
+      "command": [
+        "hdfs",
+        "dfsadmin",
+        "-report"
+      ],
+      "exit_code": 0,
+      "stdout": "Configured Capacity: 1081101176832 (1006.85 GB)\nPresent Capacity: 971061899302 (904.37 GB)\nDFS Remaining: 971061424128 (904.37 GB)\nDFS Used: 475174 (464.04 KB)\nDFS Used%: 0.00%\nReplicated Blocks:\n\tUnder replicated blocks: 0\n\tBlocks with corrupt replicas: 0\n\tMissing blocks: 0\n\tMissing blocks (with replication factor 1): 0\n\tLow redundancy blocks with highest priority to recover: 0\n\tPending deletion blocks: 0\nErasure Coded Block Groups: \n\tLow redundancy block groups: 0\n\tBlock groups with corrupt internal blocks: 0\n\tMissing block groups: 0\n\tLow redundancy blocks with highest priority to recover: 0\n\tPending deletion blocks: 0\n\n-------------------------------------------------\nLive datanodes (1):\n\nName: 127.0.0.1:9866 (localhost)\nHostname: LAPTOP-OMM0KTB5.localdomain\nDecommission Status : Normal\nConfigured Capacity: 1081101176832 (1006.85 GB)\nDFS Used: 475174 (464.04 KB)\nNon DFS Used: 55046922202 (51.27 GB)\nDFS Remaining: 971061424128 (904.37 GB)\nDFS Used%: 0.00%\nDFS Remaining%: 89.82%\nConfigured Cache Capacity: 0 (0 B)\nCache Used: 0 (0 B)\nCache Remaining: 0 (0 B)\nCache Used%: 100.00%\nCache Remaining%: 0.00%\nXceivers: 0\nLast contact: Tue Oct 20 01:16:16 CST 2026\nLast Block Report: Mon Oct 19 22:23:43 CST 2026\nNum of Blocks: 18\n\n\n",
+      "stderr": ""
+    },
+    "yarn_nodes": {
+      "command": [
+        "yarn",
+        "node",
+        "-list"
+      ],
+      "exit_code": 0,
+      "stdout": "Total Nodes:1\n         Node-Id\t     Node-State\tNode-Http-Address\tNumber-of-Running-Containers\nLAPTOP-OMM0KTB5.localdomain:46465\t        RUNNING\tLAPTOP-OMM0KTB5.localdomain:8042\t                           0\n",
+      "stderr": "2026-10-20 01:16:16,352 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032\n"
+    },
+    "host_database_login": {
+      "command": [
+        "mariadb",
+        "--connect-timeout=5",
+        "-e",
+        "SELECT CURRENT_USER(),VERSION();"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR 1045 (28000): Access denied for user 'hadoop'@'localhost' (using password: NO)\n"
+    },
+    "network_pypi": {
+      "command": [
+        "curl",
+        "-ILsS",
+        "--connect-timeout",
+        "10",
+        "--max-time",
+        "20",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{http_code}",
+        "https://pypi.org"
+      ],
+      "exit_code": 0,
+      "stdout": "200",
+      "stderr": ""
+    },
+    "network_pytorch": {
+      "command": [
+        "curl",
+        "-ILsS",
+        "--connect-timeout",
+        "10",
+        "--max-time",
+        "20",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{http_code}",
+        "https://download.pytorch.org/whl/cu124/"
+      ],
+      "exit_code": 0,
+      "stdout": "200",
+      "stderr": ""
+    },
+    "network_maven": {
+      "command": [
+        "curl",
+        "-ILsS",
+        "--connect-timeout",
+        "10",
+        "--max-time",
+        "20",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{http_code}",
+        "https://repo.maven.apache.org/maven2/"
+      ],
+      "exit_code": 0,
+      "stdout": "200",
+      "stderr": ""
+    },
+    "network_github": {
+      "command": [
+        "curl",
+        "-ILsS",
+        "--connect-timeout",
+        "10",
+        "--max-time",
+        "20",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{http_code}",
+        "https://github.com"
+      ],
+      "exit_code": 0,
+      "stdout": "200",
+      "stderr": ""
+    }
+  },
+  "storage_initialization": {
+    "directories": [
+      {
+        "path": "/retail/v1",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/raw",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/normalized",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/clean",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/features",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/results",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/models",
+        "state": "CREATED"
+      },
+      {
+        "path": "/retail/v1/releases",
+        "state": "CREATED"
+      }
+    ],
+    "dry_run": false
+  },
+  "storage_recheck": {
+    "directories": [
+      {
+        "path": "/retail/v1",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/raw",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/normalized",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/clean",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/features",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/results",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/models",
+        "state": "EXISTS"
+      },
+      {
+        "path": "/retail/v1/releases",
+        "state": "EXISTS"
+      }
+    ],
+    "dry_run": false
+  },
+  "hdfs_manifest": {
+    "status": "PASS",
+    "synthetic": true,
+    "root": "/tmp/retail-w02-ea199e0d3172450d81fb1be676ff3224",
+    "real_hdfs_read_and_hash": true,
+    "synthetic_rejected_as_formal": true,
+    "manifest": {
+      "schema_version": "1.0",
+      "baseline_version": "HL-DOC-1.0.0",
+      "batch_id": "B20261020000000abcdef12",
+      "run_id": "3e43dfcf-29fb-455a-be6f-92210d7c8414",
+      "status": "SUCCEEDED",
+      "code_commit": "32b4c8b3551b51299ca9d5f7b50dbfd960a4dbe2",
+      "config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "created_at": "2026-10-20T00:00:00Z",
+      "finished_at": "2026-10-20T00:00:01Z",
+      "synthetic": true,
+      "dataset": "normalized",
+      "schema": [
+        "row_id",
+        "source_row_number",
+        "invoice_no",
+        "stock_code",
+        "description",
+        "quantity",
+        "invoice_at",
+        "unit_price_pence",
+        "customer_id",
+        "country",
+        "parse_error"
+      ],
+      "inputs": [
+        {
+          "path": "/tmp/retail-w02-ea199e0d3172450d81fb1be676ff3224/input.tsv",
+          "sha256": "e80b71cd14d3cbd65f4173abcbfcf01a545dbca32a72d575108b553a648cc96f",
+          "rows": 1
+        }
+      ],
+      "outputs": [
+        {
+          "path": "/tmp/retail-w02-ea199e0d3172450d81fb1be676ff3224/part-00000",
+          "sha256": "e80b71cd14d3cbd65f4173abcbfcf01a545dbca32a72d575108b553a648cc96f",
+          "rows": 1
+        }
+      ],
+      "record_count": 1,
+      "classification_counts": {},
+      "application_id": null,
+      "success_marker": "/tmp/retail-w02-ea199e0d3172450d81fb1be676ff3224/_SUCCESS"
+    }
+  },
+  "host_database_roles_and_migrations": "NOT_RUN: current OS user lacks host database access; admin credentials requested",
+  "w02_complete": false,
+  "g_env_complete": false,
+  "scope": "Database tests use genuine isolated MariaDB 10.11.14; model artifacts and metrics are control fixtures only",
+  "hdfs_directory_permissions": "drwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/raw\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/normalized\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/clean\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/features\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/results\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/models\ndrwxr-x---   - hadoop supergroup          0 2026-10-20 01:14 /retail/v1/releases\n",
+  "owned_debug_database_stopped": true
+}
