@@ -21,8 +21,8 @@ mkdir -p "$retail_run_dir"
 exec > >(tee "$retail_run_dir/bootstrap.log") 2>&1
 printf 'Evidence directory: %s\n' "$retail_run_dir"
 retail_powershell=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
-if [[ ! -x "$retail_powershell" || -z "${WSL_DISTRO_NAME:-}" ]]; then
-    echo 'Windows PowerShell or WSL_DISTRO_NAME unavailable; host storage gate cannot be verified.' >&2
+if [[ ! -x "$retail_powershell" ]]; then
+    echo 'Windows PowerShell unavailable; host storage gate cannot be verified.' >&2
     exit 3
 fi
 "$retail_powershell" -NoLogo -NoProfile -NonInteractive -Command - \
@@ -34,9 +34,13 @@ python - "$retail_run_dir/host-storage.json" <<'PY'
 import json, os, sys
 with open(sys.argv[1], encoding='utf-8-sig') as stream:
     rows = json.load(stream)
-matches = [row for row in rows if row.get('distribution') == os.environ['WSL_DISTRO_NAME']]
+requested = os.environ.get('RETAIL_WSL_DISTRIBUTION') or os.environ.get('WSL_DISTRO_NAME')
+if requested:
+    matches = [row for row in rows if row.get('distribution') == requested]
+else:
+    matches = [row for row in rows if row.get('wsl_version') == 2]
 if len(matches) != 1:
-    raise SystemExit('Could not uniquely locate the current WSL distribution in the Windows registry.')
+    raise SystemExit('Could not uniquely identify the current WSL2 distribution. Rerun with RETAIL_WSL_DISTRIBUTION set to its exact registered name.')
 row = matches[0]
 print(json.dumps(row, ensure_ascii=False, indent=2))
 if not row.get('gate_passed') or row.get('available_free_bytes', 0) < 15 * 1024**3:
