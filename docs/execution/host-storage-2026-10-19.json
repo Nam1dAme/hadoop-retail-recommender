@@ -1,0 +1,14 @@
+[
+    {
+        "distribution":  "Ubuntu-24.04",
+        "wsl_version":  2,
+        "base_path":  "E:\\wsl\\Ubuntu-24.04",
+        "observed_at":  "2026-10-19T13:01:15.9784702Z",
+        "required_free_bytes":  16106127360,
+        "gate_passed":  true,
+        "vhdx_path":  "E:\\wsl\\Ubuntu-24.04\\ext4.vhdx",
+        "vhdx_exists":  true,
+        "host_volume":  "E:\\",
+        "available_free_bytes":  145634160640
+    }
+]

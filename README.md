@@ -17,7 +17,7 @@ python scripts/diagnose-environment.py --output var/artifacts/host-diagnostics.j
 
 环境检查在依赖或人工门禁未完成时返回 3，配置错误返回 2。机器可读 JSON 包含采集时间、配置文件 hash、环境变量覆盖后的非敏感有效配置及其 hash、逐项事实；TCP 可连只证明端口可达。命令失败不会推断系统服务已停止，也不会自动启动、清理或重跑任务。激活脚本会在新检出时自动创建被 Git 忽略的运行目录。
 
-当前会话的根 `.git` 是只读挂载，标准 `git init` 已失败。已在 `.git-local/` 建立主分支为 main 的本地仓库，`scripts/git.sh` 显式指定元数据及工作目录；普通 `git status` 在本会话仍不可用。该目录已忽略，不是运行缓存，不应清理；当前未配置远程。回到 `.git` 可写的普通 WSL 后，确认 `.git` 仍为空且 `.git-local` 历史完整，再由操作者迁回标准位置；不要同时初始化第二份历史。
+当前会话的根 `.git` 是只读挂载，标准 `git init` 已失败。已在 `.git-local/` 建立主分支为 main 的本地仓库，`scripts/git.sh` 显式指定元数据及工作目录；普通 `git status` 在本会话仍不可用。该目录已忽略，不是运行缓存，不应清理；当前未配置远程。在普通 WSL 执行 `bash scripts/connect-git.sh`，若 `.git` 不存在则建立标准 gitdir 指针，让普通 Git 使用现有历史；已有不同 `.git` 时脚本拒绝覆盖。
 
 用户配置提交作者后已创建首次提交 `02d564b`。只读诊断脚本可用于对比普通 WSL 与代理会话的网络/GPU/服务访问差异，采集成功不代表 G-ENV 通过。
 

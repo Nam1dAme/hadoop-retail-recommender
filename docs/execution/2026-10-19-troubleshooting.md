@@ -54,3 +54,11 @@ bash scripts/bootstrap-host.sh
 ```
 
 若磁盘门禁失败，保留 host-storage.json，先确认空间安排再继续；脚本不自动释放空间。当前依赖未安装，W01/G-ENV 未通过，工程任务未宣告全部完成。
+
+## 宿主盘门禁实测与标准 Git 入口
+
+用户再次执行宿主脚本，已成功采集 [host-storage-2026-10-19.json](host-storage-2026-10-19.json)：发行版 Ubuntu-24.04，VHDX 为 `E:\wsl\Ubuntu-24.04\ext4.vhdx`，实际宿主卷 E:\，可用 145634160640 字节（约 135.63 GiB），大于 15 GiB，磁盘门禁通过。C 盘约 13 GiB 余量与该 VHDX 所在卷不同，不能据 C 盘不足阻止本项目安装。
+
+本次宿主流程证据目录为 var/artifacts/host-bootstrap-20261019T130114Z-18900。已记录 pip-tools/setuptools 安装完成，并观察到 PySpark/CUDA 包下载产物；完整依赖锁、框架计算与 Maven package 结果尚待同一流程产出，不能根据安静日志判失败或重复运行。
+
+新增 `scripts/connect-git.sh`，在普通 WSL 为现有 `.git-local` 建立标准 `.git` 指针文件，让普通 Git 使用同一份历史。脚本不覆盖已存在的其他元数据；当前只读挂载保持原样。独立临时仓库中实测：首次连接、重复调用、保留其他 `.git` 内容均通过。真实项目的标准入口仍需普通 WSL 执行该脚本后核实。
