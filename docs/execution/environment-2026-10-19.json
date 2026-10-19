@@ -1,0 +1,319 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T11:02:43.279308Z",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "config_sha256": "f40631b9f533b1ed1a9f33b844eae23507faebe3242cc5c518dc2372c279077f",
+  "checks": [
+    {
+      "check": "frozen_baseline",
+      "status": "PASS",
+      "evidence": {
+        "00-governance.md": true,
+        "01-prd.md": true,
+        "02-ux.md": true,
+        "03-architecture.md": true,
+        "04-data-contracts.md": true,
+        "05-pipeline.md": true,
+        "06-database.md": true,
+        "07-models.md": true,
+        "08-api.md": true,
+        "09-environment.md": true,
+        "10-operations.md": true,
+        "11-acceptance.md": true,
+        "12-agent-plan.md": true,
+        "13-decisions-risks.md": true,
+        "14-traceability.md": true,
+        "15-evidence.md": true,
+        "16-freeze-review.md": true,
+        "README.md": true
+      }
+    },
+    {
+      "check": "python_venv",
+      "status": "PASS",
+      "evidence": {
+        "version": "3.12.3",
+        "executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
+        "isolated": true
+      }
+    },
+    {
+      "check": "java",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "openjdk version \"1.8.0_504\"\nOpenJDK Runtime Environment (build 1.8.0_504-8u504-ga-1ubuntu1~24.04.3-b01)\nOpenJDK 64-Bit Server VM (build 25.504-b01, mixed mode)"
+      }
+    },
+    {
+      "check": "maven",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "\u001b[1mApache Maven 3.8.7\u001b[m\nMaven home: /usr/share/maven\nJava version: 1.8.0_504, vendor: Ubuntu, runtime: /usr/lib/jvm/java-8-openjdk-amd64/jre\nDefault locale: en, platform encoding: UTF-8\nOS name: \"linux\", version: \"6.6.87.2-microsoft-standard-wsl2\", arch: \"amd64\", family: \"unix\""
+      }
+    },
+    {
+      "check": "hadoop",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "Hadoop 3.3.5\nSource code repository https://github.com/apache/hadoop.git -r 706d88266abcee09ed78fbaa0ad5f74d818ab0e9\nCompiled by stevel on 2023-03-15T15:56Z\nCompiled with protoc 3.7.1\nFrom source with checksum 6bbd9afcf4838a0eb12a5f189e9bd7\nThis command was run using /usr/local/hadoop/share/hadoop/common/hadoop-common-3.3.5.jar"
+      }
+    },
+    {
+      "check": "cuda_toolkit",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:19:38_PST_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0"
+      }
+    },
+    {
+      "check": "mariadb_client",
+      "status": "PASS",
+      "evidence": {
+        "exit_code": 0,
+        "output": "mariadb  Ver 15.1 Distrib 10.11.14-MariaDB, for debian-linux-gnu (x86_64) using  EditLine wrapper"
+      }
+    },
+    {
+      "check": "gpu_visibility",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "dev_dxg": false,
+        "exit_code": 255,
+        "output": "Failed to initialize NVML: GPU access blocked by the operating system\nFailed to properly shut down NVML: GPU access blocked by the operating system"
+      }
+    },
+    {
+      "check": "package:torch",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "2.6.0+cu124"
+      }
+    },
+    {
+      "check": "package:pyspark",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "3.5.7"
+      }
+    },
+    {
+      "check": "package:numpy",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "1.26.4"
+      }
+    },
+    {
+      "check": "package:pandas",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "2.2.3"
+      }
+    },
+    {
+      "check": "package:openpyxl",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "3.1.5"
+      }
+    },
+    {
+      "check": "package:fastapi",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "0.115."
+      }
+    },
+    {
+      "check": "package:pydantic",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "2."
+      }
+    },
+    {
+      "check": "package:uvicorn",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "0.34."
+      }
+    },
+    {
+      "check": "package:streamlit",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "1.40."
+      }
+    },
+    {
+      "check": "package:PyMySQL",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "1.1."
+      }
+    },
+    {
+      "check": "package:plotly",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "5.24."
+      }
+    },
+    {
+      "check": "package:PyYAML",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "6."
+      }
+    },
+    {
+      "check": "package:pytest",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "8."
+      }
+    },
+    {
+      "check": "package:httpx",
+      "status": "FAIL",
+      "evidence": {
+        "installed": null,
+        "expected": "0.28."
+      }
+    },
+    {
+      "check": "core-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "fs.defaultFS": "hdfs://localhost:9000"
+        },
+        "required": {
+          "fs.defaultFS": "hdfs://localhost:9000"
+        }
+      }
+    },
+    {
+      "check": "hdfs-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "dfs.replication": "1"
+        },
+        "required": {
+          "dfs.replication": "1"
+        }
+      }
+    },
+    {
+      "check": "mapred-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "mapreduce.framework.name": "yarn"
+        },
+        "required": {
+          "mapreduce.framework.name": "yarn"
+        }
+      }
+    },
+    {
+      "check": "yarn-site.xml",
+      "status": "PASS",
+      "evidence": {
+        "observed": {
+          "yarn.nodemanager.aux-services": "mapreduce_shuffle"
+        },
+        "required": {
+          "yarn.nodemanager.aux-services": "mapreduce_shuffle"
+        }
+      }
+    },
+    {
+      "check": "hadoop_env_java_home",
+      "status": "PASS",
+      "evidence": "hadoop-env.sh must explicitly export the configured JAVA_HOME"
+    },
+    {
+      "check": "tcp:hdfs_rpc",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "PermissionError",
+        "errno": 1
+      }
+    },
+    {
+      "check": "tcp:namenode_ui",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "PermissionError",
+        "errno": 1
+      }
+    },
+    {
+      "check": "tcp:yarn_ui",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "PermissionError",
+        "errno": 1
+      }
+    },
+    {
+      "check": "tcp:database",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "error": "PermissionError",
+        "errno": 1
+      }
+    },
+    {
+      "check": "hdfs_datanodes",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "exit_code": 255,
+        "output": "report: Call From LAPTOP-OMM0KTB5/127.0.1.1 to localhost:9000 failed on socket exception: java.net.SocketException: Operation not permitted; For more details see:  http://wiki.apache.org/hadoop/SocketException"
+      }
+    },
+    {
+      "check": "yarn_nodes",
+      "status": "NOT_VERIFIED",
+      "evidence": {
+        "exit_code": null,
+        "output": "TimeoutExpired"
+      }
+    },
+    {
+      "check": "dependency_lock",
+      "status": "FAIL",
+      "evidence": {
+        "exists": false,
+        "path": "config/requirements-linux-py312.lock"
+      }
+    }
+  ],
+  "manual_gates": [
+    "VHDX host volume and >=15 GiB free",
+    "database server version/roles/migrations (W02)",
+    "real CUDA matmul and backward",
+    "PySpark ALS fit/save/load",
+    "HDFS live DataNode and YARN NodeManager/WordCount"
+  ],
+  "g_env_complete": false
+}

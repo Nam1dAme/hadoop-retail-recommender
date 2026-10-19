@@ -1,0 +1,21 @@
+{
+  "scope": "Java8/Hadoop installed JAR compile and Configuration/Job initialization only; no YARN submission or Maven package",
+  "source": "var/tmp/java-smoke/HadoopEnvironmentSmoke.java",
+  "results": [
+    {
+      "command": "javac",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "java",
+      "exit_code": 0,
+      "output": "2026-10-19 19:01:23,369 WARN  [main] util.NativeCodeLoader (NativeCodeLoader.java:<clinit>(60)) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nPASS Java8 Hadoop3.3.5 Configuration+Job; no job submitted\n"
+    },
+    {
+      "command": "javap",
+      "exit_code": 0,
+      "output": "major version: 52"
+    }
+  ]
+}

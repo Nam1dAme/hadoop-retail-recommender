@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=75,<76"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hadoop-lab"
+version = "0.1.0"
+description = "Hadoop and CUDA retail analytics engineering foundation"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["config/requirements.in"]}
+
+[tool.setuptools.packages.find]
+include = ["etl*", "ml*", "service*", "app*", "orchestration*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

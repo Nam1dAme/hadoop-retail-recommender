@@ -1,0 +1,20 @@
+# HL-DOC-1.0.0 / docs/09-environment.md. Resolver input, NOT an installed lock.
+# Use PyPI plus the official PyTorch cu124 index (see scripts/lock-dependencies.sh).
+# Include build/lock tools so their transitive dependencies are locked as well.
+pip==24.0
+pip-tools==7.4.1
+setuptools>=75,<76
+torch==2.6.0+cu124
+pyspark==3.5.7
+fastapi>=0.115,<0.116
+pydantic>=2,<3
+uvicorn>=0.34,<0.35
+streamlit>=1.40,<1.41
+numpy==1.26.4
+pandas==2.2.3
+openpyxl==3.1.5
+PyMySQL>=1.1,<1.2
+plotly>=5.24,<5.25
+PyYAML>=6,<7
+pytest>=8,<9
+httpx>=0.28,<0.29

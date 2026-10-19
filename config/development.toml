@@ -1,0 +1,29 @@
+# Non-sensitive project defaults. Always pass this file explicitly via --config.
+baseline_version = "HL-DOC-1.0.0"
+
+[database]
+host = "127.0.0.1"
+port = 3306
+name = "retail_analytics"
+
+[hdfs]
+uri = "hdfs://localhost:9000"
+root = "/retail/v1"
+
+[paths]
+work_dir = "/home/hadoop/hadoop-lab/var"
+
+[api]
+host = "127.0.0.1"
+port = 8000
+url = "http://127.0.0.1:8000/api/v1"
+
+[ui]
+host = "127.0.0.1"
+port = 8501
+
+[runtime]
+java_home = "/usr/lib/jvm/java-8-openjdk-amd64"
+hadoop_home = "/usr/local/hadoop"
+hadoop_conf_dir = "/home/hadoop/hadoop-lab/config/hadoop"
+cuda_home = "/usr/local/cuda"
