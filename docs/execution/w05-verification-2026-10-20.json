@@ -1,0 +1,83 @@
+{
+  "applications": [
+    {
+      "application_id": "application_1792478303938_0014",
+      "final_status": "SUCCEEDED",
+      "run_id": "25d97d07-1999-43f4-8953-0e4f5025b4ce",
+      "stage": "J06baskets"
+    },
+    {
+      "application_id": "application_1792478303938_0015",
+      "final_status": "SUCCEEDED",
+      "run_id": "d3370323-6daa-4257-b0b1-3cafbe8afe9d",
+      "stage": "J06interactions"
+    },
+    {
+      "application_id": "application_1792478303938_0016",
+      "final_status": "SUCCEEDED",
+      "run_id": "2461f2df-576d-404d-a971-f8e24e9d87cd",
+      "stage": "J07baskets"
+    },
+    {
+      "application_id": "application_1792478303938_0017",
+      "final_status": "SUCCEEDED",
+      "run_id": "acace7a8-a91b-4dd5-bac4-d11c02ae008f",
+      "stage": "J07"
+    },
+    {
+      "application_id": "application_1792478303938_0018",
+      "final_status": "SUCCEEDED",
+      "run_id": "535cb52f-2621-416c-8f68-5f4bbbf0d146",
+      "stage": "J08"
+    }
+  ],
+  "batch_id": "B20261019194025b4f65854",
+  "checks": [
+    "committed source snapshot",
+    "immutable hashes and schemas",
+    "TRAIN cutoff before J06/J07",
+    "both mappings from clean",
+    "both interaction counts/dates",
+    "anonymous-aware popularity",
+    "shared future labels minus TRAIN history",
+    "window/cold/excluded counts"
+  ],
+  "contexts": {
+    "eval": {
+      "catalog_count": 3388,
+      "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+      "positive_interactions": 162426,
+      "user_count": 3314
+    },
+    "fullfit": {
+      "catalog_count": 3659,
+      "mapping_sha256": "1c7c1493512cb327fcedc3cc88bcc5cd17c8fb2ca888fbce59f2d9219eb5bdb9",
+      "positive_interactions": 266221,
+      "user_count": 4334
+    }
+  },
+  "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+  "preparation_code_commit": "14471771edd9f28c5e7c069f3ec97a9c25fd3c1c",
+  "preparation_run_id": "5d6a3b79-d8a1-45b8-94fc-9beb46aaf961",
+  "status": "PASS",
+  "windows": {
+    "test": {
+      "all_eligible_users": 1843,
+      "cold_interaction_count": 7331,
+      "cold_item_count": 249,
+      "cold_user_count": 568,
+      "excluded_user_count": 61,
+      "warm_users": 1275,
+      "window_user_count": 1904
+    },
+    "validation": {
+      "all_eligible_users": 2061,
+      "cold_interaction_count": 6266,
+      "cold_item_count": 219,
+      "cold_user_count": 656,
+      "excluded_user_count": 72,
+      "warm_users": 1407,
+      "window_user_count": 2133
+    }
+  }
+}
