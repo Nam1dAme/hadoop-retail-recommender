@@ -1,0 +1,89 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-20T08:21:13.439551+00:00",
+  "implementation_commit": "df34003e0d0cc36b8d88591ca7fc39834bf42ac0",
+  "status": "IMPLEMENTED_AWAITING_FORMAL_ACCEPTANCE",
+  "automated_tests": {
+    "path": "var/w04/pytest.xml",
+    "sha256": "ebeaee73c8d2091d1c882d2ae6ea6d04229d2060e2f7a2af6e962746c9218d22",
+    "result": {
+      "tests": "82",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "108.940"
+    }
+  },
+  "final_targeted_tests": {
+    "path": "var/w04/final-integration.xml",
+    "sha256": "c4de1fa4fb0804a7646860065da03e8c435c0fb32937d67e5bba1a6018649b6f",
+    "result": {
+      "tests": "7",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "time": "41.579"
+    }
+  },
+  "build": {
+    "jar_path": "mapreduce/target/retail-mapreduce-0.1.0-SNAPSHOT.jar",
+    "jar_sha256": "9fd5631f5cfc544653ba0d409d3af0f75a5b10ef41819b72a54db40448a975de",
+    "class_count": 28,
+    "class_file_major_version": 52,
+    "bundled_hadoop_runtime": false,
+    "environment_lock_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac"
+  },
+  "source_sha256": {
+    "etl/__init__.py": "b29ca7e04b05e3213206a76592a1bcb693b3eb85cf27763154f37ed999119720",
+    "etl/audit.py": "55752a2d771fa8101c50edf5e3fdf2ce498ad63e8995120a17bcafaede705f93",
+    "etl/ingest.py": "ebb719db2344733c04dcb3ce846539324f398a384c9f5b3f15347d23de800620",
+    "etl/normalize.py": "84eac53308bf45ba02e88de103dd8d52135867a2b757efd0c632faf6daa680de",
+    "etl/storage.py": "5f56ac892f629d467d618b0d010919572c4416da54d9ff94f17c9e3c43542662",
+    "etl/tsv.py": "3dd8b938cc0b3c02883ba74c217a436d4d92227f2cf81f9b93bbb04ad457f27e",
+    "etl/workbook.py": "188ebff169cdf1779eef6b3d08bfc0d74b9b07a386b2f80715ea71027a18064b",
+    "mapreduce/src/main/java/cn/hadooplab/retail/Aggregates.java": "14af02fa0f649f7e6c532bdd45bb920b21cbef58762266787f502a2f602363f3",
+    "mapreduce/src/main/java/cn/hadooplab/retail/Clean.java": "dae8c52ecc73956b3c8cc5cf12fcee3c022d542d6816758b094e37e00270e519",
+    "mapreduce/src/main/java/cn/hadooplab/retail/Features.java": "2af7a289e01732f52ac147310f7fb779a36f0fe137e777bb61a9dbf05de36911",
+    "mapreduce/src/main/java/cn/hadooplab/retail/RetailJobs.java": "1942c034543b286c2b3d9dfb4e3193409f9baccc6b766ddb2e919777d35944b4",
+    "mapreduce/src/main/java/cn/hadooplab/retail/Tsv.java": "c8665119c838ff7499cb87fdd5cd051d53303f5b96e7f9b8ce5f81daf94239f6",
+    "orchestration/__init__.py": "6051ee64073f9414b75d01a86ff35f6e5db7e1b6d14f8510b0052859d79dc98d",
+    "orchestration/cli.py": "eaa4c1ad8334e87b251ea69b7bc49f1bc8f2e298d3ae57ec3c9b735d83a787ff",
+    "orchestration/control.py": "aba18e8c6e638107f58982b19fbd99795378d89a0b30e2321f9fd0a54f08821e",
+    "orchestration/database.py": "bdc0c04b8ea0d83f6904a75cb79a93506c43442e0ece4937281f6098e446a7ff",
+    "orchestration/db_backup.py": "d69a1745e54fed289d9785a65878b544350021c8dd127fb60420fac9e658622a",
+    "orchestration/environment_lock.py": "e6916c2447d74f46703efeb8f3c41eb4e51edb97199d1619c3201c0e7eeb7df2",
+    "orchestration/manifests.py": "f3b125208542aa3e05a3bee9f84274500897c0e25cd35d5d154b88298aad6910",
+    "orchestration/migrations.py": "8278dd791582d9f00eb7a1f31476d04eb0dfe54f2921ca28aba3a4c17f6d967b",
+    "orchestration/pipeline.py": "1d774819c8b34129131ead9c1a74fe3f404f2e5ebebcb16fde902421c2d88297",
+    "orchestration/pipeline_audit.py": "5db5b3c2811f9a63f03e70e433dd085e9fb532ae06087ed4def8ffae6646e87b",
+    "orchestration/provision.py": "14071d2a483b684c0a1f7916b88ce4158482bc151cdc0c9f7527aec38050dc5e",
+    "orchestration/quality.py": "a7c53d91f1c329861e6c8f65bcd0c51fae5123878f68da3cab0fb135b457797b",
+    "orchestration/runtime.py": "1cca1f2c8b15170498a95e463caec8e03ebdc3ed83e28335fd8da96fe7da35af",
+    "orchestration/settings.py": "01da2dfdfaba3c0e08dd4a1b1f8ae7d5161c1acad0a7d34d5374ef90f3106ead",
+    "orchestration/storage.py": "df2c415023274790e314c9346e1e3d305980b832f79d29b8e0f08ab18bca3369",
+    "orchestration/yarn.py": "d106073f14134ffa79de9ab65d23284b86d3b118486e2042b9f9ef089658832d",
+    "scripts/verify-w03.py": "fb1de1bb536b93d706037c24e42e109f318d4af6e500c5e90c79e0cb5126b49e",
+    "scripts/verify-w04.py": "b1068927651f0b73561d3ba5aebdf72b8aca1e051f4d74e3cfe358b50f50105a"
+  },
+  "frozen_baseline_files_verified": 18,
+  "formal_runtime": {
+    "status": "NOT_RUN",
+    "reason": "System MariaDB service unavailable; 3306 has no listener; service startup requires the user sudo password",
+    "mariadb_service": {
+      "Result": "exit-code",
+      "ExecMainStatus": "7",
+      "ActiveState": "failed",
+      "SubState": "failed"
+    },
+    "batch_id": "B20261019194025b4f65854",
+    "formal_applications_submitted": 0
+  },
+  "test_boundary": "Hand calculations and real Java LocalJobRunner; isolated real MariaDB with explicitly synthetic filesystem/YARN adapters; these are not formal YARN evidence",
+  "remaining": [
+    "Restore the system MariaDB service without resetting credentials or schema",
+    "Run the existing real W03 batch through all business YARN applications",
+    "Repeat pipeline and confirm successful stages are reused",
+    "Independently verify all application identities, manifests and business results",
+    "Archive formal results and finish the W04 completion audit"
+  ]
+}
