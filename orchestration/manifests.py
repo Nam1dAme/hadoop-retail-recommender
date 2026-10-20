@@ -139,6 +139,7 @@ DATASETS = {
  'similarity':'stock_code,related_stock_code,similarity,co_count,confidence,lift,rank',
  'recommendations':'model_run_id,customer_id,stock_code,rank,score,reason_code,is_fallback',
  'pipeline_summary':'key,value',
+ 'experiment_summary':'key,value',
  'rfm_base':'customer_id,last_purchase,frequency,monetary_pence',
  'rfm_scores':'metric,value,score',
  'customer_seen':'customer_id,stock_code',

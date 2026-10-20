@@ -17,9 +17,9 @@ public final class RetailJobs extends Configured implements Tool {
         for(int i=0;i<arguments.length;i+=2){if(i+1>=arguments.length||!arguments[i].startsWith("--")||args.put(arguments[i].substring(2),arguments[i+1])!=null)throw new IllegalArgumentException("Invalid stage arguments");}
         String stage=Objects.requireNonNull(args.get("stage")),run=Objects.requireNonNull(args.get("run-id"));
         Configuration conf=getConf();conf.set("retail.stage",stage);
-        for(String name:Arrays.asList("source-sha","customers","reference-date","baskets"))if(args.containsKey(name))conf.set("retail."+name.replace('-','.'),args.get(name));
+        for(String name:Arrays.asList("source-sha","customers","reference-date","baskets","train-end"))if(args.containsKey(name))conf.set("retail."+name.replace('-','.'),args.get(name));
         conf.set("mapreduce.output.textoutputformat.separator", "\t");
-        Job job=Job.getInstance(conf,"retail-"+stage+"-"+run);
+        Job job=Job.getInstance(conf,"retail-"+args.getOrDefault("task-name",stage)+"-"+run);
         job.setJarByClass(RetailJobs.class);
         job.setMapOutputKeyClass(Text.class);job.setMapOutputValueClass(Text.class);
         job.setOutputKeyClass(Text.class);job.setOutputValueClass(NullWritable.class);

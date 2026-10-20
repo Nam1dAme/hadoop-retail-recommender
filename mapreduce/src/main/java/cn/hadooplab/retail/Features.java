@@ -89,12 +89,16 @@ public final class Features {
     public static class OrderMap extends Mapper<LongWritable,Text,Text,Text>{
         protected void map(LongWritable k,Text v,Context c)throws IOException,InterruptedException{
             String[] f=Tsv.parse(v.toString(),5);
+            String end=c.getConfiguration().get("retail.train.end");
+            if(end!=null && LocalDate.parse(f[1]).compareTo(LocalDate.parse(end))>=0)return;
             c.write(new Text(Tsv.line(f[0])+"\t0"),new Text("O\t"+Tsv.encode(f[3])));
         }
     }
     public static class BasketMap extends Mapper<LongWritable,Text,Text,Text>{
         protected void map(LongWritable k,Text v,Context c)throws IOException,InterruptedException{
             String[] f=Tsv.parse(v.toString(),15);
+            String end=c.getConfiguration().get("retail.train.end");
+            if(end!=null && LocalDate.parse(f[8]).compareTo(LocalDate.parse(end))>=0)return;
             if(Aggregates.sale(f)&&f[14].equals("true"))c.write(new Text(Tsv.line(f[2])+"\t1\t"+Tsv.encode(f[3])),new Text("S\t"+Tsv.line(f[3],f[7],f[1])));
         }
     }

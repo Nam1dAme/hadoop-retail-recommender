@@ -34,6 +34,8 @@ public final class Aggregates {
                 break;
             case "J06interactions":
                 f=Tsv.parse(v.toString(),15);
+                String end=c.getConfiguration().get("retail.train.end");
+                if(end!=null && java.time.LocalDate.parse(f[8]).compareTo(java.time.LocalDate.parse(end))>=0)break;
                 if (sale(f) && f[11]!=null && f[14].equals("true"))
                     c.write(new Text(Tsv.line(f[11],f[3],f[2])),new Text(Tsv.line(f[2],f[8])));
                 break;

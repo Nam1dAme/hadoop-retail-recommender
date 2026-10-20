@@ -1,0 +1,26 @@
+# HL-DOC-1.0.0 / docs/07. Changes require a new experiment identity.
+split_policy_version = "time-split-v1"
+candidate_policy_version = "full-catalog-v1"
+seed = 42
+k = 10
+train_end_exclusive = "2011-09-01"
+validation_end_exclusive = "2011-11-01"
+
+[als]
+rank = [16, 32]
+reg_param = [0.01, 0.1]
+max_iter = 10
+alpha = 10.0
+implicit_prefs = true
+nonnegative = true
+
+[ncf]
+learning_rate = [0.001, 0.0005]
+embedding_dim = 16
+hidden_layers = [64, 32, 16]
+batch_size = 1024
+max_epochs = 20
+patience = 3
+min_delta = 0.000001
+negatives = 4
+weight_decay = 0.00001

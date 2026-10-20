@@ -33,6 +33,9 @@ def main():
     pipeline=sub.add_parser('pipeline')
     pipeline.add_argument('--batch-id',required=True)
     pipeline.add_argument('--reducers',type=int,default=2)
+    preparation=sub.add_parser('prepare-experiment')
+    preparation.add_argument('--batch-id',required=True)
+    preparation.add_argument('--experiment-id',required=True)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -72,6 +75,9 @@ def main():
                 elif args.command=='pipeline':
                     from orchestration.pipeline import pipeline
                     result=pipeline(connection,config,args.batch_id,reducers=args.reducers,dry_run=args.dry_run)
+                elif args.command=='prepare-experiment':
+                    from orchestration.experiment_data import prepare_experiment
+                    result=prepare_experiment(connection,config,args.batch_id,args.experiment_id,dry_run=args.dry_run)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)

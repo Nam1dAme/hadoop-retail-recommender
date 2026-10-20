@@ -142,6 +142,21 @@ def test_order_conflict_and_aggregate_overflow(java_runner):
     run('J02',conflict,expect_failure=True)
 
 
+def test_train_cutoff_precedes_basket_and_interaction_aggregation(java_runner):
+    root, run = java_runner
+    source = root / 'time-split-clean.tsv'
+    source.write_text(''.join(line(['a'*64, n, invoice, item, 'description', 1, 1,
+        day+'T12:00:00', day, 100, 100, 'u', 'UK', 'SALE', 'true'])
+        for n, invoice, item, day in [(2,'a','10001','2011-08-31'),
+                                      (3,'b','10002','2011-09-01'),
+                                      (4,'c','10003','2011-11-01')]))
+    orders, _ = run('J02', source)
+    baskets, _ = run('J06baskets', source, orders=orders/'order_fact', train_end='2011-09-01')
+    interactions, _ = run('J06interactions', source, train_end='2011-09-01')
+    assert [r[3] for r in dataset(baskets, 'baskets')] == ['10001']
+    assert dataset(interactions, 'interactions') == [['u', '10001', '1', '2011-08-31']]
+
+
 def test_independent_audit_recomputes_all_results(hand_calculation,tmp_path):
     from etl.storage import FileStorage
     from orchestration.manifests import DATASETS,fingerprint
