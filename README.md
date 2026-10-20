@@ -6,9 +6,9 @@
 
 2026-10-20 已复查当前会话：PyPI/PyTorch/Maven/GitHub HTTPS、Git 远程读取、真实 CUDA 矩阵计算和反向传播正常。W02 已实现完整 001 迁移、角色配置、批次/任务/实验控制和 manifest 核验；33 项测试通过，其中数据库测试使用独立 MariaDB 10.11.14 实例。正式 HDFS `/retail/v1` 命名空间已建立。现有 MariaDB 已按用户授权完成正式 001 迁移；migration/writer/reader 三账号最小权限均已实测通过，W02 及 G-ENV 对应的数据库门禁已完成，详见 [W02 执行记录](docs/execution/2026-10-20-w02.md) 和 [迁移使用说明](migrations/README.md)。
 
-W03 已完成：真实 UCI 文件 541,909 行已原样归档 HDFS 并生成标准化 TSV、来源审计、拒绝/warning 报告及 manifest。首次导入与再次导入复用同一批次/任务，独立扫描验证全部源行追溯和 5,268 条重复超额行；重复交易均保留。71 项测试通过。导入任务 SUCCEEDED，批次 PROCESSING，等待 W04 的 Java/YARN 业务流水线。运行与验收见 [W03 执行记录](docs/execution/2026-10-20-w03.md)，命令及模块说明见 [导入说明](etl/README.md)。
+W03 已完成：真实 UCI 文件 541,909 行已原样归档 HDFS 并生成标准化 TSV、来源审计、拒绝/warning 报告及 manifest。首次导入与再次导入复用同一批次/任务，独立扫描验证全部源行追溯和 5,268 条重复超额行；重复交易均保留。W03 验收时导入任务 SUCCEEDED、批次 PROCESSING，后续已由 W04 完成业务流水线。历史验收见 [W03 执行记录](docs/execution/2026-10-20-w03.md)，命令及模块说明见 [导入说明](etl/README.md)。
 
-W04 的 Java J01—J08、任务编排和独立业务验算已实现，手算、恢复及隔离集成测试通过；完整回归 82 项成功，收尾相关测试 7 项再次通过。当前正式 MariaDB 服务未运行，真实批次 YARN 验收尚未执行，W04 仍未完成。构建/使用见 [MapReduce 说明](mapreduce/README.md)，状态和后续步骤见 [W04 执行记录](docs/execution/2026-10-20-w04.md)。
+W04 已完成：J01—J08 的十二个真实 YARN 应用全部成功，独立验算通过 37,830 项检查；原批次现为 SUCCEEDED。产出 19,960 个正向订单、4,338 个客户的 RFM，以及销售、完整购买交互和相似商品结果。重复执行复用同一批任务，完整回归 86 项通过，W03 兼容验收通过。构建/使用见 [MapReduce 说明](mapreduce/README.md)，真实应用、金额及源码证据见 [W04 执行记录](docs/execution/2026-10-20-w04.md) 和 [完整验收 JSON](docs/execution/w04-verification-2026-10-20.json)。
 
 Python 版本、虚拟环境和依赖统一由 uv 管理：`.python-version` 固定 3.12，`pyproject.toml` 为唯一依赖声明，`uv.lock` 为已解析生成的完整锁。PyTorch 仅从官方 cu124 索引解析；其他依赖默认 PyPI。旧 pip-tools 输入已移除。
 
@@ -58,4 +58,4 @@ CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用�
 | migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
 | var/ | 忽略的运行数据、缓存、日志与导出 |
 
-当前 W01、W02、W03 已完成；W04 已实现，等待正式运行验收。W05—W11 的实验、训练、发布与应用尚未实现。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
+当前 W01—W04 已完成。W05—W11 的实验、训练、发布与应用尚未实现。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。

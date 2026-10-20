@@ -1,0 +1,1098 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "completed_at": "2026-10-20T09:33:59.391461Z",
+  "w04_complete": true,
+  "status": "PASS",
+  "verification": {
+    "baseline_version": "HL-DOC-1.0.0",
+    "observed_at": "2026-10-20T09:14:18.265414Z",
+    "status": "PASS",
+    "batch_id": "B20261019194025b4f65854",
+    "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+    "source_rows": 541909,
+    "batch_status": "SUCCEEDED",
+    "applications": [
+      {
+        "application": {
+          "elapsedTime": 40690,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485098776,
+          "id": "application_1792478303938_0002",
+          "memorySeconds": 71362,
+          "name": "retail-J01-ec9b03dd-d38f-465a-8422-e6120d3eb61b",
+          "startedTime": 1792485058086,
+          "state": "FINISHED",
+          "vcoreSeconds": 94
+        },
+        "counters": {
+          "MISSING_CUSTOMER_ID_ROWS": 135080,
+          "MISSING_DESCRIPTION_ROWS": 1454,
+          "NONPOSITIVE_PRICE_ROWS": 2521,
+          "NON_MERCHANDISE_SALE_ROWS": 2375,
+          "PRICE_ROUNDED_ROWS": 4,
+          "RAW_ROWS": 541909,
+          "REJECTED_ROWS": 2521,
+          "RETURN_ROWS": 9288,
+          "SALE_ROWS": 530100
+        },
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 678447,
+          "MAP_OUTPUT_RECORDS": 678447,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 439717888,
+          "REDUCE_INPUT_RECORDS": 678447,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 445538304,
+          "REDUCE_SHUFFLE_BYTES": 138016321,
+          "SPILLED_RECORDS": 1898803,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 49410,
+          "gc_milliseconds": 1073
+        },
+        "reducers": 2,
+        "stage": "J01"
+      },
+      {
+        "application": {
+          "elapsedTime": 19559,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485218048,
+          "id": "application_1792478303938_0003",
+          "memorySeconds": 29391,
+          "name": "retail-J02-dcc7a216-b027-457a-9fa2-7972e5e395cf",
+          "startedTime": 1792485198489,
+          "state": "FINISHED",
+          "vcoreSeconds": 40
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 539388,
+          "MAP_OUTPUT_RECORDS": 530100,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 411291648,
+          "REDUCE_INPUT_RECORDS": 530100,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 413548544,
+          "REDUCE_SHUFFLE_BYTES": 23381767,
+          "SPILLED_RECORDS": 1060200,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 16140,
+          "gc_milliseconds": 462
+        },
+        "reducers": 2,
+        "stage": "J02"
+      },
+      {
+        "application": {
+          "elapsedTime": 20303,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485320807,
+          "id": "application_1792478303938_0004",
+          "memorySeconds": 29166,
+          "name": "retail-J03-49d2e83e-cc8d-444d-8edc-f8bb54b3cca6",
+          "startedTime": 1792485300504,
+          "state": "FINISHED",
+          "vcoreSeconds": 39
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 539388,
+          "MAP_OUTPUT_RECORDS": 539388,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 412762112,
+          "REDUCE_INPUT_RECORDS": 539388,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 426471424,
+          "REDUCE_SHUFFLE_BYTES": 23859912,
+          "SPILLED_RECORDS": 1078776,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 19330,
+          "gc_milliseconds": 520
+        },
+        "reducers": 2,
+        "stage": "J03"
+      },
+      {
+        "application": {
+          "elapsedTime": 21925,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485420761,
+          "id": "application_1792478303938_0005",
+          "memorySeconds": 32048,
+          "name": "retail-J04-b770e9c7-9785-4d3a-908a-ff9701b73443",
+          "startedTime": 1792485398836,
+          "state": "FINISHED",
+          "vcoreSeconds": 42
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 539388,
+          "MAP_OUTPUT_RECORDS": 530100,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 408891392,
+          "REDUCE_INPUT_RECORDS": 530100,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 424087552,
+          "REDUCE_SHUFFLE_BYTES": 25047080,
+          "SPILLED_RECORDS": 1060200,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 19220,
+          "gc_milliseconds": 557
+        },
+        "reducers": 2,
+        "stage": "J04"
+      },
+      {
+        "application": {
+          "elapsedTime": 18614,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485518726,
+          "id": "application_1792478303938_0006",
+          "memorySeconds": 28088,
+          "name": "retail-J05base-0adbaefd-c03c-4e77-9f14-5f62a1901e4b",
+          "startedTime": 1792485500112,
+          "state": "FINISHED",
+          "vcoreSeconds": 37
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 19960,
+          "MAP_OUTPUT_RECORDS": 18532,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 404996096,
+          "REDUCE_INPUT_RECORDS": 18532,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 326430720,
+          "REDUCE_SHUFFLE_BYTES": 462281,
+          "SPILLED_RECORDS": 37064,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 7140,
+          "gc_milliseconds": 324
+        },
+        "reducers": 2,
+        "stage": "J05base"
+      },
+      {
+        "application": {
+          "elapsedTime": 18037,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485614634,
+          "id": "application_1792478303938_0007",
+          "memorySeconds": 24769,
+          "name": "retail-J05distribution-b74dc67e-b2d5-4b4e-a04a-0cf80ae8e596",
+          "startedTime": 1792485596597,
+          "state": "FINISHED",
+          "vcoreSeconds": 33
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 4338,
+          "MAP_OUTPUT_RECORDS": 13014,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 420556800,
+          "REDUCE_INPUT_RECORDS": 13014,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 332812288,
+          "REDUCE_SHUFFLE_BYTES": 299346,
+          "SPILLED_RECORDS": 26028,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 7270,
+          "gc_milliseconds": 288
+        },
+        "reducers": 2,
+        "stage": "J05distribution"
+      },
+      {
+        "application": {
+          "elapsedTime": 12444,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485704585,
+          "id": "application_1792478303938_0008",
+          "memorySeconds": 14138,
+          "name": "retail-J05-5d3cf1cd-6e54-42aa-984a-aa83259a4584",
+          "startedTime": 1792485692141,
+          "state": "FINISHED",
+          "vcoreSeconds": 21
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 4338,
+          "MAP_OUTPUT_RECORDS": 0,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 291782656,
+          "REDUCE_INPUT_RECORDS": 0,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 0,
+          "REDUCE_SHUFFLE_BYTES": 0,
+          "SPILLED_RECORDS": 0,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 0,
+          "cpu_milliseconds": 2800,
+          "gc_milliseconds": 173
+        },
+        "reducers": 0,
+        "stage": "J05"
+      },
+      {
+        "application": {
+          "elapsedTime": 19479,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485805503,
+          "id": "application_1792478303938_0009",
+          "memorySeconds": 37541,
+          "name": "retail-J06baskets-c69e6dc6-c6eb-405f-b67d-310ca7b2faf1",
+          "startedTime": 1792485786024,
+          "state": "FINISHED",
+          "vcoreSeconds": 50
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 4,
+          "MAP_INPUT_RECORDS": 559348,
+          "MAP_OUTPUT_RECORDS": 547685,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 405491712,
+          "REDUCE_INPUT_RECORDS": 547685,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 427069440,
+          "REDUCE_SHUFFLE_BYTES": 27810623,
+          "SPILLED_RECORDS": 1095370,
+          "TOTAL_LAUNCHED_MAPS": 4,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 23350,
+          "gc_milliseconds": 694
+        },
+        "reducers": 2,
+        "stage": "J06baskets"
+      },
+      {
+        "application": {
+          "elapsedTime": 20252,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792485909493,
+          "id": "application_1792478303938_0010",
+          "memorySeconds": 29275,
+          "name": "retail-J06interactions-7d80868a-9585-4d5b-8eeb-7ea258d05e0e",
+          "startedTime": 1792485889241,
+          "state": "FINISHED",
+          "vcoreSeconds": 39
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 539388,
+          "MAP_OUTPUT_RECORDS": 396337,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 414814208,
+          "REDUCE_INPUT_RECORDS": 396337,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 438554624,
+          "REDUCE_SHUFFLE_BYTES": 15490708,
+          "SPILLED_RECORDS": 792674,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 19480,
+          "gc_milliseconds": 517
+        },
+        "reducers": 2,
+        "stage": "J06interactions"
+      },
+      {
+        "application": {
+          "elapsedTime": 25693,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792486023221,
+          "id": "application_1792478303938_0011",
+          "memorySeconds": 48579,
+          "name": "retail-J07baskets-1dc1d9b1-d36b-48f0-8410-ebfa60ba4132",
+          "startedTime": 1792485997528,
+          "state": "FINISHED",
+          "vcoreSeconds": 62
+        },
+        "counters": {
+          "ELIGIBLE_BASKET_COUNT": 19773,
+          "TRUNCATED_BASKETS": 626,
+          "TRUNCATED_BASKET_ITEMS": 76939
+        },
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 517254,
+          "MAP_OUTPUT_RECORDS": 517254,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 397422592,
+          "REDUCE_INPUT_RECORDS": 517254,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 437321728,
+          "REDUCE_SHUFFLE_BYTES": 7809048,
+          "SPILLED_RECORDS": 1034508,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 32100,
+          "gc_milliseconds": 983
+        },
+        "reducers": 2,
+        "stage": "J07baskets"
+      },
+      {
+        "application": {
+          "elapsedTime": 40191,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792486146650,
+          "id": "application_1792478303938_0012",
+          "memorySeconds": 72829,
+          "name": "retail-J07-9cc0c587-c010-4335-bcfd-ddb1d64da98e",
+          "startedTime": 1792486106459,
+          "state": "FINISHED",
+          "vcoreSeconds": 97
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 10301852,
+          "MAP_OUTPUT_RECORDS": 10301852,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 407494656,
+          "REDUCE_INPUT_RECORDS": 10301852,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 452251648,
+          "REDUCE_SHUFFLE_BYTES": 185484348,
+          "SPILLED_RECORDS": 30905556,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 69070,
+          "gc_milliseconds": 1460
+        },
+        "reducers": 2,
+        "stage": "J07"
+      },
+      {
+        "application": {
+          "elapsedTime": 31546,
+          "finalStatus": "SUCCEEDED",
+          "finishedTime": 1792486267874,
+          "id": "application_1792478303938_0013",
+          "memorySeconds": 56329,
+          "name": "retail-J08-f17830eb-4164-4048-b2bc-095793015035",
+          "startedTime": 1792486236328,
+          "state": "FINISHED",
+          "vcoreSeconds": 76
+        },
+        "counters": {},
+        "job_counters": {
+          "INPUT_SPLITS": 2,
+          "MAP_INPUT_RECORDS": 2174218,
+          "MAP_OUTPUT_RECORDS": 1831628,
+          "MAP_PHYSICAL_MEMORY_BYTES_MAX": 458616832,
+          "REDUCE_INPUT_RECORDS": 1831628,
+          "REDUCE_PHYSICAL_MEMORY_BYTES_MAX": 420376576,
+          "REDUCE_SHUFFLE_BYTES": 141820379,
+          "SPILLED_RECORDS": 3663256,
+          "TOTAL_LAUNCHED_MAPS": 2,
+          "TOTAL_LAUNCHED_REDUCES": 2,
+          "cpu_milliseconds": 50780,
+          "gc_milliseconds": 1058
+        },
+        "reducers": 2,
+        "stage": "J08"
+      }
+    ],
+    "manifests": [
+      {
+        "stage": "J01",
+        "run_id": "ec9b03dd-d38f-465a-8422-e6120d3eb61b",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0002",
+        "path": "/retail/v1/clean/batch_id=B20261019194025b4f65854/run_id=ec9b03dd-d38f-465a-8422-e6120d3eb61b/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "178e1e90ebe4fa3c2d72fc62cf40b038e47e1f2fcd980ef226594401f4d8f8d2"
+      },
+      {
+        "stage": "J02",
+        "run_id": "dcc7a216-b027-457a-9fa2-7972e5e395cf",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0003",
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=dcc7a216-b027-457a-9fa2-7972e5e395cf/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "e5af071940dc76a319c3fde6f0f92074bd2d96666c990d7acd6c3e95ce2eaaed"
+      },
+      {
+        "stage": "J03",
+        "run_id": "49d2e83e-cc8d-444d-8edc-f8bb54b3cca6",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0004",
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=49d2e83e-cc8d-444d-8edc-f8bb54b3cca6/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "03e2bf5de11d115bc468ed53dc6a4ca84af9020b91dc0279a18e1a0b64283876"
+      },
+      {
+        "stage": "J04",
+        "run_id": "b770e9c7-9785-4d3a-908a-ff9701b73443",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0005",
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=b770e9c7-9785-4d3a-908a-ff9701b73443/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "1ea4d625dd27e6649a87892ce88911986ed8c5948b5a3bef0939b284b7732ee9"
+      },
+      {
+        "stage": "J05base",
+        "run_id": "0adbaefd-c03c-4e77-9f14-5f62a1901e4b",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0006",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=0adbaefd-c03c-4e77-9f14-5f62a1901e4b/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "3fc0d4443c72aadcc158cdf7ea355794c5a00457b7a1d745e89a8ae01c2a92df"
+      },
+      {
+        "stage": "J05distribution",
+        "run_id": "b74dc67e-b2d5-4b4e-a04a-0cf80ae8e596",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0007",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=b74dc67e-b2d5-4b4e-a04a-0cf80ae8e596/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "1f1e1d0cb1a85f557fb6c4af0daeda435c40e94ed3f264044f84e31b83a471fb"
+      },
+      {
+        "stage": "J05",
+        "run_id": "5d3cf1cd-6e54-42aa-984a-aa83259a4584",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0008",
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=5d3cf1cd-6e54-42aa-984a-aa83259a4584/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "2b3bbc76ab08044f4c5cf101c0a1230c1e1f0864dd27b5180ceda902914e2f84"
+      },
+      {
+        "stage": "J06baskets",
+        "run_id": "c69e6dc6-c6eb-405f-b67d-310ca7b2faf1",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0009",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=c69e6dc6-c6eb-405f-b67d-310ca7b2faf1/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "86803ca0f2748da438938c6d764310043e39ea76228305cf3c6fe11fdef1b5c9"
+      },
+      {
+        "stage": "J06interactions",
+        "run_id": "7d80868a-9585-4d5b-8eeb-7ea258d05e0e",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0010",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=7d80868a-9585-4d5b-8eeb-7ea258d05e0e/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "8c33660441de471daec5b04c0f654dcf432e9b340935f9d5466742861d609979"
+      },
+      {
+        "stage": "J07baskets",
+        "run_id": "1dc1d9b1-d36b-48f0-8410-ebfa60ba4132",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0011",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=1dc1d9b1-d36b-48f0-8410-ebfa60ba4132/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "d0a24ff50c3d7b3f3f70e8a1803ce92e05594ba8e204c212a39e68f47c54148f"
+      },
+      {
+        "stage": "J07",
+        "run_id": "9cc0c587-c010-4335-bcfd-ddb1d64da98e",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0012",
+        "path": "/retail/v1/features/batch_id=B20261019194025b4f65854/run_id=9cc0c587-c010-4335-bcfd-ddb1d64da98e/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "bc1199a49ff0fb4320d6dce3189073633d1175691fe5a5bf2239b5f9ab0dd67a"
+      },
+      {
+        "stage": "J08",
+        "run_id": "f17830eb-4164-4048-b2bc-095793015035",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0013",
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=f17830eb-4164-4048-b2bc-095793015035/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "c21dc9753014594c19fe6d393dd9bdbf88da289465c804bc8c70401d295cc4ae"
+      },
+      {
+        "stage": "pipeline",
+        "run_id": "7b252fd0-1961-4f47-8010-b05399c6ad11",
+        "attempt": 1,
+        "application_id": null,
+        "path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=7b252fd0-1961-4f47-8010-b05399c6ad11/manifest.json",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+        "config_sha256": "32eb3baad9600f785ec42641d135a60a0a31ed397a0276d0dd6e5dab05f95f16"
+      }
+    ],
+    "independent_business_verification": {
+      "status": "PASS",
+      "batch_id": "B20261019194025b4f65854",
+      "baseline_version": "HL-DOC-1.0.0",
+      "counts": {
+        "clean": 539388,
+        "rejected": 2521,
+        "warnings": 136538,
+        "order_fact": 19960,
+        "sales_cube": 307579,
+        "product_order_fact": 519597,
+        "rfm": 4338,
+        "baskets": 517254,
+        "customer_seen": 266221,
+        "interactions": 266221,
+        "item_frequency": 3694,
+        "item_pairs": 2174218,
+        "similarity": 29765
+      },
+      "gross_pence": 1066668454,
+      "return_pence": 89681249,
+      "net_pence": 976987205,
+      "sale_quantity": 5588372,
+      "return_quantity": 277574,
+      "order_count": 19960,
+      "valid_customers": 4338,
+      "rfm_reference_date": "2011-12-10",
+      "eligible_basket_count": 19773,
+      "truncated_baskets": 626,
+      "truncated_basket_items": 76939,
+      "checks_passed": 37830,
+      "checks": [
+        "basket_dedup_and_identity",
+        "baskets_row_count",
+        "classification_conservation",
+        "clean_amount_sign",
+        "clean_row_count",
+        "customer_seen_row_count",
+        "disjoint_clean_rejected",
+        "global_amount_int64",
+        "gross_conservation",
+        "interactions_row_count",
+        "item_frequency_row_count",
+        "item_frequency_same_baskets",
+        "item_pairs_row_count",
+        "model_interactions_untruncated",
+        "order_fact_row_count",
+        "order_facts",
+        "order_identity",
+        "pair_counts",
+        "product_order_distinct",
+        "product_order_fact_row_count",
+        "rejected_count",
+        "rejected_row_count",
+        "return_count",
+        "rfm",
+        "sale_count",
+        "sales_cube_row_count",
+        "sales_groups",
+        "seen_history",
+        "similarity",
+        "warning_references",
+        "warnings_row_count"
+      ],
+      "verification_method": "Independent SQLite relational aggregation, frequency scoring and item-pair formula checks; disk-backed source rows"
+    },
+    "preflight_totals_reconciled": true,
+    "audit_heartbeat_observations": {
+      "callbacks": 89660,
+      "max_callback_gap_seconds": 2.4318111810007395,
+      "max_lock_check_gap_seconds": 4.3937154409995856
+    },
+    "verification_code_commit": "8a5cf2186123e502cd1edfc34fe5161179f3231c",
+    "metrics": {
+      "AMOUNT_OVERFLOW_ROWS": 0,
+      "CANCEL_POSITIVE_QUANTITY_ROWS": 0,
+      "DESCRIPTION_TRUNCATED_ROWS": 0,
+      "DUPLICATE_EXCESS_ROWS": 5268,
+      "INVALID_COUNTRY_LENGTH_ROWS": 0,
+      "INVALID_CUSTOMER_ID_ROWS": 0,
+      "INVALID_DATETIME_ROWS": 0,
+      "INVALID_INVOICE_LENGTH_ROWS": 0,
+      "INVALID_PRICE_ROWS": 0,
+      "INVALID_QUANTITY_ROWS": 0,
+      "INVALID_STOCK_LENGTH_ROWS": 0,
+      "MISSING_CUSTOMER_ID_ROWS": 135080,
+      "MISSING_DESCRIPTION_ROWS": 1454,
+      "MISSING_INVOICE_ROWS": 0,
+      "MISSING_STOCK_CODE_ROWS": 0,
+      "NEGATIVE_WITHOUT_CANCEL_ROWS": 0,
+      "NONPOSITIVE_PRICE_ROWS": 2521,
+      "NON_MERCHANDISE_SALE_ROWS": 2375,
+      "PARSE_ERROR_ROWS": 0,
+      "PRICE_ROUNDED_ROWS": 4,
+      "RAW_ROWS": 541909,
+      "REJECTED_ROWS": 2521,
+      "RETURN_ROWS": 9288,
+      "SALE_ROWS": 530100,
+      "TRUNCATED_BASKETS": 626,
+      "TRUNCATED_BASKET_ITEMS": 76939,
+      "ZERO_QUANTITY_ROWS": 0
+    },
+    "quality_report_path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=7b252fd0-1961-4f47-8010-b05399c6ad11/quality.json",
+    "yarn_business_gate": "PASS",
+    "scope": "W04 only; no model training, release or application page delivered"
+  },
+  "automated_tests": {
+    "tests": "86",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "110.893"
+  },
+  "junit": {
+    "path": "var/w04/pytest-final.xml",
+    "sha256": "894e346e248d7bae0d38f08d60e51721846c71e41911276f60b5f93cda39d9ed"
+  },
+  "idempotency": {
+    "batch_id": "B20261019194025b4f65854",
+    "first_equals_repeat": true,
+    "same_run_ids": true,
+    "task_count_including_ingest": 14,
+    "business_application_count": 12,
+    "maximum_attempt": 1,
+    "tasks": [
+      {
+        "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+        "task_name": "ingest",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": null
+      },
+      {
+        "run_id": "ec9b03dd-d38f-465a-8422-e6120d3eb61b",
+        "task_name": "J01",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0002"
+      },
+      {
+        "run_id": "dcc7a216-b027-457a-9fa2-7972e5e395cf",
+        "task_name": "J02",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0003"
+      },
+      {
+        "run_id": "49d2e83e-cc8d-444d-8edc-f8bb54b3cca6",
+        "task_name": "J03",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0004"
+      },
+      {
+        "run_id": "b770e9c7-9785-4d3a-908a-ff9701b73443",
+        "task_name": "J04",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0005"
+      },
+      {
+        "run_id": "0adbaefd-c03c-4e77-9f14-5f62a1901e4b",
+        "task_name": "J05base",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0006"
+      },
+      {
+        "run_id": "b74dc67e-b2d5-4b4e-a04a-0cf80ae8e596",
+        "task_name": "J05distribution",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0007"
+      },
+      {
+        "run_id": "5d3cf1cd-6e54-42aa-984a-aa83259a4584",
+        "task_name": "J05",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0008"
+      },
+      {
+        "run_id": "c69e6dc6-c6eb-405f-b67d-310ca7b2faf1",
+        "task_name": "J06baskets",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0009"
+      },
+      {
+        "run_id": "7d80868a-9585-4d5b-8eeb-7ea258d05e0e",
+        "task_name": "J06interactions",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0010"
+      },
+      {
+        "run_id": "1dc1d9b1-d36b-48f0-8410-ebfa60ba4132",
+        "task_name": "J07baskets",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0011"
+      },
+      {
+        "run_id": "9cc0c587-c010-4335-bcfd-ddb1d64da98e",
+        "task_name": "J07",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0012"
+      },
+      {
+        "run_id": "f17830eb-4164-4048-b2bc-095793015035",
+        "task_name": "J08",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0013"
+      },
+      {
+        "run_id": "7b252fd0-1961-4f47-8010-b05399c6ad11",
+        "task_name": "pipeline",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": null
+      }
+    ]
+  },
+  "database_final": {
+    "batch": {
+      "batch_id": "B20261019194025b4f65854",
+      "status": "SUCCEEDED",
+      "raw_rows": 541909,
+      "sale_rows": 530100,
+      "return_rows": 9288,
+      "rejected_rows": 2521,
+      "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "quality_report_path": "/retail/v1/results/batch_id=B20261019194025b4f65854/run_id=7b252fd0-1961-4f47-8010-b05399c6ad11/quality.json"
+    },
+    "tasks": [
+      {
+        "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+        "task_name": "ingest",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": null,
+        "code_commit": "89ad4c9f933dde50d48901449bebbafe0eef9f82"
+      },
+      {
+        "run_id": "ec9b03dd-d38f-465a-8422-e6120d3eb61b",
+        "task_name": "J01",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0002",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "dcc7a216-b027-457a-9fa2-7972e5e395cf",
+        "task_name": "J02",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0003",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "49d2e83e-cc8d-444d-8edc-f8bb54b3cca6",
+        "task_name": "J03",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0004",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "b770e9c7-9785-4d3a-908a-ff9701b73443",
+        "task_name": "J04",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0005",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "0adbaefd-c03c-4e77-9f14-5f62a1901e4b",
+        "task_name": "J05base",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0006",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "b74dc67e-b2d5-4b4e-a04a-0cf80ae8e596",
+        "task_name": "J05distribution",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0007",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "5d3cf1cd-6e54-42aa-984a-aa83259a4584",
+        "task_name": "J05",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0008",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "c69e6dc6-c6eb-405f-b67d-310ca7b2faf1",
+        "task_name": "J06baskets",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0009",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "7d80868a-9585-4d5b-8eeb-7ea258d05e0e",
+        "task_name": "J06interactions",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0010",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "1dc1d9b1-d36b-48f0-8410-ebfa60ba4132",
+        "task_name": "J07baskets",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0011",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "9cc0c587-c010-4335-bcfd-ddb1d64da98e",
+        "task_name": "J07",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0012",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "f17830eb-4164-4048-b2bc-095793015035",
+        "task_name": "J08",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": "application_1792478303938_0013",
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      },
+      {
+        "run_id": "7b252fd0-1961-4f47-8010-b05399c6ad11",
+        "task_name": "pipeline",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "application_id": null,
+        "code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967"
+      }
+    ],
+    "current_release": null,
+    "model_runs": 0,
+    "releases": 0
+  },
+  "yarn_resource_summary": {
+    "batch_id": "B20261019194025b4f65854",
+    "business_application_count": 12,
+    "all_succeeded": true,
+    "applications_serial": true,
+    "sum_application_elapsed_ms": 288733,
+    "max_map_task_physical_memory_bytes": 458616832,
+    "max_reduce_task_physical_memory_bytes": 452251648,
+    "memory_scope": "Hadoop task counters for maximum sampled Map/Reduce physical memory; not a combined whole-cluster peak"
+  },
+  "service_restoration": {
+    "observed_at": "2026-10-20T08:31:43.823260+00:00",
+    "service_status": "active",
+    "writer_connection": "PASS",
+    "reader_connection": "PASS",
+    "packages": {
+      "mariadb-plugin-provider-bzip2": "1:10.11.14-0ubuntu0.24.04.1",
+      "mariadb-plugin-provider-lz4": "1:10.11.14-0ubuntu0.24.04.1",
+      "mariadb-plugin-provider-lzma": "1:10.11.14-0ubuntu0.24.04.1",
+      "mariadb-plugin-provider-lzo": "1:10.11.14-0ubuntu0.24.04.1",
+      "mariadb-plugin-provider-snappy": "1:10.11.14-0ubuntu0.24.04.1",
+      "mariadb-server-core": "1:10.11.14-0ubuntu0.24.04.1"
+    }
+  },
+  "host_storage": [
+    {
+      "distribution": "Ubuntu-24.04",
+      "wsl_version": 2,
+      "base_path": "E:\\wsl\\Ubuntu-24.04",
+      "observed_at": "2026-10-20T08:28:42.2428100Z",
+      "required_free_bytes": 16106127360,
+      "gate_passed": true,
+      "vhdx_path": "E:\\wsl\\Ubuntu-24.04\\ext4.vhdx",
+      "vhdx_exists": true,
+      "host_volume": "E:\\",
+      "available_free_bytes": 133531660288
+    }
+  ],
+  "w03_regression": {
+    "baseline_version": "HL-DOC-1.0.0",
+    "observed_at": "2026-10-20T09:28:27.839310Z",
+    "batch_id": "B20261019194025b4f65854",
+    "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+    "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+    "source_bytes": 23715344,
+    "batch_status": "SUCCEEDED",
+    "task_status": "SUCCEEDED",
+    "attempts": 1,
+    "classification_counts": {
+      "REJECTED": 2521,
+      "RETURN": 9288,
+      "SALE": 530100
+    },
+    "metrics": {
+      "AMOUNT_OVERFLOW_ROWS": 0,
+      "CANCEL_POSITIVE_QUANTITY_ROWS": 0,
+      "DESCRIPTION_TRUNCATED_ROWS": 0,
+      "DUPLICATE_EXCESS_ROWS": 5268,
+      "INVALID_COUNTRY_LENGTH_ROWS": 0,
+      "INVALID_CUSTOMER_ID_ROWS": 0,
+      "INVALID_DATETIME_ROWS": 0,
+      "INVALID_INVOICE_LENGTH_ROWS": 0,
+      "INVALID_PRICE_ROWS": 0,
+      "INVALID_QUANTITY_ROWS": 0,
+      "INVALID_STOCK_LENGTH_ROWS": 0,
+      "MISSING_CUSTOMER_ID_ROWS": 135080,
+      "MISSING_DESCRIPTION_ROWS": 1454,
+      "MISSING_INVOICE_ROWS": 0,
+      "MISSING_STOCK_CODE_ROWS": 0,
+      "NEGATIVE_WITHOUT_CANCEL_ROWS": 0,
+      "NONPOSITIVE_PRICE_ROWS": 2521,
+      "NON_MERCHANDISE_SALE_ROWS": 2375,
+      "PARSE_ERROR_ROWS": 0,
+      "PRICE_ROUNDED_ROWS": 4,
+      "RAW_ROWS": 541909,
+      "REJECTED_ROWS": 2521,
+      "RETURN_ROWS": 9288,
+      "SALE_ROWS": 530100,
+      "TRUNCATED_BASKETS": 626,
+      "TRUNCATED_BASKET_ITEMS": 76939,
+      "ZERO_QUANTITY_ROWS": 0
+    },
+    "quality_gate_passed": true,
+    "conflicting_orders": 0,
+    "files": [
+      {
+        "path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.xlsx",
+        "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+        "bytes": 23715344
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/normalized.tsv",
+        "sha256": "a79b1f239dc53c6ed3bff872ee0cfdef90d572da84a298eddf6d476a04087881",
+        "bytes": 87388902
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/warnings.tsv",
+        "sha256": "000676919a521fd461641b8822a60e73430306bc1fa33b7bbf253cbfc4c062ab",
+        "bytes": 11605706
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/rejected-audit.jsonl",
+        "sha256": "e58e65635f4e3d5bb105cd688f92d5c6d9de77a3b5dfe2b243dcb556e0c801d6",
+        "bytes": 866218
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/order-conflicts.tsv",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/quality.json",
+        "sha256": "a42e7c7b5e623e495ae789a795cac1f171109ba13421ed98f8e1ad35e3ea3c30",
+        "bytes": 1762
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/config.json",
+        "sha256": "61ac1209344ba2a7416fa0fa0a3af4a7e537bc86f28274bc8d441c3de42f523e",
+        "bytes": 869
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/environment.lock",
+        "sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "bytes": 65542
+      },
+      {
+        "path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.json",
+        "sha256": "bd37ab7b6bf13e3ded8350ccdda2316d0ef408484c898d9269a608e279160b79",
+        "bytes": 725
+      }
+    ],
+    "normalized_scan": {
+      "rows": 541909,
+      "source_row_ids_verified": 541909,
+      "duplicate_excess_rows": 5268,
+      "duplicate_groups": 4879
+    },
+    "source": {
+      "attribution": "Chen, D. (2015). Online Retail. UCI Machine Learning Repository. doi:10.24432/C5BW33",
+      "baseline_version": "HL-DOC-1.0.0",
+      "batch_id": "B20261019194025b4f65854",
+      "dataset_url": "https://archive.ics.uci.edu/dataset/352/online+retail",
+      "downloaded_at": "2026-10-19T19:31:04.481996Z",
+      "license": "CC BY 4.0",
+      "raw_rows": 541909,
+      "registered_at": "2026-10-19T19:40:25.205323Z",
+      "schema_version": "1.0",
+      "sheet": "Online Retail",
+      "source_bytes": 23715344,
+      "source_name": "Online Retail.xlsx",
+      "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "source_url": "https://archive.ics.uci.edu/static/public/352/online%2Bretail.zip",
+      "synthetic": false
+    },
+    "raw_excel_rows_evidence": "Successful ingest and reuse both fully verify XLSX sheet rows; this independent scan rechecks immutable source SHA and normalized row trace.",
+    "status": "PASS"
+  },
+  "heartbeat_fix": {
+    "original_partial_observer": {
+      "maximum_observed_running_heartbeat_age_seconds": {
+        "J06interactions": 15.021192,
+        "J07baskets": 14.626311,
+        "J07": 15.882814,
+        "J08": 13.277069,
+        "pipeline": 49.01085
+      },
+      "scope": "Read-only samples from observer start through the original pipeline completion; not a timeout-based terminal-state detector"
+    },
+    "corrected_independent_audit": {
+      "callbacks": 89660,
+      "max_callback_gap_seconds": 2.4318111810007395,
+      "max_lock_check_gap_seconds": 4.3937154409995856
+    },
+    "note": "First-run task heartbeat age and post-fix callback/lock-check intervals are different measurements. The SQLite progress callback is exercised on the real full-data audit; original successful HDFS bundles were not overwritten."
+  },
+  "frozen_baseline_files_verified": 18,
+  "completion_audit": [
+    {
+      "test_id": "T-04",
+      "baseline_version": "HL-DOC-1.0.0",
+      "status": "PASS",
+      "actual_result": "Golden sales/order/filter tests and exact full-data sales/order/product-order reconciliation",
+      "data_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "execution_code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+      "verification_code_commit": "8a5cf2186123e502cd1edfc34fe5161179f3231c",
+      "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+      "batch_id": "B20261019194025b4f65854",
+      "evidence": "w04-verification-2026-10-20.json",
+      "command": "python scripts/verify-w04.py --config config/development.toml --db-defaults-file var/secrets/writer.cnf --batch-id B20261019194025b4f65854 --output var/w04/verification.json",
+      "observed_at": "2026-10-20T09:33:59.391461Z"
+    },
+    {
+      "test_id": "T-05",
+      "baseline_version": "HL-DOC-1.0.0",
+      "status": "PASS",
+      "actual_result": "Golden RFM scores and exact full-data customer/date/frequency/amount/segment checks",
+      "data_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "execution_code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+      "verification_code_commit": "8a5cf2186123e502cd1edfc34fe5161179f3231c",
+      "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+      "batch_id": "B20261019194025b4f65854",
+      "evidence": "w04-verification-2026-10-20.json",
+      "command": "python scripts/verify-w04.py --config config/development.toml --db-defaults-file var/secrets/writer.cnf --batch-id B20261019194025b4f65854 --output var/w04/verification.json",
+      "observed_at": "2026-10-20T09:33:59.391461Z"
+    },
+    {
+      "test_id": "T-06",
+      "baseline_version": "HL-DOC-1.0.0",
+      "status": "PASS",
+      "actual_result": "Golden threshold/truncation/formula tests and complete real basket/pair/Top10 reconstruction",
+      "data_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "execution_code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+      "verification_code_commit": "8a5cf2186123e502cd1edfc34fe5161179f3231c",
+      "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+      "batch_id": "B20261019194025b4f65854",
+      "evidence": "w04-verification-2026-10-20.json",
+      "command": "python scripts/verify-w04.py --config config/development.toml --db-defaults-file var/secrets/writer.cnf --batch-id B20261019194025b4f65854 --output var/w04/verification.json",
+      "observed_at": "2026-10-20T09:33:59.391461Z"
+    },
+    {
+      "test_id": "T-07",
+      "baseline_version": "HL-DOC-1.0.0",
+      "status": "PASS",
+      "actual_result": "Twelve real serial business YARN applications; application identity, terminal status, success markers, schemas, hashes and source/environment provenance verified",
+      "data_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "execution_code_commit": "e0e280bbcf01d7f910461381ab05b2695f47a967",
+      "verification_code_commit": "8a5cf2186123e502cd1edfc34fe5161179f3231c",
+      "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+      "batch_id": "B20261019194025b4f65854",
+      "evidence": "w04-verification-2026-10-20.json",
+      "command": "python scripts/verify-w04.py --config config/development.toml --db-defaults-file var/secrets/writer.cnf --batch-id B20261019194025b4f65854 --output var/w04/verification.json",
+      "observed_at": "2026-10-20T09:33:59.391461Z"
+    }
+  ],
+  "scope": "W04 completed; W05-W11 remain; no model training, release, API or frontend claimed"
+}
