@@ -65,6 +65,19 @@ def test_successful_batch_allows_explicit_downstream_experiment_tasks(db):
         assert cursor.fetchone() == {'status': 'SUCCEEDED', 'raw_rows': 1}
 
 
+def test_explicit_model_identity_binds_artifact_directory(db):
+    store,bid,rid = running(db)
+    eid=store.create_experiment(bid,H)
+    store.transition_experiment(eid,'RUNNING')
+    mid=str(uuid4())
+    arguments=dict(batch_id=bid,experiment_id=eid,run_id=rid,algorithm='POP',purpose='EVAL',device='CPU',
+        config_sha256=H,mapping_sha256=H,artifact_path='/retail/v1/models/model_run_id='+mid,
+        code_commit=C,environment_sha256=H,model_run_id=mid)
+    assert store.register_model(**arguments)==mid
+    with pytest.raises(ControlError,match='directory'):
+        store.register_model(**(arguments|{'model_run_id':str(uuid4())}))
+
+
 def test_schema_and_permissions(db):
     connections,name,credentials,directory=db
     migration=connections['migration']; writer=connections['writer']; reader=connections['reader']

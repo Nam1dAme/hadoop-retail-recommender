@@ -36,6 +36,9 @@ def main():
     preparation=sub.add_parser('prepare-experiment')
     preparation.add_argument('--batch-id',required=True)
     preparation.add_argument('--experiment-id',required=True)
+    evaluation=sub.add_parser('evaluate')
+    evaluation.add_argument('--batch-id',required=True)
+    evaluation.add_argument('--experiment-id',required=True)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -78,6 +81,9 @@ def main():
                 elif args.command=='prepare-experiment':
                     from orchestration.experiment_data import prepare_experiment
                     result=prepare_experiment(connection,config,args.batch_id,args.experiment_id,dry_run=args.dry_run)
+                elif args.command=='evaluate':
+                    from orchestration.training import evaluate_experiment
+                    result=evaluate_experiment(connection,config,args.batch_id,args.experiment_id,dry_run=args.dry_run)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)

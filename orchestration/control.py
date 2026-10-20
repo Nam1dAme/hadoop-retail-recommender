@@ -237,7 +237,7 @@ class ControlStore:
                 (status,champion_algorithm,report_path,utcnow() if status in ('SUCCEEDED','FAILED') else None,experiment_id))
 
     def register_model(self, *, batch_id,experiment_id,run_id,algorithm,purpose,device,
-                       config_sha256,mapping_sha256,artifact_path,code_commit,environment_sha256):
+                       config_sha256,mapping_sha256,artifact_path,code_commit,environment_sha256,model_run_id=None):
         for value in (config_sha256,mapping_sha256,environment_sha256): digest(value)
         commit_id(code_commit)
         if algorithm not in ALGORITHMS or purpose not in ('EVAL','FULLFIT') or device != ('CUDA' if algorithm=='NCF' else 'CPU'):
@@ -253,7 +253,14 @@ class ControlStore:
                 raise ControlError('Cannot train EVAL after test sealing')
             if purpose == 'FULLFIT' and experiment['status'] != 'SUCCEEDED':
                 raise ControlError('FULLFIT requires completed evaluation')
-            model_id=str(uuid4())
+            model_id=model_run_id or str(uuid4())
+            from uuid import UUID
+            if str(UUID(model_id)) != model_id:
+                raise ControlError('Invalid model identity')
+            if model_run_id is not None:
+                from pathlib import PurePosixPath
+                if PurePosixPath(artifact_path).name != 'model_run_id='+model_id:
+                    raise ControlError('Explicit model identity must match its immutable artifact directory')
             cursor.execute('''INSERT INTO model_run (model_run_id,batch_id,experiment_id,run_id,algorithm,purpose,device,status,
                 config_sha256,mapping_sha256,artifact_path,code_commit,environment_sha256,baseline_version,created_at)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,'CREATED',%s,%s,%s,%s,%s,%s,%s)''',

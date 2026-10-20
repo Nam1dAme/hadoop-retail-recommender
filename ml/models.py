@@ -103,6 +103,13 @@ def fit_als(train, data_directory, directory, params):
         model_path = (directory / 'spark_model').resolve().as_uri()
         model.save(model_path)
         loaded = ALSModel.load(model_path)
+        write_json(directory / 'als-runtime.json', {
+            'spark_version': spark.version,
+            'java_version': spark.sparkContext._jvm.java.lang.System.getProperty('java.version'),
+            'master': spark.sparkContext.master,
+            'driver_memory': spark.sparkContext.getConf().get('spark.driver.memory'),
+            'shuffle_partitions': spark.conf.get('spark.sql.shuffle.partitions'),
+            'parameters': {p.name: value for p,value in loaded.extractParamMap().items()}})
 
         def factors(value):
             users = sorted(value.userFactors.collect(), key=lambda r: r.id)

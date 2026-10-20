@@ -23,6 +23,19 @@ HDFS 正式产物位于 features/batch_id=…/run_id=…；数据文件采用 `e
 
 `ml/evaluation.py` 统一分块全目录评分、已购过滤、Top10、热门补足和宏平均指标。主模型列表完成后再追加兜底；未知用户直接热门。短列表 Precision 的分母仍为 10。空 cohort 或空目录报错，不能用零分冒充完成。
 
-## W06 当前实现边界
+## W06 四算法评价
 
-`ml/models.py` 提供 POP/ItemCF 规则保存加载、Spark ALS 隐式训练及模型保存加载、分块因子评分。`ml/sampling.py` 仅从 TRAIN 目录减 TRAIN 已购采样，seed+epoch 决定样本和顺序。正式 NCF、评价编排、四算法真实训练与 T-09/11/12 的完成状态，以后续执行记录为准。W07 的 CPU/GPU 三次对照、FULLFIT 和全量服务推荐不由 W05 完成。
+```bash
+uv run --locked --no-sync python -m orchestration.cli \
+  --config config/development.toml --baseline HL-DOC-1.0.0 \
+  --db-defaults-file var/secrets/writer.cnf \
+  evaluate --batch-id B20261019194025b4f65854 --experiment-id <同一UUID>
+```
+
+`ml/models.py` 提供 POP/ItemCF 规则保存加载、Spark ALS 隐式训练及模型保存加载、分块因子评分。`ml/sampling.py` 仅从 TRAIN 目录减 TRAIN 已购采样，seed+epoch 决定样本和顺序。`ml/ncf.py` 实现固定 NeuMF、FP32 CUDA 正式训练、验证早停、可信 state_dict 保存加载；每 epoch 记录实际 loss、验证 NDCG、耗时和峰值分配显存，保留实际采样文件。
+
+`orchestration/training.py` 串行运行 POP/ItemCF 各一组、ALS 四组、NCF 两组。主进程持有数据库逻辑锁并持续心跳，独立子进程执行训练；未知存活句柄阻止重提。候选按验证 WARM NDCG/Recall/规模/网格顺序选参，champion 再按固定算法优先级决胜。选择清单先持久化，随后四算法使用共同 TEST cohort 统一评价并封存；同配置重试保留失败记录，不覆盖成功模型或已写指标。
+
+模型包位于 models/model_run_id=…，包括 config.json、mapping.tsv、环境、硬件、输入、源码快照和训练产物。模型 metrics.json 保存模型验收时的验证指标；后续 TEST 是独立、不可变的实验任务附件，由实验报告关联，数据库汇集每个选定模型的四行 VALIDATION/TEST 指标。HDFS 批量上传后重新下载并核验全部原路径/hash，避免每个小文件单独启动 JVM；快照缓存仅在本次调用内使用。
+
+W05 独立验收：`python scripts/verify-w05.py --config … --db-defaults-file … --experiment-id … --output …`，直接从 clean SALE 重建两套映射、购买交互、热门和窗口标签。W06 独立验收使用相同参数的 `scripts/verify-w06.py`，检查八个候选、实际 Spark 参数、CUDA 图与训练历史、每 epoch 负样本、验证选择和封存指标。真实训练及 T-08/09/10/11/12 的完成状态，以 execution 记录为准。W07 的 CPU/GPU 三次对照、FULLFIT 和全量服务推荐仍独立实施。

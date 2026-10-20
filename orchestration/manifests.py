@@ -140,6 +140,7 @@ DATASETS = {
  'recommendations':'model_run_id,customer_id,stock_code,rank,score,reason_code,is_fallback',
  'pipeline_summary':'key,value',
  'experiment_summary':'key,value',
+ 'model_summary':'key,value',
  'rfm_base':'customer_id,last_purchase,frequency,monetary_pence',
  'rfm_scores':'metric,value,score',
  'customer_seen':'customer_id,stock_code',
