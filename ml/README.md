@@ -38,6 +38,43 @@ uv run --locked --no-sync python -m orchestration.cli \
 
 模型包位于 models/model_run_id=…，包括 config.json、mapping.tsv、环境、硬件、输入、源码快照和训练产物。模型 metrics.json 保存模型验收时的验证指标；后续 TEST 是独立、不可变的实验任务附件，由实验报告关联，数据库汇集每个选定模型的四行 VALIDATION/TEST 指标。HDFS 批量上传后重新下载并核验全部原路径/hash，避免每个小文件单独启动 JVM；快照缓存仅在本次调用内使用。
 
-W05 独立验收：`python scripts/verify-w05.py --config … --db-defaults-file … --experiment-id … --output …`，直接从 clean SALE 重建两套映射、购买交互、热门和窗口标签。W06 独立验收使用相同参数的 `scripts/verify-w06.py`，检查八个候选、实际 Spark 参数、CUDA 图与训练历史、每 epoch 负样本、验证选择和封存指标。真实训练及 T-08/09/10/11/12 的完成状态，以 execution 记录为准。W07 的 CPU/GPU 三次对照、FULLFIT 和全量服务推荐仍独立实施。
+W05 独立验收：`python scripts/verify-w05.py --config … --db-defaults-file … --experiment-id … --output …`，直接从 clean SALE 重建两套映射、购买交互、热门和窗口标签。W06 独立验收使用相同参数的 `scripts/verify-w06.py`，检查八个候选、实际 Spark 参数、CUDA 图与训练历史、每 epoch 负样本、验证选择和封存指标。真实训练及 T-08/09/10/11/12 的完成状态，以 execution 记录为准。W07 的 CPU/GPU 三次对照、FULLFIT 和全量服务推荐已另行通过真实验收，见下节。
 
 W05/W06 已通过真实验收，最终回归105项通过；记录见 [W05](../docs/execution/2026-10-20-w05.md) 和 [W06](../docs/execution/2026-10-21-w06.md)。当前默认算法为验证选出的ALS，NCF两组正式CUDA训练与TEST封存均已完成。
+
+
+## W07 全历史模型、服务推荐与性能对照
+
+W07已完成，独立验收、六次实际对照、全部推荐逐行重算和成功命令复用均通过；最终回归116项通过。实际结果及完整模型/任务ID见 [W07记录](../docs/execution/2026-10-21-w07.md) 和 [验收JSON](../docs/execution/w07-verification-2026-10-21.json)。四个FULLFIT模型各为4,338位RFM客户生成43,380条推荐，包括4位无合格历史客户；NCF固定15轮CUDA训练。性能对照的CPU/CUDA训练中位数13.34/25.25秒，加速比0.5285。
+
+统一CLI新增train、recommend、benchmark。以下命令使用现有experiment，已成功任务会核验并复用；公共--dry-run放在子命令之前，只验证依赖和计划、不提交任务或写控制库，可生成本地校验缓存。
+
+```bash
+source scripts/dev-env.sh
+retailctl=(uv run --locked --no-sync python -m orchestration.cli
+  --config config/development.toml --baseline HL-DOC-1.0.0
+  --db-defaults-file var/secrets/writer.cnf)
+"${retailctl[@]}" benchmark \
+  --experiment-id acea8dc1-3b09-43b8-ac79-09571cfcca53 \
+  --model-run-id 96891c61-91db-4e8c-9093-a3764a5e8cd7
+for retail_algorithm in POP ITEMCF ALS NCF; do
+  retail_device=cpu
+  if [[ "$retail_algorithm" == NCF ]]; then retail_device=cuda; fi
+  "${retailctl[@]}" train \
+    --batch-id B20261019194025b4f65854 \
+    --experiment-id acea8dc1-3b09-43b8-ac79-09571cfcca53 \
+    --algorithm "$retail_algorithm" --device "$retail_device"
+done
+"${retailctl[@]}" recommend \
+  --model-run-id e2507953-39db-49a4-9738-9a4d66d6fef3
+OPENBLAS_NUM_THREADS=2 uv run --locked --no-sync python scripts/verify-w07.py \
+  --config config/development.toml --db-defaults-file var/secrets/writer.cnf \
+  --experiment-id acea8dc1-3b09-43b8-ac79-09571cfcca53 \
+  --output var/manual-check/w07.json
+```
+
+train必须引用已完成且TEST封存的experiment，沿用每算法验证选择的配置；NCF正式设备仅cuda，其他算法仅cpu。FULLFIT无VALIDATION/TEST指标，NCF训练历史的validation字段为NULL。benchmark仅允许验证选定的EVAL NCF，另建五轮TRAIN共同样本和CPU/CUDA各三次独立副本；预热20step后重置模型、优化器及随机状态，FP32、batch1024、CPU线程4、GPU同步计时。GPU更慢仍按实际结果记录，不修改正式EVAL模型或TEST指标。
+
+recommend只接受SUCCEEDED/FULLFIT模型，模型ID保持对应算法，热门补足不替换为POP模型ID。HDFS推荐包包含recommendations.tsv、coverage.tsv、config.json、源码快照和manifest；逐客户coverage记录零候选/短列表，已有推荐严格去全历史已购与重复，主模型结果之后补足。POP自身reason_code=POPULAR、is_fallback=0；其他模型补足项为FALLBACK_POPULAR。重任务由父进程持数据库锁和心跳，真实子进程结束且产物核验后才推进状态；中断恢复检查实际PID/启动时间和子进程，再恢复已发布包或保留失败记录创建新attempt。
+
+W07产物用于W08发布，当前data_release为0、current_release为空，API和展示页面由W09/W10实现。
