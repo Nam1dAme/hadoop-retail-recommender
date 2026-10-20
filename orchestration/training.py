@@ -85,13 +85,14 @@ def worker_alive(run_id):
             args = path.read_bytes().split(b'\0')
         except OSError:
             continue
-        if b'ml.worker' in args and run_id.encode() in args:
+        if any(name in args for name in (b'ml.worker', b'ml.w07_worker')) and run_id.encode() in args:
             return True
     return False
 
 
-def run_worker(config, control, tick, task, algorithm, data, directory, *, mode='train', model_id=None):
-    command = [os.sys.executable, '-m', 'ml.worker', '--data', str(data), '--directory', str(directory),
+def run_worker(config, control, tick, task, algorithm, data, directory, *, mode='train', model_id=None,
+               module='ml.worker'):
+    command = [os.sys.executable, '-m', module, '--data', str(data), '--directory', str(directory),
                '--algorithm', algorithm, '--mode', mode, '--run-id', task['run_id']]
     environment = os.environ | {'JAVA_HOME': config['runtime']['java_home'], 'SPARK_LOCAL_IP': '127.0.0.1',
         'PYSPARK_PYTHON': os.sys.executable, 'CUBLAS_WORKSPACE_CONFIG': ':4096:8',
@@ -113,7 +114,7 @@ def run_worker(config, control, tick, task, algorithm, data, directory, *, mode=
             while True:
                 tick()
                 progress = directory / 'progress.json'
-                if algorithm == 'NCF' and mode == 'train' and progress.exists():
+                if model_id and algorithm == 'NCF' and mode in ('train','fullfit') and progress.exists():
                     try:
                         rows = json.loads(progress.read_text())['epochs']
                     except json.JSONDecodeError:
@@ -134,13 +135,14 @@ def run_worker(config, control, tick, task, algorithm, data, directory, *, mode=
             raise
     if process.returncode:
         raise RuntimeError('Training worker failed; inspect the private driver log')
-    if model_id and algorithm == 'NCF' and mode == 'train':
+    if model_id and algorithm == 'NCF' and mode in ('train','fullfit'):
         for row in json.loads((directory / 'progress.json').read_text())['epochs']:
             if row['epoch'] > last_epoch:
                 control.record_epoch(model_id, **{k: row[k] for k in (
                     'epoch','train_loss','validation_ndcg','elapsed_seconds','peak_gpu_mib')})
                 last_epoch = row['epoch']
-    return json.loads((directory / ('worker-result.json' if mode == 'train' else 'test-result.json')).read_text())
+    result_file = 'worker-result.json' if mode == 'train' else mode + '-result.json'
+    return json.loads((directory / result_file).read_text())
 
 
 def grids():

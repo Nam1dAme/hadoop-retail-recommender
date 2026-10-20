@@ -39,6 +39,16 @@ def main():
     evaluation=sub.add_parser('evaluate')
     evaluation.add_argument('--batch-id',required=True)
     evaluation.add_argument('--experiment-id',required=True)
+    training=sub.add_parser('train')
+    training.add_argument('--batch-id',required=True)
+    training.add_argument('--experiment-id',required=True)
+    training.add_argument('--algorithm',required=True,choices=['POP','ITEMCF','ALS','NCF'])
+    training.add_argument('--device',required=True,choices=['cpu','cuda'])
+    recommendation=sub.add_parser('recommend')
+    recommendation.add_argument('--model-run-id',required=True)
+    benchmark=sub.add_parser('benchmark')
+    benchmark.add_argument('--experiment-id',required=True)
+    benchmark.add_argument('--model-run-id',required=True)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -84,6 +94,15 @@ def main():
                 elif args.command=='evaluate':
                     from orchestration.training import evaluate_experiment
                     result=evaluate_experiment(connection,config,args.batch_id,args.experiment_id,dry_run=args.dry_run)
+                elif args.command=='train':
+                    from orchestration.w07 import train_fullfit
+                    result=train_fullfit(connection,config,args.batch_id,args.experiment_id,args.algorithm,args.device,dry_run=args.dry_run)
+                elif args.command=='recommend':
+                    from orchestration.w07 import recommend_fullfit
+                    result=recommend_fullfit(connection,config,args.model_run_id,dry_run=args.dry_run)
+                elif args.command=='benchmark':
+                    from orchestration.w07 import benchmark as run_benchmark
+                    result=run_benchmark(connection,config,args.experiment_id,args.model_run_id,dry_run=args.dry_run)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)

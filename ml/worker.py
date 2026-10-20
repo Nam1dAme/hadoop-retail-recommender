@@ -42,7 +42,9 @@ def hardware(cuda=False):
     if nvcc:
         result = subprocess.run([nvcc, '--version'], capture_output=True, text=True, timeout=20)
         toolkit = result.stdout.strip() if result.returncode == 0 else None
-    return {'device': 'CUDA' if cuda else 'CPU', 'platform': platform.platform(),
+    cpu_model = next((row.partition(':')[2].strip() for row in Path('/proc/cpuinfo').read_text().splitlines()
+                      if row.startswith('model name')), platform.processor())
+    return {'device': 'CUDA' if cuda else 'CPU', 'platform': platform.platform(), 'cpu_model': cpu_model,
             'torch_cpu_threads': torch.get_num_threads(), 'torch_version': torch.__version__,
             'cuda_runtime': torch.version.cuda, 'toolkit': toolkit,
             'nvidia_smi': driver, 'cuda_available': torch.cuda.is_available(),
