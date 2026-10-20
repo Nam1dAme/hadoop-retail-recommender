@@ -110,8 +110,17 @@ def verify(connection, config, experiment_id):
                     if model['device']!='CUDA' or not all(result['details']['first_batch_cuda_audit'].values()) or not result['details']['device'].startswith('cuda'):
                         raise ManifestError('Formal NCF lacks CUDA graph evidence')
                     history=result['details']['epochs']
+                    if model['best_epoch']!=result['details']['best_epoch'] or not 1<=model['best_epoch']<=len(history):
+                        raise ManifestError('NCF selected epoch differs from checkpoint history')
                     if len(epochs)!=len(history) or [r['epoch'] for r in history]!=list(range(1,len(history)+1)) or not 1<=len(history)<=20:
                         raise ManifestError('NCF epoch records differ')
+                    serialized=list(read_tsv(directory/'training_history.tsv',5))
+                    if len(serialized)!=len(history):
+                        raise ManifestError('NCF TSV history is incomplete')
+                    for values,original in zip(serialized,history):
+                        actual=[int(values[0]),*map(float,values[1:])]
+                        if actual!=[original[k] for k in ('epoch','train_loss','validation_ndcg','elapsed_seconds','peak_gpu_mib')]:
+                            raise ManifestError('NCF serialized history differs from actual epoch output')
                     for actual,original in zip(epochs,history):
                         if any(actual[k]!=original[k] for k in ('epoch','train_loss','validation_ndcg','elapsed_seconds','peak_gpu_mib')):
                             raise ManifestError('Database epoch differs from real training history')
