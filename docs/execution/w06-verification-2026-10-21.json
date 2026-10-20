@@ -1,0 +1,821 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "archived_at": "2026-10-20T16:11:32.977659+00:00",
+  "implementation_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+  "implementation_remote_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+  "batch": {
+    "batch_id": "B20261019194025b4f65854",
+    "status": "SUCCEEDED",
+    "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+    "policy_version": "retail-clean-v1",
+    "baseline_version": "HL-DOC-1.0.0",
+    "raw_rows": 541909,
+    "sale_rows": 530100,
+    "return_rows": 9288,
+    "rejected_rows": 2521
+  },
+  "w05_verification_path": "docs/execution/w05-verification-2026-10-20.json",
+  "verification": {
+    "batch_id": "B20261019194025b4f65854",
+    "champion_algorithm": "ALS",
+    "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+    "failed_candidate_count": 1,
+    "models": [
+      {
+        "algorithm": "ALS",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 0,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "35dc9422-443e-405b-b06f-ea676207caa8",
+        "reload_max_error": 0.0,
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.1626328217237308,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.0755265979224962,
+          "precision_at_k": 0.06695095948827263,
+          "recall_at_k": 0.04007110041204035,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "ALS",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 1,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "2ab37403-5ddf-4978-a8bd-526c347c50b3",
+        "reload_max_error": 0.0,
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.16322314049586778,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.0775070219207829,
+          "precision_at_k": 0.06759061833688677,
+          "recall_at_k": 0.041574889875569176,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "ALS",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 2,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "43330499-f7d5-4a0a-8ee3-83b80c0fd1ce",
+        "reload_max_error": 0.0,
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.2319952774498229,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.08408731696979009,
+          "precision_at_k": 0.07228144989338992,
+          "recall_at_k": 0.044950216082137215,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "ALS",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 3,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "bc76143a-cf53-4eb5-a0a2-421ec03c7307",
+        "reload_max_error": 0.0,
+        "test_metrics": [
+          {
+            "catalog_count": 3388,
+            "cohort": "WARM",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.2435064935064935,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.07095646610816694,
+            "precision_at_k": 0.059764705882352935,
+            "recall_at_k": 0.04401790624216919,
+            "split_name": "TEST",
+            "user_count": 1275,
+            "window_user_count": 1904
+          },
+          {
+            "catalog_count": 3388,
+            "cohort": "ALL_ELIGIBLE",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.2435064935064935,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.0695021419541465,
+            "precision_at_k": 0.05860010851871912,
+            "recall_at_k": 0.03960885262421754,
+            "split_name": "TEST",
+            "user_count": 1843,
+            "window_user_count": 1904
+          }
+        ],
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.24203069657615112,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.08547367058445512,
+          "precision_at_k": 0.0724946695095946,
+          "recall_at_k": 0.04617179785103185,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "ITEMCF",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 0,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "94e9d9bd-9d33-4c0d-8da5-c8af552224dd",
+        "reload_max_error": 0.0,
+        "test_metrics": [
+          {
+            "catalog_count": 3388,
+            "cohort": "WARM",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.45484061393152303,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.06814966312090767,
+            "precision_at_k": 0.054823529411764854,
+            "recall_at_k": 0.04521122527626047,
+            "split_name": "TEST",
+            "user_count": 1275,
+            "window_user_count": 1904
+          },
+          {
+            "catalog_count": 3388,
+            "cohort": "ALL_ELIGIBLE",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.45484061393152303,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.06756037645834857,
+            "precision_at_k": 0.05518176885512726,
+            "recall_at_k": 0.040434398890341436,
+            "split_name": "TEST",
+            "user_count": 1843,
+            "window_user_count": 1904
+          }
+        ],
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.4592680047225502,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.08454418800805412,
+          "precision_at_k": 0.0687988628287134,
+          "recall_at_k": 0.04473703351227073,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "NCF",
+        "best_epoch": 15,
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "epoch_count": 18,
+        "first_loss": 0.41663604049708863,
+        "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "grid_index": 0,
+        "last_loss": 0.28952169704934566,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "96891c61-91db-4e8c-9093-a3764a5e8cd7",
+        "reload_max_error": 0.0,
+        "test_metrics": [
+          {
+            "catalog_count": 3388,
+            "cohort": "WARM",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.2600354191263282,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.06047742425754765,
+            "precision_at_k": 0.05145098039215708,
+            "recall_at_k": 0.036844126352048236,
+            "split_name": "TEST",
+            "user_count": 1275,
+            "window_user_count": 1904
+          },
+          {
+            "catalog_count": 3388,
+            "cohort": "ALL_ELIGIBLE",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.2600354191263282,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.06225266916003927,
+            "precision_at_k": 0.052848616386326375,
+            "recall_at_k": 0.03464598265139916,
+            "split_name": "TEST",
+            "user_count": 1843,
+            "window_user_count": 1904
+          }
+        ],
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.2579693034238489,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.0757099154397018,
+          "precision_at_k": 0.0653162757640369,
+          "recall_at_k": 0.03828348299721622,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "NCF",
+        "best_epoch": 1,
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "epoch_count": 4,
+        "first_loss": 0.43044920471141923,
+        "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "grid_index": 1,
+        "last_loss": 0.38306341399861776,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "e7b80b3c-c13f-474e-9c66-7d2feebfa5b2",
+        "reload_max_error": 0.0,
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.018890200708382526,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.0444989855190315,
+          "precision_at_k": 0.04207533759772589,
+          "recall_at_k": 0.021261330547405477,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      },
+      {
+        "algorithm": "POP",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "grid_index": 0,
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "model_run_id": "1b8e932c-33c1-4539-840a-8d11c4889775",
+        "reload_max_error": 0.0,
+        "test_metrics": [
+          {
+            "catalog_count": 3388,
+            "cohort": "WARM",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.01948051948051948,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.04076470072384534,
+            "precision_at_k": 0.035607843137255055,
+            "recall_at_k": 0.020158719331548548,
+            "split_name": "TEST",
+            "user_count": 1275,
+            "window_user_count": 1904
+          },
+          {
+            "catalog_count": 3388,
+            "cohort": "ALL_ELIGIBLE",
+            "cold_interaction_count": 7331,
+            "cold_item_count": 249,
+            "cold_user_count": 568,
+            "coverage": 0.01948051948051948,
+            "excluded_user_count": 61,
+            "ndcg_at_k": 0.048615272249854576,
+            "precision_at_k": 0.04188822571893651,
+            "recall_at_k": 0.023102904001840195,
+            "split_name": "TEST",
+            "user_count": 1843,
+            "window_user_count": 1904
+          }
+        ],
+        "validation_warm": {
+          "catalog_count": 3388,
+          "cohort": "WARM",
+          "cold_interaction_count": 6266,
+          "cold_item_count": 219,
+          "cold_user_count": 656,
+          "coverage": 0.019185360094451005,
+          "excluded_user_count": 72,
+          "ndcg_at_k": 0.044295729429730424,
+          "precision_at_k": 0.041080312722103995,
+          "recall_at_k": 0.021282860234291618,
+          "split_name": "VALIDATION",
+          "user_count": 1407,
+          "window_user_count": 2133
+        }
+      }
+    ],
+    "selected": {
+      "ALS": "bc76143a-cf53-4eb5-a0a2-421ec03c7307",
+      "ITEMCF": "94e9d9bd-9d33-4c0d-8da5-c8af552224dd",
+      "NCF": "96891c61-91db-4e8c-9093-a3764a5e8cd7",
+      "POP": "1b8e932c-33c1-4539-840a-8d11c4889775"
+    },
+    "status": "PASS",
+    "successful_candidate_count": 8,
+    "test_sealed_at": "2026-10-20 15:56:40.016694",
+    "verification_code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb"
+  },
+  "tests": {
+    "tests": 105,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS",
+    "junit_path": "var/w06/pytest-final.xml",
+    "junit_sha256": "ba06c486e49b5a0c919f97fbd1186849bf83bc7674fd20b4eab168215a0cd183"
+  },
+  "environment": {
+    "observed_at": "2026-10-20T16:07:17.520045+00:00",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "python_executable": "/home/hadoop/hadoop-lab/.venv/bin/python",
+    "packages": {
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "pyspark": "3.5.7",
+      "torch": "2.6.0+cu124",
+      "PyMySQL": "1.1.3",
+      "pydantic": "2.14.1",
+      "pytest": "8.4.2"
+    },
+    "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+    "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb"
+  },
+  "cuda_training": [
+    {
+      "model_run_id": "96891c61-91db-4e8c-9093-a3764a5e8cd7",
+      "grid_index": 0,
+      "hardware": {
+        "amp": false,
+        "cpu_peak_rss_mib": 1239.5390625,
+        "cuda_available": true,
+        "cuda_runtime": "12.4",
+        "deterministic_algorithms": true,
+        "device": "CUDA",
+        "gpu_memory_bytes": 8585216000,
+        "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "num_workers": 0,
+        "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.07, 8188 MiB",
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "seed": 42,
+        "tf32": false,
+        "toolkit": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:19:38_PST_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+        "torch_cpu_threads": 4,
+        "torch_version": "2.6.0+cu124"
+      },
+      "cuda_forward_backward_audit": {
+        "gradients_cuda": true,
+        "gradients_finite": true,
+        "input_cuda": true,
+        "loss_cuda": true,
+        "model_cuda": true,
+        "nonzero_gradient": true,
+        "output_cuda": true
+      },
+      "epoch_count": 18,
+      "best_epoch": 15,
+      "first_loss": 0.41663604049708863,
+      "last_loss": 0.28952169704934566,
+      "peak_torch_allocated_mib": 78.04833984375,
+      "checkpoint_reload_max_error": 0.0
+    },
+    {
+      "model_run_id": "e7b80b3c-c13f-474e-9c66-7d2feebfa5b2",
+      "grid_index": 1,
+      "hardware": {
+        "amp": false,
+        "cpu_peak_rss_mib": 1221.12109375,
+        "cuda_available": true,
+        "cuda_runtime": "12.4",
+        "deterministic_algorithms": true,
+        "device": "CUDA",
+        "gpu_memory_bytes": 8585216000,
+        "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "num_workers": 0,
+        "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.07, 8188 MiB",
+        "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "seed": 42,
+        "tf32": false,
+        "toolkit": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:19:38_PST_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+        "torch_cpu_threads": 4,
+        "torch_version": "2.6.0+cu124"
+      },
+      "cuda_forward_backward_audit": {
+        "gradients_cuda": true,
+        "gradients_finite": true,
+        "input_cuda": true,
+        "loss_cuda": true,
+        "model_cuda": true,
+        "nonzero_gradient": true,
+        "output_cuda": true
+      },
+      "epoch_count": 4,
+      "best_epoch": 1,
+      "first_loss": 0.43044920471141923,
+      "last_loss": 0.38306341399861776,
+      "peak_torch_allocated_mib": 78.04833984375,
+      "checkpoint_reload_max_error": 0.0
+    }
+  ],
+  "cpu_peak_rss_scope": "training Python process, RUSAGE_SELF ru_maxrss high water, MiB",
+  "gpu_peak_scope": "torch.cuda.max_memory_allocated after per-epoch reset, including validation",
+  "epoch_time_scope": "negative generation and TSV write, training and full-catalog validation",
+  "selection_chronology": {
+    "status": "PASS",
+    "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+    "selection_path": "/retail/v1/features/batch_id=B20261019194025b4f65854/experiment-acea8dc1-3b09-43b8-ac79-09571cfcca53-selection.json",
+    "selection_file_sha256": "d47cd86037fadb28d642ab642d603a0679465ad443c4b3b4e70668c9ccd6e321",
+    "selection_config_sha256": "b46c65b5d3e825dc5b750e21bb80a9bd1721229e8496b8ae63a494f1d086511f",
+    "selection_hdfs_mtime_ms": 1792511635663,
+    "first_test_started_at": "2026-10-20T15:53:57.675130Z",
+    "selected_models": [
+      {
+        "algorithm": "ALS",
+        "model_run_id": "bc76143a-cf53-4eb5-a0a2-421ec03c7307",
+        "selected_at": "2026-10-20T15:45:18.282793Z"
+      },
+      {
+        "algorithm": "ITEMCF",
+        "model_run_id": "94e9d9bd-9d33-4c0d-8da5-c8af552224dd",
+        "selected_at": "2026-10-20T15:41:36.149332Z"
+      },
+      {
+        "algorithm": "NCF",
+        "model_run_id": "96891c61-91db-4e8c-9093-a3764a5e8cd7",
+        "selected_at": "2026-10-20T15:53:51.502199Z"
+      },
+      {
+        "algorithm": "POP",
+        "model_run_id": "1b8e932c-33c1-4539-840a-8d11c4889775",
+        "selected_at": "2026-10-20T15:40:51.501164Z"
+      }
+    ],
+    "last_test_metric_created_at": "2026-10-20T15:56:40.011558Z",
+    "test_sealed_at": "2026-10-20T15:56:40.016694Z",
+    "four_validation_selections_before_test": true,
+    "selection_persisted_before_test": true,
+    "seal_after_all_test_tasks_and_metrics": true
+  },
+  "sealed_mutation_guards": {
+    "status": "PASS",
+    "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+    "probes": [
+      {
+        "probe": "reselect_after_test",
+        "status": "REJECTED",
+        "error": "Test evaluation has started; model selection is frozen"
+      },
+      {
+        "probe": "insert_metric_after_seal",
+        "status": "REJECTED",
+        "error": "Metrics require successful EVAL model in unsealed running experiment"
+      }
+    ],
+    "state_unchanged": true,
+    "before_sha256": "2b550f4234504bc598a6378c8a5b99ed45ff7ced5f1c0c96ecf9eff9c3d12c0e",
+    "after_sha256": "2b550f4234504bc598a6378c8a5b99ed45ff7ced5f1c0c96ecf9eff9c3d12c0e"
+  },
+  "idempotency": {
+    "status": "PASS",
+    "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+    "observed_at": "2026-10-20T16:08:16.687674+00:00",
+    "before": {
+      "counts": {
+        "batch": 1,
+        "quality": 27,
+        "tasks": 33,
+        "models": 9,
+        "experiment": 1,
+        "selected": 4,
+        "metrics": 24,
+        "epochs": 22
+      },
+      "state_sha256": "2b70f5817ec4880c976fa283d3a36a362485d8207528844a584ff817798ac582"
+    },
+    "after": {
+      "counts": {
+        "batch": 1,
+        "quality": 27,
+        "tasks": 33,
+        "models": 9,
+        "experiment": 1,
+        "selected": 4,
+        "metrics": 24,
+        "epochs": 22
+      },
+      "state_sha256": "2b70f5817ec4880c976fa283d3a36a362485d8207528844a584ff817798ac582"
+    },
+    "semantic_result_identical": true,
+    "successful_models_reused": true,
+    "no_database_state_changes": true,
+    "command": [
+      "-m",
+      "orchestration.cli",
+      "--config",
+      "config/development.toml",
+      "--baseline",
+      "HL-DOC-1.0.0",
+      "--db-defaults-file",
+      "var/secrets/writer.cnf",
+      "evaluate",
+      "--batch-id",
+      "B20261019194025b4f65854",
+      "--experiment-id",
+      "acea8dc1-3b09-43b8-ac79-09571cfcca53"
+    ]
+  },
+  "archive_failure_recovery": {
+    "status": "PASS",
+    "failed_model_run_id": "47adb217-7a4d-4435-bd20-e3294ecf8767",
+    "successful_retry_model_run_id": "1b8e932c-33c1-4539-840a-8d11c4889775",
+    "configuration_bytes_identical": true,
+    "validation_metrics_identical": true,
+    "failed_artifact_retained": true
+  },
+  "final_state": {
+    "tasks": [
+      {
+        "status": "FAILED",
+        "count": 1
+      },
+      {
+        "status": "SUCCEEDED",
+        "count": 32
+      }
+    ],
+    "models": [
+      {
+        "purpose": "EVAL",
+        "status": "FAILED",
+        "count": 1
+      },
+      {
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "count": 8
+      }
+    ],
+    "model_artifacts": [
+      {
+        "model_run_id": "35dc9422-443e-405b-b06f-ea676207caa8",
+        "algorithm": "ALS",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=35dc9422-443e-405b-b06f-ea676207caa8"
+      },
+      {
+        "model_run_id": "2ab37403-5ddf-4978-a8bd-526c347c50b3",
+        "algorithm": "ALS",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=2ab37403-5ddf-4978-a8bd-526c347c50b3"
+      },
+      {
+        "model_run_id": "43330499-f7d5-4a0a-8ee3-83b80c0fd1ce",
+        "algorithm": "ALS",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=43330499-f7d5-4a0a-8ee3-83b80c0fd1ce"
+      },
+      {
+        "model_run_id": "bc76143a-cf53-4eb5-a0a2-421ec03c7307",
+        "algorithm": "ALS",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=bc76143a-cf53-4eb5-a0a2-421ec03c7307"
+      },
+      {
+        "model_run_id": "94e9d9bd-9d33-4c0d-8da5-c8af552224dd",
+        "algorithm": "ITEMCF",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=94e9d9bd-9d33-4c0d-8da5-c8af552224dd"
+      },
+      {
+        "model_run_id": "96891c61-91db-4e8c-9093-a3764a5e8cd7",
+        "algorithm": "NCF",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CUDA",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=96891c61-91db-4e8c-9093-a3764a5e8cd7"
+      },
+      {
+        "model_run_id": "e7b80b3c-c13f-474e-9c66-7d2feebfa5b2",
+        "algorithm": "NCF",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CUDA",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=e7b80b3c-c13f-474e-9c66-7d2feebfa5b2"
+      },
+      {
+        "model_run_id": "47adb217-7a4d-4435-bd20-e3294ecf8767",
+        "algorithm": "POP",
+        "purpose": "EVAL",
+        "status": "FAILED",
+        "device": "CPU",
+        "code_commit": "184068c4a409175b5f0011d2cb038f4920a004aa",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=47adb217-7a4d-4435-bd20-e3294ecf8767"
+      },
+      {
+        "model_run_id": "1b8e932c-33c1-4539-840a-8d11c4889775",
+        "algorithm": "POP",
+        "purpose": "EVAL",
+        "status": "SUCCEEDED",
+        "device": "CPU",
+        "code_commit": "2da82894e46445797b318c0c3c73ee350e49edfb",
+        "mapping_sha256": "b75efe168e2d2b48b56844fc4c7fa287d7068ec3f49bac86ef20657a04d4e672",
+        "environment_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "artifact_path": "/retail/v1/models/model_run_id=1b8e932c-33c1-4539-840a-8d11c4889775"
+      }
+    ],
+    "counts": {
+      "model_metric": 24,
+      "model_epoch": 22,
+      "gpu_benchmark": 0,
+      "data_release": 0,
+      "experiment_model": 4
+    },
+    "current_release": null,
+    "experiment": {
+      "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+      "status": "SUCCEEDED",
+      "champion_algorithm": "ALS",
+      "test_sealed_at": "2026-10-20 15:56:40.016694",
+      "report_path": "/retail/v1/features/batch_id=B20261019194025b4f65854/experiment-acea8dc1-3b09-43b8-ac79-09571cfcca53-report.json"
+    }
+  },
+  "frozen_baseline": [
+    {
+      "file": "docs/00-governance.md",
+      "sha256": "0df2d41ef7421e0990331190b6d4e22d8957c8b5340f8215c33d0071ed5f8f96"
+    },
+    {
+      "file": "docs/01-prd.md",
+      "sha256": "92875fb62b3560466db008a58d224e04c1a8084c7571cd9f7cf0163cf2d74885"
+    },
+    {
+      "file": "docs/02-ux.md",
+      "sha256": "e37502d69bd92d586463ce7aff411669f8fc56bb3d8feb1bf32c4e552aa1ad5f"
+    },
+    {
+      "file": "docs/03-architecture.md",
+      "sha256": "8ce790d6dc8627072201e723f5776fe3fb55e859d9fb7f634389d47252db6537"
+    },
+    {
+      "file": "docs/04-data-contracts.md",
+      "sha256": "c17765f3723cec93c0d3036bfe7793bccdc8318200222cc5c9d7b462e34f1d43"
+    },
+    {
+      "file": "docs/05-pipeline.md",
+      "sha256": "53f3d920f53d3d81684ef04f6795ffad87a2f90648ab3b9823c2052e3cde105a"
+    },
+    {
+      "file": "docs/06-database.md",
+      "sha256": "cb044189289752bd2610962cdc145b29770440f62429dbb23a530a11bb2b9634"
+    },
+    {
+      "file": "docs/07-models.md",
+      "sha256": "0bb6b1c6bf37ead66659d28f565477f2562d2f465c3c6cdd11c59a960912df2b"
+    },
+    {
+      "file": "docs/08-api.md",
+      "sha256": "641fd11788e3a98e1450a002e43874cb17cfe93faa1c6e7d3daee270f357be25"
+    },
+    {
+      "file": "docs/09-environment.md",
+      "sha256": "4a93cc5bf0edbd3f08dd2c1702dae14a316ce55f563722436f9ac031d4a1150c"
+    },
+    {
+      "file": "docs/10-operations.md",
+      "sha256": "d91bbd272965fd032f1cb3c0494adfb81e7740c389294e35d06802361ef13d34"
+    },
+    {
+      "file": "docs/11-acceptance.md",
+      "sha256": "2bb1708e85b4a7e0949fb6202371bee2065092bbd7c61158374b58d4f5092e34"
+    },
+    {
+      "file": "docs/12-agent-plan.md",
+      "sha256": "0bdf3cfa77b58c1a09195736bf00c6eff39547430cfee52f08c9ca7ce5346db0"
+    },
+    {
+      "file": "docs/13-decisions-risks.md",
+      "sha256": "10dc58507889b72f33f9a14f4c6a9cfdc01546d9a97aaa16aa55e148a5b55470"
+    },
+    {
+      "file": "docs/14-traceability.md",
+      "sha256": "22d259502c93d847d91e90b8cc94d2af3c6d5529461cead661b1003ca1736c2d"
+    },
+    {
+      "file": "docs/15-evidence.md",
+      "sha256": "1208051d16a7e69929217e0509d08ddadeb0625c4863624683b7934720e1ca38"
+    },
+    {
+      "file": "docs/16-freeze-review.md",
+      "sha256": "46717ea24e2164f4356873f1f76270c60e3e7d549e047800e4bd780ce507083c"
+    },
+    {
+      "file": "docs/README.md",
+      "sha256": "3e0e4d2645b49985e7df80fdc1e601c84ccd056b94bb805dce001e3b8ed2c81f"
+    }
+  ],
+  "completion_audit": {
+    "T-08": {
+      "status": "PASS",
+      "evidence": "W05 independent clean reconstruction, boundary/mapping tests and five real TRAIN YARN apps"
+    },
+    "T-09": {
+      "status": "PASS",
+      "evidence": "eight real model bundles and actual save/load comparisons; all NCF sample IDs/labels/ratios/seeds and shared order checked"
+    },
+    "T-10": {
+      "status": "PASS",
+      "evidence": "hand metric fixture, shared real cohorts/catalog/labels and sealed actual TEST metrics"
+    },
+    "T-11": {
+      "status": "PASS",
+      "evidence": "shared full-catalog ranking validates actual validation/test recommendations; cold fallback/short/exhausted/tie tests"
+    },
+    "T-12": {
+      "status": "PASS",
+      "evidence": "two real CUDA NeuMF runs; actual model/input/output/loss/gradient device checks, finite decreasing losses, reloaded checkpoints"
+    },
+    "W07": {
+      "status": "NOT_STARTED",
+      "scope": "FULLFIT models, CPU/CUDA 3x benchmark and complete serving recommendations"
+    }
+  },
+  "commands": [
+    "uv run --locked --no-sync python -m orchestration.cli --config config/development.toml --baseline HL-DOC-1.0.0 --db-defaults-file var/secrets/writer.cnf evaluate --batch-id B20261019194025b4f65854 --experiment-id acea8dc1-3b09-43b8-ac79-09571cfcca53",
+    "uv run --locked --no-sync python scripts/verify-w06.py --config config/development.toml --db-defaults-file var/secrets/writer.cnf --experiment-id acea8dc1-3b09-43b8-ac79-09571cfcca53 --output var/w06/verification.json",
+    "uv run --locked --no-sync python -m pytest -q --tb=short --junitxml=var/w06/pytest-final.xml",
+    "uv run --locked --no-sync python var/w06/check-idempotency.py",
+    "uv pip check --python \"$VIRTUAL_ENV/bin/python\""
+  ]
+}

@@ -39,3 +39,5 @@ uv run --locked --no-sync python -m orchestration.cli \
 模型包位于 models/model_run_id=…，包括 config.json、mapping.tsv、环境、硬件、输入、源码快照和训练产物。模型 metrics.json 保存模型验收时的验证指标；后续 TEST 是独立、不可变的实验任务附件，由实验报告关联，数据库汇集每个选定模型的四行 VALIDATION/TEST 指标。HDFS 批量上传后重新下载并核验全部原路径/hash，避免每个小文件单独启动 JVM；快照缓存仅在本次调用内使用。
 
 W05 独立验收：`python scripts/verify-w05.py --config … --db-defaults-file … --experiment-id … --output …`，直接从 clean SALE 重建两套映射、购买交互、热门和窗口标签。W06 独立验收使用相同参数的 `scripts/verify-w06.py`，检查八个候选、实际 Spark 参数、CUDA 图与训练历史、每 epoch 负样本、验证选择和封存指标。真实训练及 T-08/09/10/11/12 的完成状态，以 execution 记录为准。W07 的 CPU/GPU 三次对照、FULLFIT 和全量服务推荐仍独立实施。
+
+W05/W06 已通过真实验收，最终回归105项通过；记录见 [W05](../docs/execution/2026-10-20-w05.md) 和 [W06](../docs/execution/2026-10-21-w06.md)。当前默认算法为验证选出的ALS，NCF两组正式CUDA训练与TEST封存均已完成。

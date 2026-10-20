@@ -1,6 +1,6 @@
 # Hadoop Lab
 
-基于 Hadoop 与 CUDA 神经协同过滤的电商分析及推荐系统。唯一真实数据源为 [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)，CC BY 4.0，金额 GBP、来源本地时间；已完成原始数据导入与标准化，业务计算和模型链路按后续阶段实现。
+基于 Hadoop 与 CUDA 神经协同过滤的电商分析及推荐系统。唯一真实数据源为 [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)，CC BY 4.0，金额 GBP、来源本地时间；已完成真实导入、Hadoop业务计算、实验数据与四算法离线评价；服务训练、发布与页面按后续阶段实现。
 
 设计依据：[docs/README.md](docs/README.md)，冻结基线 `HL-DOC-1.0.0`。2026-10-19 起按新用户指令建立工程基础，保留冻结文档历史；实测进度见 [执行记录](docs/execution/2026-10-19-foundation.md)、[故障排查记录](docs/execution/2026-10-19-troubleshooting.md)、[uv 迁移记录](docs/execution/2026-10-19-uv-migration.md)。
 
@@ -10,7 +10,9 @@ W03 已完成：真实 UCI 文件 541,909 行已原样归档 HDFS 并生成标�
 
 W04 已完成：J01—J08 的十二个真实 YARN 应用全部成功，独立验算通过 37,830 项检查；原批次现为 SUCCEEDED。产出 19,960 个正向订单、4,338 个客户的 RFM，以及销售、完整购买交互和相似商品结果。重复执行复用同一批任务，完整回归 86 项通过，W03 兼容验收通过。构建/使用见 [MapReduce 说明](mapreduce/README.md)，真实应用、金额及源码证据见 [W04 执行记录](docs/execution/2026-10-20-w04.md) 和 [完整验收 JSON](docs/execution/w04-verification-2026-10-20.json)。
 
-W05 已完成实验数据与评价协议验收：训练窗 3,314 位客户、3,388 个候选商品、162,426 对购买交互；五个 TRAIN 窗口 YARN 应用成功，独立从 clean 重建两套映射、交互、热门和评价标签均一致。W06 四算法/CUDA 训练编排已实现，正式训练与封存验收正在执行。说明见 [实验与模型使用说明](ml/README.md)，证据见 [W05 执行记录](docs/execution/2026-10-20-w05.md)。
+W05 已完成实验数据与评价协议验收：训练窗 3,314 位客户、3,388 个候选商品、162,426 对购买交互；五个 TRAIN 窗口 YARN 应用成功，独立从 clean 重建两套映射、交互、热门和评价标签均一致。说明见 [实验与模型使用说明](ml/README.md)，证据见 [W05 执行记录](docs/execution/2026-10-20-w05.md)。
+
+W06 已完成：POP/ItemCF、四组ALS、两组真实CUDA NCF共八个EVAL候选成功，四算法TEST评价完成并封存。验证选出的默认算法为ALS（rank32/reg0.1），NCF选定lr0.001、第15轮checkpoint；最终回归105项通过，独立模型/负采样/封存验收及同实验幂等复查均通过。一次POP归档失败及重试记录完整保留。详见 [W06 执行记录](docs/execution/2026-10-21-w06.md) 和 [完整验收 JSON](docs/execution/w06-verification-2026-10-21.json)。
 
 Python 版本、虚拟环境和依赖统一由 uv 管理：`.python-version` 固定 3.12，`pyproject.toml` 为唯一依赖声明，`uv.lock` 为已解析生成的完整锁。PyTorch 仅从官方 cu124 索引解析；其他依赖默认 PyPI。旧 pip-tools 输入已移除。
 
@@ -60,4 +62,4 @@ CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用�
 | migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
 | var/ | 忽略的运行数据、缓存、日志与导出 |
 
-当前 W01—W05 已完成。W06 正在执行正式训练与验收，W07—W11 的对照实验、服务训练、发布与应用按后续阶段实施。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
+当前 W01—W06 已完成。W07—W11 的 GPU 对照、全历史服务训练与推荐、发布、API 和页面按后续阶段实施。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
