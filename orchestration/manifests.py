@@ -3,6 +3,7 @@ from datetime import datetime
 import hashlib
 from pathlib import Path, PurePosixPath
 import subprocess
+import tempfile
 from typing import Literal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -23,6 +24,8 @@ class Input(Strict):
     path: str = Field(min_length=1)
     sha256: str = Field(pattern=SHA)
     rows: int = Field(ge=0)
+    format: Literal['TSV','XLSX'] = 'TSV'
+    sheet: str | None = None
 
 
 class Artifact(Strict):
@@ -41,6 +44,8 @@ class Common(Strict):
     created_at: str
     finished_at: str
     synthetic: bool = False
+    code_dirty: bool = False
+    source_code_sha256: dict[str,str] = Field(default_factory=dict)
 
     @model_validator(mode='after')
     def times(self):
@@ -62,6 +67,7 @@ class RunManifest(Common):
     dataset_schema: list[str] = Field(alias='schema', min_length=1)
     inputs: list[Input] = Field(min_length=1)
     outputs: list[Input] = Field(min_length=1)
+    artifacts: list[Artifact] = Field(default_factory=list)
     record_count: int = Field(ge=0)
     classification_counts: dict[str,int]
     application_id: str | None
@@ -170,16 +176,30 @@ class HdfsStore:
             stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,env=self.environment,timeout=30).returncode == 0
 
 
-def fingerprint(store,path):
+def fingerprint(store,path,format='TSV',sheet=None,heartbeat=lambda:None):
     digest=hashlib.sha256(); size=rows=0; last=None
-    for chunk in store.chunks(path):
-        digest.update(chunk); size+=len(chunk); rows+=chunk.count(b'\n'); last=chunk[-1:]
+    spool = tempfile.SpooledTemporaryFile(max_size=8*1024**2) if format=='XLSX' else None
+    try:
+        for chunk in store.chunks(path):
+            heartbeat()
+            digest.update(chunk); size+=len(chunk); rows+=chunk.count(b'\n'); last=chunk[-1:]
+            if spool is not None:spool.write(chunk)
+        if spool is not None:
+            from etl.workbook import rows as workbook_rows
+            spool.seek(0)
+            rows=0
+            with workbook_rows(spool,sheet) as (_,records):
+                for _ in records:
+                    heartbeat();rows+=1
+            return digest.hexdigest(),size,rows
+    finally:
+        if spool is not None:spool.close()
     if last and last != b'\n':
         rows+=1
     return digest.hexdigest(),size,rows
 
 
-def verify_manifest(data, store, expected, formal=True):
+def verify_manifest(data, store, expected, formal=True,heartbeat=lambda:None):
     """Expected association/hash values come from the control DB, not directory names."""
     try:
         if 'algorithm' in data:
@@ -203,7 +223,7 @@ def verify_manifest(data, store, expected, formal=True):
                 raise ManifestError('Unknown or mismatched dataset schema')
             if PurePosixPath(manifest.success_marker).name != '_SUCCESS' or not store.exists(manifest.success_marker):
                 raise ManifestError('Missing success marker')
-            files = manifest.inputs + manifest.outputs
+            files = manifest.inputs + manifest.outputs + manifest.artifacts
         if formal and manifest.synthetic:
             raise ManifestError('Synthetic artifacts cannot be formal inputs')
         for key,value in expected.items():
@@ -217,7 +237,9 @@ def verify_manifest(data, store, expected, formal=True):
         for file in files:
             if formal and any(part in ('synthetic','fixtures') for part in PurePosixPath(file.path).parts):
                 raise ManifestError('Test artifacts cannot be formal inputs')
-            digest,size,rows = fingerprint(store,file.path)
+            digest,size,rows = fingerprint(store,file.path,
+                file.format if isinstance(file,Input) else 'TSV',
+                file.sheet if isinstance(file,Input) else None,heartbeat)
             if digest != file.sha256 or (isinstance(file,Artifact) and size != file.bytes) or (isinstance(file,Input) and rows != file.rows):
                 raise ManifestError('Artifact hash/size/rows mismatch')
         return manifest

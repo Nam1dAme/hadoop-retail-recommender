@@ -9,6 +9,7 @@ from orchestration.database import connect, open_connection, LockBusy
 from orchestration.db_backup import backup_database
 from orchestration.migrations import migrate, inspect, MigrationError
 from orchestration.settings import BASELINE, ConfigError, load_config
+from orchestration.manifests import ManifestError
 
 
 def main():
@@ -23,6 +24,12 @@ def main():
     sub.add_parser('db-status')
     sub.add_parser('db-prepare-roles')
     sub.add_parser('storage-init')
+    ingestion=sub.add_parser('ingest')
+    ingestion.add_argument('--source-file',required=True,type=Path)
+    ingestion.add_argument('--source-url',required=True)
+    ingestion.add_argument('--source-metadata',type=Path)
+    ingestion.add_argument('--sheet')
+    ingestion.add_argument('--source-date-format')
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -52,7 +59,14 @@ def main():
         else:
             connection=connect(config,args.db_defaults_file)
             try:
-                if args.command=='db-prepare-roles':
+                if args.command=='ingest':
+                    from etl.ingest import ingest
+                    result=ingest(connection,config,args.source_file,args.source_url,sheet=args.sheet,
+                        date_format=args.source_date_format,source_metadata=args.source_metadata,dry_run=args.dry_run)
+                    if not args.dry_run and not result['quality_gate_passed']:
+                        print(json.dumps(result,default=str))
+                        return 6
+                elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)
                 elif args.command=='db-migrate':
@@ -79,8 +93,14 @@ def main():
     except LockBusy:
         print('Database lock is occupied',file=sys.stderr)
         return 5
-    except MigrationError as exc:
+    except (MigrationError,ManifestError) as exc:
         print(str(exc),file=sys.stderr)
+        return 6
+    except (OSError,RuntimeError) as exc:
+        print('Offline operation failed: '+type(exc).__name__,file=sys.stderr)
+        return 4
+    except ValueError:
+        print('Invalid source schema or data configuration',file=sys.stderr)
         return 6
     except Exception as exc:
         # Do not expose server messages, SQL, usernames or filesystem credentials.

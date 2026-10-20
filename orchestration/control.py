@@ -54,7 +54,7 @@ class ControlStore:
         return row
 
     def register_batch(self, *, source_sha256, source_name, source_url, source_bytes,
-                       raw_hdfs_path, normalized_hdfs_path, policy_version='retail-clean-v1'):
+                       raw_hdfs_path, normalized_hdfs_path, policy_version='retail-clean-v1', hdfs_root='/retail/v1'):
         digest(source_sha256)
         if type(source_bytes) is not int or source_bytes <= 0 or policy_version != 'retail-clean-v1':
             raise ControlError('Invalid source metadata/policy')
@@ -62,7 +62,9 @@ class ControlStore:
         # Paths must be derived from the resulting ID by the caller template.
         raw=raw_hdfs_path.format(batch_id=batch_id)
         normalized=normalized_hdfs_path.format(batch_id=batch_id)
-        if raw != f'/retail/v1/raw/batch_id={batch_id}/source.xlsx' or normalized != f'/retail/v1/normalized/batch_id={batch_id}':
+        if not hdfs_root.startswith('/') or '..' in hdfs_root.split('/') or hdfs_root=='/':
+            raise ControlError('Invalid batch storage root')
+        if raw != f'{hdfs_root}/raw/batch_id={batch_id}/source.xlsx' or normalized != f'{hdfs_root}/normalized/batch_id={batch_id}':
             raise ControlError('Noncanonical batch storage paths')
         now=utcnow()
         with self.transaction() as cursor:
@@ -164,7 +166,8 @@ class ControlStore:
                 raise ControlError('Only running tasks have heartbeats')
             cursor.execute('UPDATE task_run SET heartbeat_at=%s WHERE run_id=%s',(utcnow(),run_id))
 
-    def finish_task(self,run_id,status, *, manifest_path=None,store=None,error_code=None,terminal_check=None):
+    def finish_task(self,run_id,status, *, manifest_path=None,store=None,error_code=None,terminal_check=None,
+                    formal=True,heartbeat=lambda:None):
         if status not in ('SUCCEEDED','FAILED','CANCELLED'):
             raise ControlError('Invalid terminal status')
         with self.transaction() as cursor:
@@ -174,13 +177,20 @@ class ControlStore:
             if row['application_id'] or (status != 'SUCCEEDED' and row['pid']):
                 if terminal_check is None or terminal_check(row) != status:
                     raise ControlError('External task terminal state is not confirmed')
-            if status == 'SUCCEEDED':
-                if not manifest_path or store is None:
-                    raise ControlError('Successful task requires verified manifest')
-                data=json.loads(b''.join(store.chunks(manifest_path)))
-                verify_manifest(data,store,{k:row[k] for k in ('batch_id','run_id','config_sha256','code_commit')} | {'application_id':row['application_id']})
-            if error_code is not None and not re.fullmatch('[A-Z0-9_]{1,64}',error_code):
-                raise ControlError('Invalid error code')
+        # Content verification can take minutes on a real XLSX. Do not hold a row
+        # transaction open: the owner must keep committing its ten-second heartbeat.
+        if status == 'SUCCEEDED':
+            if not manifest_path or store is None:
+                raise ControlError('Successful task requires verified manifest')
+            data=json.loads(b''.join(store.chunks(manifest_path)))
+            verify_manifest(data,store,{k:row[k] for k in ('batch_id','run_id','config_sha256','code_commit')} | {'application_id':row['application_id']},
+                            formal=formal,heartbeat=heartbeat)
+        if error_code is not None and not re.fullmatch('[A-Z0-9_]{1,64}',error_code):
+            raise ControlError('Invalid error code')
+        with self.transaction() as cursor:
+            current=self.row(cursor,'task_run','run_id',run_id)
+            if current['status']!='RUNNING' or any(current[k]!=row[k] for k in ('batch_id','config_sha256','code_commit','application_id')):
+                raise ControlError('Task state changed during artifact verification')
             cursor.execute('UPDATE task_run SET status=%s,finished_at=%s,output_manifest_path=%s,error_code=%s WHERE run_id=%s',
                 (status,utcnow(),manifest_path,error_code,run_id))
 
