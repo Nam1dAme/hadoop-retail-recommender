@@ -21,6 +21,7 @@ from orchestration.manifests import ManifestError, verify_manifest, DATASETS
 from orchestration.migrations import require_current
 from orchestration.pipeline import expected, task_row
 from orchestration.runtime import Heartbeat, process_start, process_alive
+from orchestration.settings import ConfigError
 from orchestration.training import SnapshotStore, fetch, run_worker, worker_alive, upload_bundle, grids
 
 
@@ -291,7 +292,7 @@ def session(connection,config,experiment_id,*,batch_id=None):
 def train_fullfit(connection,config,batch_id,experiment_id,algorithm,device,*,dry_run=False):
     algorithm,device = algorithm.upper(),device.lower()
     if algorithm not in ALGORITHMS or device != ('cuda' if algorithm == 'NCF' else 'cpu'):
-        raise ValueError('FULLFIT requires CUDA for NCF and CPU for POP/ITEMCF/ALS')
+        raise ConfigError('FULLFIT requires CUDA for NCF and CPU for POP/ITEMCF/ALS')
     with session(connection,config,experiment_id,batch_id=batch_id) as ctx:
         selected = ctx.selected[algorithm]
         source,source_params = ctx.model_bundle(selected)

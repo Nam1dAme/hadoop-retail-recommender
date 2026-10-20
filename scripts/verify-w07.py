@@ -30,6 +30,31 @@ def require(condition,message):
         raise ManifestError(message)
 
 
+def audit_samples(path,train,epoch):
+    """Check actual numeric rows against history, without invoking the sampler."""
+    values=np.loadtxt(path,dtype=np.int64,delimiter='\t',comments=None,ndmin=2)
+    require(values.ndim==2 and values.shape[1]==5 and len(values)>0,'Invalid sample shape')
+    user,item,label=values[:,0],values[:,1],values[:,2]
+    require(bool(((user>=0)&(user<len(train.users))).all())
+            and bool(((item>=0)&(item<len(train.items))).all()),'Sample index outside mapping')
+    require(bool(np.isin(label,[0,1]).all()) and bool((values[:,3]==epoch).all())
+            and bool((values[:,4]==42+epoch).all()),'Sample label/epoch/seed differs')
+    ii={item:n for n,item in enumerate(train.items)}
+    full=np.asarray(sorted(u*len(train.items)+ii[i] for u,name in enumerate(train.users)
+                           for i in train.history[name]),dtype=np.int64)
+    expected=np.asarray(sorted(u*len(train.items)+ii[i] for u,name in enumerate(train.users)
+                       if len(train.history[name])<len(train.items) for i in train.history[name]),dtype=np.int64)
+    codes=user*len(train.items)+item
+    require(bool((np.isin(codes,full)==label.astype(bool)).all()),'Positive/negative label violates purchase history')
+    require(np.array_equal(np.sort(codes[label==1]),expected),'Positives must include each eligible interaction exactly once')
+    positive_counts=np.bincount((expected//len(train.items)).astype(np.int64),minlength=len(train.users))
+    negative_counts=np.bincount(user[label==0],minlength=len(train.users))
+    require(np.array_equal(negative_counts,4*positive_counts),'Each user must have four negatives per positive')
+    return {'rows':len(values),'positive_rows':int((label==1).sum()),'negative_rows':int((label==0).sum()),
+            'all_indices_legal':True,'history_exclusion_passed':True,'positive_exactness_passed':True,
+            'per_user_negative_ratio':4,'epoch_seed_passed':True}
+
+
 def sources(directory,manifest,tick):
     with zipfile.ZipFile(directory/'source-code.zip') as archive:
         require(set(archive.namelist())==set(manifest['source_code_sha256']),'Source archive membership differs')
@@ -47,13 +72,14 @@ def samples(directory,train,history,tick):
         path=Path(temporary)/'expected.tsv'
         for row in history:
             tick()
+            actual=directory/'samples'/f"epoch-{row['epoch']:03d}.tsv"
+            constraint_audit=audit_samples(actual,train,row['epoch'])
             values,excluded=sample_epoch(train,row['epoch'])
             reference=save_samples(path,values,row['epoch'])
-            actual=directory/'samples'/f"epoch-{row['epoch']:03d}.tsv"
-            require(sha256(actual)==reference['sha256'],'Actual sample bytes/order differ from seed+epoch regeneration')
+            require(sha256(actual)==reference['sha256']==row['sample_sha256'],'Actual sample bytes/order differ from seed+epoch regeneration')
             require(reference['rows']==row['sample_count'] and excluded==row['excluded_no_negative_users'],
                     'Sample count or excluded users differs')
-            evidence.append({'epoch':row['epoch'],**reference,'excluded_no_negative_users':excluded})
+            evidence.append({'epoch':row['epoch'],**reference,'excluded_no_negative_users':excluded,'constraints':constraint_audit})
     return evidence
 
 
@@ -211,9 +237,11 @@ def verify(connection,config,experiment_id):
         sources(sample_root,sample_manifest,ctx.tick)
         common_sample_refs=json.loads((sample_root/'result.json').read_text())['sample_files']
         require(len(common_sample_refs)==5,'Benchmark requires exactly five common sample files')
+        common_sample_audits=[]
         # Regenerate the five common TRAIN sample files, including their order.
         with tempfile.TemporaryDirectory(dir=ROOT/'var',prefix='w07-benchmark-samples-') as temporary:
             for epoch in range(1,6):
+                common_sample_audits.append({'epoch':epoch,**audit_samples(sample_root/'samples'/f'epoch-{epoch:03d}.tsv',training,epoch)})
                 values,_=sample_epoch(training,epoch)
                 reference=save_samples(Path(temporary)/'expected.tsv',values,epoch)
                 require(sha256(sample_root/'samples'/f'epoch-{epoch:03d}.tsv')==reference['sha256']
@@ -299,7 +327,7 @@ def verify(connection,config,experiment_id):
                 'champion_algorithm':ctx.experiment['champion_algorithm'],'test_sealed_at':str(ctx.experiment['test_sealed_at']),
                 'test_ids':['T-09','T-11','T-12','T-13'],'fullfit_mapping_sha256':full.mapping_sha256,
                 'eval_mapping_sha256':training.mapping_sha256,'expected_user_count':len(users),
-                'fullfit_models':model_evidence,'benchmarks':benchmark_evidence,
+                'fullfit_models':model_evidence,'benchmarks':benchmark_evidence,'common_benchmark_sample_audits':common_sample_audits,
                 'cpu_median_seconds':cpu,'cuda_median_seconds':cuda,'speedup':cpu/cuda,
                 'environment_sha256':sha256(ROOT/'uv.lock'),'active_tasks':active,
                 'w08_release':'NOT_STARTED','w09_api':'NOT_STARTED','w10_ui':'NOT_STARTED'}

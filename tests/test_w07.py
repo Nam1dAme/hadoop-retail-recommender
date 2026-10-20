@@ -96,8 +96,9 @@ def test_actual_cpu_benchmark_fixed_five_epochs_and_warmup_reset(tmp_path):
 
 
 def test_invalid_fullfit_devices_and_eval_recommendation_rejected(db):
+    from orchestration.settings import ConfigError
     for algorithm,device in [('NCF','cpu'),('ALS','cuda'),('POP','cuda')]:
-        with pytest.raises(ValueError,match='requires'):
+        with pytest.raises(ConfigError,match='requires'):
             train_fullfit(db[0]['writer'],{},'batch','experiment',algorithm,device)
     with pytest.raises(ManifestError,match='FULLFIT'):
         recommend_fullfit(db[0]['writer'],{},'00000000-0000-0000-0000-000000000000')
@@ -175,3 +176,77 @@ def test_benchmark_db_rows_exactly_reuse_and_reject_changes(db,tmp_path):
     with connection.cursor() as cur:
         cur.execute('SELECT COUNT(*) AS n FROM gpu_benchmark')
         assert cur.fetchone()['n']==1
+
+
+def minimal_context(db,tmp_path):
+    from orchestration.w07 import Context
+    from orchestration.control import ControlStore
+    from orchestration.runtime import Heartbeat
+    from etl.storage import FileStorage
+    from test_database import batch,C
+    context=Context.__new__(Context)
+    context.connection=db[0]['writer']; context.control=ControlStore(context.connection)
+    context.batch_id=batch(context.control);context.control.transition_batch(context.batch_id,'PROCESSING')
+    context.experiment_id=context.control.create_experiment(context.batch_id,'a'*64)
+    context.commit=C;context.dirty=False
+    context.storage=FileStorage(tmp_path/'archive')
+    context.tick=Heartbeat(context.connection,context.control)
+    return context
+
+
+def test_w07_retry_preserves_dead_parent_record_and_creates_new_attempt(db,tmp_path):
+    from orchestration.database import named_lock,utcnow
+    from orchestration.experiment_data import json_hash
+    from orchestration.pipeline import task_row
+    context=minimal_context(db,tmp_path)
+    params={'request':'isolated interruption test'}
+    run=context.control.create_task(context.batch_id,'fullfit_isolated',json_hash(params),context.commit)
+    missing_pid=4194303
+    assert not Path(f'/proc/{missing_pid}').exists()
+    context.control.start_task(run,pid=missing_pid,process_start_utc=utcnow())
+    with named_lock(context.connection):
+        new,local=context.task('fullfit_isolated',params,lambda _: '')
+    assert local is None and new['attempt']==2 and new['parent_run_id']==run
+    assert new['run_id']!=run and new['status']=='RUNNING'
+    previous=task_row(context.connection,run)
+    assert previous['status']=='FAILED' and previous['error_code']=='INTERRUPTED_W07'
+
+
+def test_w07_live_parent_blocks_retry_without_using_heartbeat_age(db,tmp_path):
+    import os
+    from orchestration.database import named_lock,LockBusy
+    from orchestration.runtime import process_start
+    from orchestration.experiment_data import json_hash
+    from orchestration.pipeline import task_row
+    context=minimal_context(db,tmp_path)
+    params={'request':'isolated live-parent test'}
+    run=context.control.create_task(context.batch_id,'fullfit_isolated',json_hash(params),context.commit)
+    context.control.start_task(run,pid=os.getpid(),process_start_utc=process_start(os.getpid()))
+    with context.connection.cursor() as q:
+        q.execute("UPDATE task_run SET heartbeat_at='2020-01-01' WHERE run_id=%s",(run,))
+    context.connection.commit()
+    with named_lock(context.connection):
+        with pytest.raises(LockBusy,match='still alive'):
+            context.task('fullfit_isolated',params,lambda _: '')
+    assert task_row(context.connection,run)['status']=='RUNNING'
+
+
+def test_independent_w07_sample_audit_rejects_seen_negatives_and_missing_positives(tmp_path):
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('w07_verifier',Path(__file__).resolve().parents[1]/'scripts/verify-w07.py')
+    verifier=importlib.util.module_from_spec(spec);spec.loader.exec_module(verifier)
+    training=small();values,_=sample_epoch(training,1)
+    path=tmp_path/'samples.tsv';save_samples(path,values,1)
+    audit=verifier.audit_samples(path,training,1)
+    assert audit['positive_rows']==2 and audit['negative_rows']==8
+    corrupted=values.copy()
+    negative=int(np.flatnonzero(corrupted[:,2]==0)[0])
+    user=int(corrupted[negative,0]);seen=next(iter(training.history[training.users[user]]))
+    corrupted[negative,1]=training.items.index(seen)
+    save_samples(path,corrupted,1)
+    with pytest.raises(ManifestError,match='history'):
+        verifier.audit_samples(path,training,1)
+    positive=int(np.flatnonzero(values[:,2]==1)[0])
+    save_samples(path,np.delete(values,positive,axis=0),1)
+    with pytest.raises(ManifestError,match='Positives'):
+        verifier.audit_samples(path,training,1)
