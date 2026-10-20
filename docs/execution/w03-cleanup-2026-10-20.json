@@ -1,0 +1,89 @@
+{
+  "observed_at": "2026-10-19T19:30:09.273645Z",
+  "removed": [
+    {
+      "path": "var/w02/mysql",
+      "apparent_bytes": 117876670
+    },
+    {
+      "path": "var/w02/debug_034539ac",
+      "apparent_bytes": 345
+    },
+    {
+      "path": "var/w02/debug_4af2e37b",
+      "apparent_bytes": 345
+    },
+    {
+      "path": "var/w02/generate_schema.py",
+      "apparent_bytes": 11552
+    },
+    {
+      "path": "var/w02/github_known_hosts",
+      "apparent_bytes": 92
+    },
+    {
+      "path": "var/w02/github-host-key.candidate",
+      "apparent_bytes": 0
+    },
+    {
+      "path": "var/w02/commit-message.txt",
+      "apparent_bytes": 541
+    },
+    {
+      "path": "var/secrets/install-roles.sql",
+      "apparent_bytes": 5066
+    },
+    {
+      "path": ".pytest_cache",
+      "apparent_bytes": 3224
+    },
+    {
+      "path": "orchestration/__pycache__",
+      "apparent_bytes": 99390
+    },
+    {
+      "path": "tests/__pycache__",
+      "apparent_bytes": 150003
+    },
+    {
+      "path": "scripts/__pycache__",
+      "apparent_bytes": 22876
+    }
+  ],
+  "apparent_bytes": 118170104,
+  "checks": {
+    "no_pending_running_tasks": true,
+    "owned_debug_mariadb_not_running": true,
+    "frozen_baseline_hashes": 18
+  },
+  "preserved": [
+    "current role credentials",
+    "migration backups",
+    "execution evidence",
+    "HDFS data and Hadoop logs/PID files",
+    "venv and usable uv/Maven caches"
+  ],
+  "uv_cache_prune": "Pruning cache at: var/cache/uv\nNo unused entries found\n",
+  "post_validation_rebuildable_caches_removed": [
+    {
+      "path": ".pytest_cache",
+      "apparent_bytes": 6768
+    },
+    {
+      "path": "etl/__pycache__",
+      "apparent_bytes": 56634
+    },
+    {
+      "path": "orchestration/__pycache__",
+      "apparent_bytes": 107016
+    },
+    {
+      "path": "tests/__pycache__",
+      "apparent_bytes": 168966
+    },
+    {
+      "path": "scripts/__pycache__",
+      "apparent_bytes": 10810
+    }
+  ]
+}

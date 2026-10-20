@@ -1,0 +1,294 @@
+{
+  "baseline_version": "HL-DOC-1.0.0",
+  "observed_at": "2026-10-19T19:57:09.342507Z",
+  "objective": "Clean W02 disposable files and complete W03 according to the frozen documentation",
+  "cleanup_evidence": "w03-cleanup-2026-10-20.json",
+  "first_ingest": {
+    "batch_id": "B20261019194025b4f65854",
+    "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+    "reused": false,
+    "recovered": false,
+    "raw_hdfs_path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.xlsx",
+    "normalized_hdfs_path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854",
+    "raw_rows": 541909,
+    "quality_gate_passed": true
+  },
+  "repeat_ingest": {
+    "batch_id": "B20261019194025b4f65854",
+    "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+    "reused": true,
+    "recovered": false,
+    "raw_hdfs_path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.xlsx",
+    "normalized_hdfs_path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854",
+    "raw_rows": 541909,
+    "quality_gate_passed": true
+  },
+  "independent_hdfs_verification": {
+    "baseline_version": "HL-DOC-1.0.0",
+    "observed_at": "2026-10-19T19:49:43.071572Z",
+    "batch_id": "B20261019194025b4f65854",
+    "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+    "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+    "source_bytes": 23715344,
+    "batch_status": "PROCESSING",
+    "task_status": "SUCCEEDED",
+    "attempts": 1,
+    "classification_counts": {
+      "REJECTED": 2521,
+      "RETURN": 9288,
+      "SALE": 530100
+    },
+    "metrics": {
+      "AMOUNT_OVERFLOW_ROWS": 0,
+      "CANCEL_POSITIVE_QUANTITY_ROWS": 0,
+      "DESCRIPTION_TRUNCATED_ROWS": 0,
+      "DUPLICATE_EXCESS_ROWS": 5268,
+      "INVALID_COUNTRY_LENGTH_ROWS": 0,
+      "INVALID_CUSTOMER_ID_ROWS": 0,
+      "INVALID_DATETIME_ROWS": 0,
+      "INVALID_INVOICE_LENGTH_ROWS": 0,
+      "INVALID_PRICE_ROWS": 0,
+      "INVALID_QUANTITY_ROWS": 0,
+      "INVALID_STOCK_LENGTH_ROWS": 0,
+      "MISSING_CUSTOMER_ID_ROWS": 135080,
+      "MISSING_DESCRIPTION_ROWS": 1454,
+      "MISSING_INVOICE_ROWS": 0,
+      "MISSING_STOCK_CODE_ROWS": 0,
+      "NEGATIVE_WITHOUT_CANCEL_ROWS": 0,
+      "NONPOSITIVE_PRICE_ROWS": 2521,
+      "NON_MERCHANDISE_SALE_ROWS": 2375,
+      "PARSE_ERROR_ROWS": 0,
+      "PRICE_ROUNDED_ROWS": 4,
+      "RAW_ROWS": 541909,
+      "REJECTED_ROWS": 2521,
+      "RETURN_ROWS": 9288,
+      "SALE_ROWS": 530100,
+      "ZERO_QUANTITY_ROWS": 0
+    },
+    "quality_gate_passed": true,
+    "conflicting_orders": 0,
+    "files": [
+      {
+        "path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.xlsx",
+        "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+        "bytes": 23715344
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/normalized.tsv",
+        "sha256": "a79b1f239dc53c6ed3bff872ee0cfdef90d572da84a298eddf6d476a04087881",
+        "bytes": 87388902
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/warnings.tsv",
+        "sha256": "000676919a521fd461641b8822a60e73430306bc1fa33b7bbf253cbfc4c062ab",
+        "bytes": 11605706
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/rejected-audit.jsonl",
+        "sha256": "e58e65635f4e3d5bb105cd688f92d5c6d9de77a3b5dfe2b243dcb556e0c801d6",
+        "bytes": 866218
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/order-conflicts.tsv",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/quality.json",
+        "sha256": "a42e7c7b5e623e495ae789a795cac1f171109ba13421ed98f8e1ad35e3ea3c30",
+        "bytes": 1762
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/config.json",
+        "sha256": "61ac1209344ba2a7416fa0fa0a3af4a7e537bc86f28274bc8d441c3de42f523e",
+        "bytes": 869
+      },
+      {
+        "path": "/retail/v1/normalized/batch_id=B20261019194025b4f65854/environment.lock",
+        "sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac",
+        "bytes": 65542
+      },
+      {
+        "path": "/retail/v1/raw/batch_id=B20261019194025b4f65854/source.json",
+        "sha256": "bd37ab7b6bf13e3ded8350ccdda2316d0ef408484c898d9269a608e279160b79",
+        "bytes": 725
+      }
+    ],
+    "normalized_scan": {
+      "rows": 541909,
+      "source_row_ids_verified": 541909,
+      "duplicate_excess_rows": 5268,
+      "duplicate_groups": 4879
+    },
+    "source": {
+      "attribution": "Chen, D. (2015). Online Retail. UCI Machine Learning Repository. doi:10.24432/C5BW33",
+      "baseline_version": "HL-DOC-1.0.0",
+      "batch_id": "B20261019194025b4f65854",
+      "dataset_url": "https://archive.ics.uci.edu/dataset/352/online+retail",
+      "downloaded_at": "2026-10-19T19:31:04.481996Z",
+      "license": "CC BY 4.0",
+      "raw_rows": 541909,
+      "registered_at": "2026-10-19T19:40:25.205323Z",
+      "schema_version": "1.0",
+      "sheet": "Online Retail",
+      "source_bytes": 23715344,
+      "source_name": "Online Retail.xlsx",
+      "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+      "source_url": "https://archive.ics.uci.edu/static/public/352/online%2Bretail.zip",
+      "synthetic": false
+    },
+    "raw_excel_rows_evidence": "Successful ingest and reuse both fully verify XLSX sheet rows; this independent scan rechecks immutable source SHA and normalized row trace.",
+    "status": "PASS"
+  },
+  "auxiliary_audit_verification": {
+    "status": "PASS",
+    "warning_rows": 136538,
+    "warning_counts": {
+      "MISSING_DESCRIPTION": 1454,
+      "MISSING_CUSTOMER_ID": 135080,
+      "PRICE_ROUNDED": 4
+    },
+    "rejected_audit_rows": 2521,
+    "rejection_counts": {
+      "NONPOSITIVE_PRICE": 2521
+    },
+    "all_references_point_to_source_rows": true,
+    "warning_pairs_unique": true,
+    "counts_match_quality_and_database": true
+  },
+  "database_final": {
+    "batch": {
+      "batch_id": "B20261019194025b4f65854",
+      "status": "PROCESSING",
+      "raw_rows": 541909,
+      "sale_rows": 530100,
+      "return_rows": 9288,
+      "rejected_rows": 2521,
+      "min_source_date": "2010-12-01",
+      "max_source_date": "2011-12-09",
+      "error_code": null
+    },
+    "tasks": [
+      {
+        "run_id": "0fcb2946-f928-415d-9a69-095aef6a4213",
+        "status": "SUCCEEDED",
+        "attempt": 1,
+        "started_at": "2026-10-19T19:40:27.374471Z",
+        "finished_at": "2026-10-19T19:45:03.675954Z",
+        "error_code": null
+      }
+    ],
+    "no_unfinished_tasks": true,
+    "no_active_release": true
+  },
+  "automated_tests": {
+    "tests": "71",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "16.910"
+  },
+  "source_sha256": {
+    "etl/__init__.py": "b29ca7e04b05e3213206a76592a1bcb693b3eb85cf27763154f37ed999119720",
+    "etl/audit.py": "55752a2d771fa8101c50edf5e3fdf2ce498ad63e8995120a17bcafaede705f93",
+    "etl/ingest.py": "ebb719db2344733c04dcb3ce846539324f398a384c9f5b3f15347d23de800620",
+    "etl/normalize.py": "84eac53308bf45ba02e88de103dd8d52135867a2b757efd0c632faf6daa680de",
+    "etl/storage.py": "5f56ac892f629d467d618b0d010919572c4416da54d9ff94f17c9e3c43542662",
+    "etl/tsv.py": "3dd8b938cc0b3c02883ba74c217a436d4d92227f2cf81f9b93bbb04ad457f27e",
+    "etl/workbook.py": "188ebff169cdf1779eef6b3d08bfc0d74b9b07a386b2f80715ea71027a18064b",
+    "orchestration/__init__.py": "6051ee64073f9414b75d01a86ff35f6e5db7e1b6d14f8510b0052859d79dc98d",
+    "orchestration/cli.py": "9b9b8fea1a6f792925d1dfb39b5e9b7c09a70db1534396cff7f7fe26f72299b6",
+    "orchestration/control.py": "aba18e8c6e638107f58982b19fbd99795378d89a0b30e2321f9fd0a54f08821e",
+    "orchestration/database.py": "bdc0c04b8ea0d83f6904a75cb79a93506c43442e0ece4937281f6098e446a7ff",
+    "orchestration/db_backup.py": "d69a1745e54fed289d9785a65878b544350021c8dd127fb60420fac9e658622a",
+    "orchestration/environment_lock.py": "e6916c2447d74f46703efeb8f3c41eb4e51edb97199d1619c3201c0e7eeb7df2",
+    "orchestration/manifests.py": "a7dd261193022de8565893554758a3fd31c024bc53cae5d9169a5a70997c492f",
+    "orchestration/migrations.py": "8278dd791582d9f00eb7a1f31476d04eb0dfe54f2921ca28aba3a4c17f6d967b",
+    "orchestration/provision.py": "14071d2a483b684c0a1f7916b88ce4158482bc151cdc0c9f7527aec38050dc5e",
+    "orchestration/quality.py": "a7c53d91f1c329861e6c8f65bcd0c51fae5123878f68da3cab0fb135b457797b",
+    "orchestration/runtime.py": "1cca1f2c8b15170498a95e463caec8e03ebdc3ed83e28335fd8da96fe7da35af",
+    "orchestration/settings.py": "01da2dfdfaba3c0e08dd4a1b1f8ae7d5161c1acad0a7d34d5374ef90f3106ead",
+    "orchestration/storage.py": "df2c415023274790e314c9346e1e3d305980b832f79d29b8e0f08ab18bca3369",
+    "scripts/verify-w03.py": "cf85d77804a4ffba3b8aff706f290daf6c164cd0489a90f5c72d640ecde50783",
+    "tests/conftest.py": "18097635c929bf5db708b460023ec2dc1d7bccaf5b145d36e9629994b487a790",
+    "tests/test_database.py": "98a77fd671138eac4761f5b9edfd13e2dbdee781d0a251f935791fb3aaa6b260",
+    "tests/test_database_defaults.py": "dafbfba0dce2f34362ed0f6500dd595a1efd1696643e45ed72c49b29a3e6ffcc",
+    "tests/test_diagnostics.py": "4371bf3ffe2b0665c2972c444fa348aa4b055c6db2831cc1e77270dddd4356ff",
+    "tests/test_environment_lock.py": "dd048f09850ee7e7a7d42784313c8d4cb3742b00a13f925efce1d28e26a0a56f",
+    "tests/test_ingest.py": "98cef5010bb942066a158e1ad0ef48197a1aec041457907fcfcb06d8c9879134",
+    "tests/test_manifests.py": "bfaf03a31362691e07bc31368ff612d79e14d0dfb9b0f42714deadac26ef7916",
+    "tests/test_normalization.py": "3ed9c87a00cf9dc950745ad8493392164c9fd64f5f655d4aa26ec60e357bba56",
+    "tests/test_settings.py": "058af65fed058be4a41a3a2f29b472f160d2e568f7670998b1dc3e3eb3dcde38"
+  },
+  "source_origin": {
+    "source_url": "https://archive.ics.uci.edu/static/public/352/online%2Bretail.zip",
+    "dataset_url": "https://archive.ics.uci.edu/dataset/352/online+retail",
+    "downloaded_at": "2026-10-19T19:31:04.481996Z",
+    "source_name": "Online Retail.xlsx",
+    "source_bytes": 23715344,
+    "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+    "license": "CC BY 4.0",
+    "attribution": "Chen, D. (2015). Online Retail. UCI Machine Learning Repository. doi:10.24432/C5BW33"
+  },
+  "host_storage": [
+    {
+      "distribution": "Ubuntu-24.04",
+      "wsl_version": 2,
+      "base_path": "E:\\wsl\\Ubuntu-24.04",
+      "observed_at": "2026-10-19T19:30:29.8716552Z",
+      "required_free_bytes": 16106127360,
+      "gate_passed": true,
+      "vhdx_path": "E:\\wsl\\Ubuntu-24.04\\ext4.vhdx",
+      "vhdx_exists": true,
+      "host_volume": "E:\\",
+      "available_free_bytes": 133367345152
+    }
+  ],
+  "frozen_baseline_files_verified": 18,
+  "executed_source_provenance": {
+    "manifest_code_commit": "89ad4c9f933dde50d48901449bebbafe0eef9f82",
+    "code_dirty": true,
+    "executed_source_hashes": {
+      "etl/__init__.py": "b29ca7e04b05e3213206a76592a1bcb693b3eb85cf27763154f37ed999119720",
+      "etl/audit.py": "d8c220dfa7141e4391e9128cbd940aca263f1cd61c250354d33ca6e1e2313eb8",
+      "etl/ingest.py": "e9315b65f2bbcfb985c82b306bdeccfde3fe514b0012c911f488471c5052bf69",
+      "etl/normalize.py": "b74ca77bdfb9b1bad8a30b85e24ccc357a23de2ad44f418f0624ef870627cc70",
+      "etl/storage.py": "bdd060ad606313a1af7bdfbf088f0e2faceb5b1561f5015ef0db29fd0d42520d",
+      "etl/tsv.py": "3dd8b938cc0b3c02883ba74c217a436d4d92227f2cf81f9b93bbb04ad457f27e",
+      "etl/workbook.py": "188ebff169cdf1779eef6b3d08bfc0d74b9b07a386b2f80715ea71027a18064b",
+      "orchestration/__init__.py": "6051ee64073f9414b75d01a86ff35f6e5db7e1b6d14f8510b0052859d79dc98d",
+      "orchestration/cli.py": "39beb67d3aac43d13fe178316d5abb7194a8d0c000b1576274a83458da9d67fc",
+      "orchestration/control.py": "aba18e8c6e638107f58982b19fbd99795378d89a0b30e2321f9fd0a54f08821e",
+      "orchestration/database.py": "bdc0c04b8ea0d83f6904a75cb79a93506c43442e0ece4937281f6098e446a7ff",
+      "orchestration/db_backup.py": "d69a1745e54fed289d9785a65878b544350021c8dd127fb60420fac9e658622a",
+      "orchestration/environment_lock.py": "e6916c2447d74f46703efeb8f3c41eb4e51edb97199d1619c3201c0e7eeb7df2",
+      "orchestration/manifests.py": "a7dd261193022de8565893554758a3fd31c024bc53cae5d9169a5a70997c492f",
+      "orchestration/migrations.py": "8278dd791582d9f00eb7a1f31476d04eb0dfe54f2921ca28aba3a4c17f6d967b",
+      "orchestration/provision.py": "14071d2a483b684c0a1f7916b88ce4158482bc151cdc0c9f7527aec38050dc5e",
+      "orchestration/quality.py": "a7c53d91f1c329861e6c8f65bcd0c51fae5123878f68da3cab0fb135b457797b",
+      "orchestration/runtime.py": "1cca1f2c8b15170498a95e463caec8e03ebdc3ed83e28335fd8da96fe7da35af",
+      "orchestration/settings.py": "01da2dfdfaba3c0e08dd4a1b1f8ae7d5161c1acad0a7d34d5374ef90f3106ead",
+      "orchestration/storage.py": "df2c415023274790e314c9346e1e3d305980b832f79d29b8e0f08ab18bca3369"
+    },
+    "archive_path": "var/ingest/B20261019194025b4f65854/0fcb2946-f928-415d-9a69-095aef6a4213/executed-source.zip",
+    "archive_sha256": "556ea01d52718c20280723b8ed4c30d213497b05e56950375d27ba58c435d0c9",
+    "restore_patch": "docs/execution/w03-executed-source-2026-10-20.patch",
+    "restore_patch_sha256": "1948569999317e46690941cc82999b97c5ae637562f120148789021292a9f7a7",
+    "patch_applicability_verified": true,
+    "note": "Patch reconstructs original execution from the reviewed W03 code; it is audit evidence and has not been applied to current code. Immutable HDFS artifacts were not changed."
+  },
+  "completion_audit": {
+    "cleanup": "PASS: stopped disposable W02 database/obsolete debug credentials/caches removed; live services, credentials, backups and evidence preserved",
+    "T-01": "PASS: real source archive hash equals original; same-file same-batch/run without extra attempt; changed source creates new batch in isolated integration test",
+    "T-02": "PASS: hand-calculated fixture, null/invalid dates/int64/rounding/control chars/blank rows plus independent real TSV and full audit counts",
+    "T-03": "PASS: C-positive and negative-without-C warnings with negative signed amounts; cross date/country/customer conflicts fail and NULL plus unique valid customer is allowed",
+    "source_contract": "PASS: UCI source/hash/bytes/sheet/download UTC/attribution preserved; all 541909 source IDs verified",
+    "immutability_and_recovery": "PASS: real HDFS staging/hash/rename and _SUCCESS; corruption refused; failed/abandoned attempts and metadata gaps tested with live-handle guards",
+    "control_and_manifest": "PASS: named lock, periodic committed heartbeat, PID start identity, batch/task metrics, field schema and XLSX-specific record counts",
+    "handoff": "PASS: batch PROCESSING and task SUCCEEDED; W04 remains responsible for actual Java/YARN cleaning and business results"
+  },
+  "w03_complete": true,
+  "remaining_w03_requirements": [],
+  "scope": "W03 normalization/preflight only. No W04 business MapReduce, ML training or release publication. Source/execution files remain uncommitted.",
+  "original_source_file_sha256_verified": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d"
+}

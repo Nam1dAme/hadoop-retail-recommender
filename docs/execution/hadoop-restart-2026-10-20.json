@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-10-20T06:34:08.023561+00:00",
+  "fixture": true,
+  "hdfs_root": "/user/hadoop/environment-smoke-hadoop-host-20261020T063252Z-22376",
+  "application_id": "application_1792477984440_0001",
+  "final_state": "SUCCEEDED",
+  "word_counts": {
+    "hadoop": "2",
+    "spark": "1",
+    "uv": "1"
+  },
+  "scope": "Environment WordCount only; business MapReduce unimplemented."
+}

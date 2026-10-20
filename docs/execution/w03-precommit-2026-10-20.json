@@ -1,0 +1,17 @@
+{
+  "observed_at": "2026-10-20T06:42:40.582627+00:00",
+  "command": "uv run --locked --no-sync python -m pytest -q --tb=short --junitxml=var/w03/pytest-precommit.xml",
+  "automated_tests": {
+    "tests": "71",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "18.920"
+  },
+  "junit_path": "var/w03/pytest-precommit.xml",
+  "junit_sha256": "f7ce8370da632657c1421ee642008abe39d5eef7b1ab6b822778365f55e380c4",
+  "frozen_baseline_files_verified": 18,
+  "source_hashes_match": "w03-verification-2026-10-20.json#source_sha256",
+  "source_files_verified": 30,
+  "restore_patch_applicability": "PASS"
+}
