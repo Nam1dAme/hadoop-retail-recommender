@@ -74,7 +74,8 @@ def upload_bundle(storage, local, destination, run_id):
         raise ManifestError('Immutable model destination/staging already exists')
     storage.mkdir(str(PurePosixPath(destination).parent))
     storage.run('-put', str(local), temporary)
-    storage.run('-chmod', '-R', 'u=rwX,g=rX,o=', temporary)
+    # Hadoop's symbolic-mode parser rejects an empty o= permission set.
+    storage.run('-chmod', '-R', 'u=rwX,g=rX,o-rwx', temporary)
     storage.move(temporary, destination)
 
 
