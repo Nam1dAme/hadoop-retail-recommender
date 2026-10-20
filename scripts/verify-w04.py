@@ -10,6 +10,7 @@ import zipfile
 from pathlib import Path
 import sys
 import tempfile
+import time
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
@@ -17,12 +18,38 @@ from etl.ingest import read_json
 from etl.storage import HdfsStorage
 from orchestration.database import connect,named_lock
 from orchestration.control import ControlStore
-from orchestration.manifests import verify_manifest,ManifestError
+from orchestration.manifests import DATASETS,verify_manifest,ManifestError
 from orchestration.pipeline import STAGES,expected
 from orchestration.pipeline_audit import audit
+from orchestration.quality import WARNINGS
 from orchestration.runtime import Heartbeat
 from orchestration.settings import load_config
 from orchestration.yarn import Yarn
+
+
+DEPENDENCIES={
+    'J02':('clean',),'J03':('clean',),'J04':('clean',),'J05base':('order_fact',),
+    'J05distribution':('rfm_base',),'J05':('rfm_base','rfm_scores'),
+    'J06baskets':('clean','order_fact'),'J06interactions':('clean',),
+    'J07baskets':('baskets',),'J07':('occurrences',),'J08':('item_pairs','item_frequency'),
+}
+
+
+def check_stage_inputs(stage,manifest,params,required):
+    def canonical(files):
+        return sorted((f['path'],f['sha256'],f['rows'],f.get('format','TSV'),f.get('sheet')) for f in files)
+    if params.get('stage')!=stage or params.get('inputs')!=manifest['inputs'] or canonical(manifest['inputs'])!=canonical(required):
+        raise ManifestError('Stage inputs differ from parameters or upstream dataset references')
+    if params.get('schemas')!={name:DATASETS[name] for name in STAGES[stage][1:]}:
+        raise ManifestError('Parameter schema differs from stage contract')
+    if params['reducers']!=manifest['execution']['reducers']:
+        raise ManifestError('Execution reducer configuration differs')
+
+
+def reconcile_preflight(result,preflight):
+    for key in ('gross_pence','return_pence','sale_quantity','return_quantity'):
+        if result[key]!=preflight['preflight_totals'][key]:
+            raise ManifestError('Business totals differ from W03 preflight: '+key)
 
 
 def verify(config,connection,batch_id):
@@ -36,6 +63,18 @@ def verify(config,connection,batch_id):
         connection.rollback()
         if not batch or batch['status']!='SUCCEEDED':raise ManifestError('Formal batch is not successful')
         outputs={};applications=[];manifests=[];latest={t['task_name']:t for t in tasks}
+        ingest=latest.get('ingest')
+        if not ingest or ingest['status']!='SUCCEEDED':raise ManifestError('Successful ingest is missing')
+        normalized=read_json(storage,ingest['output_manifest_path'])
+        verify_manifest(normalized,storage,expected(ingest),heartbeat=tick)
+        if (len(normalized['inputs'])!=1 or normalized['inputs'][0]['path']!=batch['raw_hdfs_path'] or normalized['inputs'][0]['sha256']!=batch['source_sha256'] or normalized['inputs'][0].get('format')!='XLSX'):
+            raise ManifestError('Normalized source differs from batch')
+        if len(normalized['outputs'])!=1 or normalized['outputs'][0]['path']!=batch['normalized_hdfs_path']+'/normalized.tsv':
+            raise ManifestError('Normalized output path differs from batch')
+        original=read_json(storage,batch['normalized_hdfs_path']+'/quality.json')
+        warning=next(a for a in normalized['artifacts'] if a['path']==batch['normalized_hdfs_path']+'/warnings.tsv')
+        source_inputs=normalized['outputs']+[{'path':warning['path'],'sha256':warning['sha256'],
+            'rows':sum(original['metrics'][name+'_ROWS'] for name in WARNINGS)}]
         for stage in STAGES:
             task=latest.get(stage)
             if task is None or task['status']!='SUCCEEDED':raise ManifestError('Missing successful pipeline stage')
@@ -55,6 +94,14 @@ def verify(config,connection,batch_id):
             actual=read_json(storage,params['path'])
             if hashlib.sha256(json.dumps(actual,sort_keys=True,separators=(',',':')).encode()).hexdigest()!=task['config_sha256']:
                 raise ManifestError('Stage parameter digest differs')
+            required=source_inputs if stage=='J01' else [f for name in (tuple(outputs) if stage=='pipeline' else DEPENDENCIES[stage]) for f in outputs[name]['files']]
+            check_stage_inputs(stage,manifest,actual,required)
+            if stage=='J01' and actual['options']['source-sha']!=batch['source_sha256']:raise ManifestError('J01 source identity differs')
+            if any(manifest['source_code_sha256'].get('runtime-config/'+name)!=digest for name,digest in actual['hadoop_config_sha256'].items()):
+                raise ManifestError('Runtime configuration differs from source snapshot')
+            environment=next(a for a in manifest['artifacts'] if a['path'].endswith('/environment.lock'))
+            locked=subprocess.check_output(['git','show',task['code_commit']+':uv.lock'],cwd=ROOT,stderr=subprocess.DEVNULL)
+            if hashlib.sha256(locked).hexdigest()!=environment['sha256']:raise ManifestError('Environment lock differs from committed execution environment')
             jar=next(a for a in manifest['artifacts'] if a['path'].endswith('/business.jar'))
             if jar['sha256']!=actual['jar_sha256']:raise ManifestError('Executed JAR differs from parameters')
             if stage!='pipeline':
@@ -67,17 +114,29 @@ def verify(config,connection,batch_id):
             manifests.append({'stage':stage,'run_id':task['run_id'],'attempt':task['attempt'],'application_id':task['application_id'],
                 'path':task['output_manifest_path'],'code_commit':task['code_commit'],'config_sha256':task['config_sha256']})
         temporary=Path(config['paths']['work_dir'])/'tmp';temporary.mkdir(parents=True,exist_ok=True)
+        observation={'callbacks':0,'max_callback_gap_seconds':0.0,'max_lock_check_gap_seconds':0.0}
+        previous_callback=None;previous_lock_check=None
+        def audit_tick():
+            nonlocal previous_callback,previous_lock_check
+            now=time.monotonic();tick()
+            if previous_callback is not None:observation['max_callback_gap_seconds']=max(observation['max_callback_gap_seconds'],now-previous_callback)
+            previous_callback=now;observation['callbacks']+=1
+            if tick.last_check!=previous_lock_check:
+                if previous_lock_check is not None:observation['max_lock_check_gap_seconds']=max(observation['max_lock_check_gap_seconds'],tick.last_check-previous_lock_check)
+                previous_lock_check=tick.last_check
         with tempfile.TemporaryDirectory(prefix='w04-independent-',dir=temporary) as directory:
-            result=audit(storage,batch,outputs,Path(directory),tick)
+            result=audit(storage,batch,outputs,Path(directory),audit_tick)
+        reconcile_preflight(result,original)
         if metrics['TRUNCATED_BASKETS']!=result['truncated_baskets'] or metrics['TRUNCATED_BASKET_ITEMS']!=result['truncated_basket_items']:
             raise ManifestError('Truncation metrics differ from independent calculation')
-        original=read_json(storage,batch['normalized_hdfs_path']+'/quality.json')
         if any(metrics.get(k)!=v for k,v in original['metrics'].items()):raise ManifestError('W03 quality metrics drifted')
         quality=read_json(storage,batch['quality_report_path'])
         for key in ('counts','gross_pence','return_pence','net_pence','order_count','valid_customers','rfm_reference_date','eligible_basket_count'):
             if result[key]!=quality[key]:raise ManifestError('Stored final quality report differs from independent verification')
         return {'status':'PASS','batch_id':batch_id,'source_sha256':batch['source_sha256'],'source_rows':batch['raw_rows'],
             'batch_status':batch['status'],'applications':applications,'manifests':manifests,'independent_business_verification':result,
+            'preflight_totals_reconciled':True,'audit_heartbeat_observations':observation,
+            'verification_code_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
             'metrics':metrics,'quality_report_path':batch['quality_report_path'],'yarn_business_gate':'PASS',
             'scope':'W04 only; no model training, release or application page delivered'}
 
