@@ -119,14 +119,18 @@ class ControlStore:
                 cursor.execute('UPDATE data_batch SET raw_rows=%s,sale_rows=%s,return_rows=%s,rejected_rows=%s,quality_report_path=%s,updated_at=%s WHERE batch_id=%s',
                     (*(counts[k] for k in ('raw_rows','sale_rows','return_rows','rejected_rows')),report_path,utcnow(),batch_id))
 
-    def create_task(self,batch_id,task_name,config_sha256,code_commit):
+    def create_task(self,batch_id,task_name,config_sha256,code_commit, *, experiment_id=None):
         digest(config_sha256); commit_id(code_commit)
         if not re.fullmatch('[a-zA-Z0-9_-]{1,64}',task_name):
             raise ControlError('Invalid task name')
         with self.transaction() as cursor:
             batch=self.row(cursor,'data_batch','batch_id',batch_id)
             if batch['status'] != 'PROCESSING':
-                raise ControlError('Batch must be PROCESSING')
+                if batch['status'] != 'SUCCEEDED' or experiment_id is None:
+                    raise ControlError('Batch must be PROCESSING or successful with an explicit experiment')
+                experiment=self.row(cursor,'experiment','experiment_id',experiment_id)
+                if experiment['batch_id'] != batch_id or experiment['status'] == 'FAILED':
+                    raise ControlError('Downstream task requires a matching active/completed experiment')
             cursor.execute('SELECT * FROM task_run WHERE batch_id=%s AND task_name=%s ORDER BY attempt DESC LIMIT 1 FOR UPDATE',(batch_id,task_name))
             previous=cursor.fetchone()
             if previous and previous['status'] not in ('FAILED','CANCELLED'):

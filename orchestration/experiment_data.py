@@ -93,7 +93,7 @@ def prepare_experiment(connection, config, batch_id, experiment_id, *, dry_run=F
         # and run J07/J08 on those TRAIN baskets rather than full-history features.
         from orchestration.experiment_features import train_features
         features = train_features(connection, config, experiment_id, batch_id, control, storage, tick, commit)
-        run_id = control.create_task(batch_id, task_name, config_hash, commit)
+        run_id = control.create_task(batch_id, task_name, config_hash, commit, experiment_id=experiment_id)
         control.start_task(run_id, pid=os.getpid(), process_start_utc=process_start(os.getpid()))
         tick.run_id = run_id
         tick(force=True)

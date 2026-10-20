@@ -88,7 +88,7 @@ def train_features(connection, config, experiment_id, batch_id, control, storage
             if stage == 'J07baskets':
                 basket_count = manifest['execution']['counters']['ELIGIBLE_BASKET_COUNT']
             continue
-        run_id = control.create_task(batch_id, task_name, digest, commit)
+        run_id = control.create_task(batch_id, task_name, digest, commit, experiment_id=experiment_id)
         control.start_task(run_id, pid=os.getpid(), process_start_utc=process_start(os.getpid()))
         tick.run_id = run_id
         tick(force=True)

@@ -45,6 +45,26 @@ def run_manifest(directory,bid,rid):
     return data,manifest
 
 
+def test_successful_batch_allows_explicit_downstream_experiment_tasks(db):
+    store = ControlStore(db[0]['writer'])
+    bid = batch(store)
+    store.transition_batch(bid, 'PROCESSING')
+    store.quality(bid, {'RAW_ROWS': 1, 'SALE_ROWS': 1, 'RETURN_ROWS': 0, 'REJECTED_ROWS': 0},
+        counts={'raw_rows': 1, 'sale_rows': 1, 'return_rows': 0, 'rejected_rows': 0})
+    store.transition_batch(bid, 'SUCCEEDED')
+    with pytest.raises(ControlError):
+        store.create_task(bid, 'J01', H, C)
+    experiment = store.create_experiment(bid, H)
+    rid = store.create_task(bid, 'eval_POP', H, C, experiment_id=experiment)
+    store.start_task(rid)
+    store.finish_task(rid, 'FAILED', error_code='ISOLATED_TEST')
+    with pytest.raises(ControlError):
+        store.quality(bid, {'RAW_ROWS': 2})
+    with store.connection.cursor() as cursor:
+        cursor.execute('SELECT status,raw_rows FROM data_batch WHERE batch_id=%s', (bid,))
+        assert cursor.fetchone() == {'status': 'SUCCEEDED', 'raw_rows': 1}
+
+
 def test_schema_and_permissions(db):
     connections,name,credentials,directory=db
     migration=connections['migration']; writer=connections['writer']; reader=connections['reader']
