@@ -1,0 +1,61 @@
+{
+  "observed_at": "2026-10-20T08:24:11.821805+00:00",
+  "server_version": "10.11.14-MariaDB-0ubuntu0.24.04.1",
+  "installed_provider_version": "1:10.11.19+maria~ubu2404",
+  "original_help_check_exit": 7,
+  "original_errors": "All five provider libraries report unsupported DAEMON plugin API and their force_plus_permanent settings become unknown variables",
+  "apt_simulation": {
+    "upgraded": 0,
+    "newly_installed": 0,
+    "downgraded": 5,
+    "removed": 0,
+    "target_version": "1:10.11.14-0ubuntu0.24.04.1"
+  },
+  "matching_plugins_help_check_exit": 0,
+  "matching_plugins_api_errors": 0,
+  "test_scope": "Read-only configuration/help checks using extracted plugin libraries; system packages and data directories unchanged; service startup still requires sudo",
+  "packages": [
+    {
+      "file": "var/w04/mariadb-provider-packages/mariadb-plugin-provider-bzip2_1%3a10.11.14-0ubuntu0.24.04.1_amd64.deb",
+      "metadata": [
+        "Package: mariadb-plugin-provider-bzip2",
+        "Version: 1:10.11.14-0ubuntu0.24.04.1"
+      ],
+      "sha256": "0ab2831b96c63cac83ac21037d300d9b889c90d729937b272f5fbf6c1c8e557a"
+    },
+    {
+      "file": "var/w04/mariadb-provider-packages/mariadb-plugin-provider-lz4_1%3a10.11.14-0ubuntu0.24.04.1_amd64.deb",
+      "metadata": [
+        "Package: mariadb-plugin-provider-lz4",
+        "Version: 1:10.11.14-0ubuntu0.24.04.1"
+      ],
+      "sha256": "560f5b0c21bfae364505ba0caa57e2665f0282117853fb44f379a927acd35283"
+    },
+    {
+      "file": "var/w04/mariadb-provider-packages/mariadb-plugin-provider-lzma_1%3a10.11.14-0ubuntu0.24.04.1_amd64.deb",
+      "metadata": [
+        "Package: mariadb-plugin-provider-lzma",
+        "Version: 1:10.11.14-0ubuntu0.24.04.1"
+      ],
+      "sha256": "598651f93f75a8c25df453e3ecc9e931f2b4066234da76aa5d52ef419df42555"
+    },
+    {
+      "file": "var/w04/mariadb-provider-packages/mariadb-plugin-provider-lzo_1%3a10.11.14-0ubuntu0.24.04.1_amd64.deb",
+      "metadata": [
+        "Package: mariadb-plugin-provider-lzo",
+        "Version: 1:10.11.14-0ubuntu0.24.04.1"
+      ],
+      "sha256": "b63ccd8c21ea494503ffc706e5eae28985167374fdf3176cbef14e0999f337fb"
+    },
+    {
+      "file": "var/w04/mariadb-provider-packages/mariadb-plugin-provider-snappy_1%3a10.11.14-0ubuntu0.24.04.1_amd64.deb",
+      "metadata": [
+        "Package: mariadb-plugin-provider-snappy",
+        "Version: 1:10.11.14-0ubuntu0.24.04.1"
+      ],
+      "sha256": "ef8f7e4d55d7b359db8fde5af99dd6f1d1cf17ec6f4cb4cb5e1e2e119e8d98f8"
+    }
+  ],
+  "repair_applied": false,
+  "formal_w04_yarn_status": "NOT_RUN"
+}
