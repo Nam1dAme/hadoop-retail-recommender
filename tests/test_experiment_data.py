@@ -120,3 +120,15 @@ def test_selection_uses_validation_tolerance_recall_and_size():
         {'warm': {'ndcg_at_k': .2, 'recall_at_k': .4}, 'parameter_count': 20, 'grid_index': 2},
     ]
     assert choose(candidates) is candidates[2]
+
+
+def test_selection_tolerance_is_relative_to_global_maximum():
+    candidates = [
+        {'warm': {'ndcg_at_k': .2, 'recall_at_k': .9}, 'parameter_count': 1, 'grid_index': 0},
+        {'warm': {'ndcg_at_k': .2000008, 'recall_at_k': .8}, 'parameter_count': 1, 'grid_index': 1},
+        {'warm': {'ndcg_at_k': .2000015, 'recall_at_k': .7}, 'parameter_count': 1, 'grid_index': 2},
+    ]
+    # The first candidate lies outside the maximum's tolerance; the second wins
+    # the remaining recall tie-break even though a pairwise fold can discard it.
+    assert choose(candidates) is candidates[1]
+    assert choose(list(reversed(candidates))) is candidates[1]

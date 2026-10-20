@@ -86,13 +86,6 @@ def choose(candidates):
     """Each entry carries validation WARM metrics, parameter_count and grid_index."""
     if not candidates:
         raise ValueError('No validation candidates')
-    best = candidates[0]
-    for candidate in candidates[1:]:
-        n, b = candidate['warm'], best['warm']
-        if n['ndcg_at_k'] > b['ndcg_at_k'] + 1e-6:
-            best = candidate
-        elif abs(n['ndcg_at_k'] - b['ndcg_at_k']) <= 1e-6:
-            if (-n['recall_at_k'], candidate['parameter_count'], candidate['grid_index']) < (
-                    -b['recall_at_k'], best['parameter_count'], best['grid_index']):
-                best = candidate
-    return best
+    maximum = max(c['warm']['ndcg_at_k'] for c in candidates)
+    tied = [c for c in candidates if maximum-c['warm']['ndcg_at_k'] <= 1e-6]
+    return min(tied, key=lambda c: (-c['warm']['recall_at_k'], c['parameter_count'], c['grid_index']))
