@@ -65,6 +65,7 @@ def verify(connection, config, experiment_id):
             expected_positive={(u,item_indices[item]) for u,user in enumerate(train.users)
                 if len(train.history[user])<len(train.items) for item in train.history[user]}
             candidates={a:[] for a in ALGORITHMS}
+            common_sample_hashes={}
             for model in succeeded:
                 tick()
                 directory=fetch(storage,model['artifact_path'],temporary/'downloads')
@@ -82,7 +83,9 @@ def verify(connection, config, experiment_id):
                 result=json.loads((directory/'worker-result.json').read_text())
                 if result['status']!='PASS' or result['details']['reload_max_error']>1e-6:
                     raise ManifestError('Model did not pass actual save/load score comparison')
-                if result['cohorts']!=prepared['summary']['validation']['cohorts'] or result['catalog_sha256']!=prepared['summary']['validation']['catalog_sha256']:
+                if (result['cohorts']!=prepared['summary']['validation']['cohorts']
+                        or result['catalog_sha256']!=prepared['summary']['validation']['catalog_sha256']
+                        or result['truth_sha256']!=prepared['summary']['validation']['truth_sha256']):
                     raise ManifestError('Candidate evaluated on a different cohort/catalog')
                 with connection.cursor() as cursor:
                     cursor.execute('SELECT * FROM model_metric WHERE model_run_id=%s',(model['model_run_id'],))
@@ -133,6 +136,11 @@ def verify(connection, config, experiment_id):
                     if not history[-1]['train_loss']<history[0]['train_loss'] or any(not math.isfinite(r['train_loss']) for r in history):
                         raise ManifestError('NCF loss is nonfinite or did not decrease')
                     for epoch in history:
+                        sample_path=directory/'samples'/f"epoch-{epoch['epoch']:03d}.tsv"
+                        sample_hash=sha256(sample_path)
+                        old_hash=common_sample_hashes.setdefault(epoch['epoch'],sample_hash)
+                        if old_hash!=sample_hash:
+                            raise ManifestError('NCF learning-rate candidates used different sample files/order')
                         positive=Counter()
                         negative=Counter()
                         for number,(u,i,label,ep,seed) in enumerate(read_tsv(directory/'samples'/f"epoch-{epoch['epoch']:03d}.tsv",5),1):
@@ -153,6 +161,9 @@ def verify(connection, config, experiment_id):
                         counts=Counter(u for u,i in expected_positive)
                         if negative!={u:4*n for u,n in counts.items()}:
                             raise ManifestError('NCF negative ratio differs from four')
+                        if (sum(positive.values())+sum(negative.values())!=epoch['sample_count']
+                                or epoch['excluded_no_negative_users']!=sum(len(h)==len(train.items) for h in train.history.values())):
+                            raise ManifestError('NCF sample/excluded-user counts differ from executed history')
                     details['gpu_name']=result['hardware']['gpu_name']
                     details['best_epoch']=result['details']['best_epoch']
                     details['epoch_count']=len(history)
@@ -165,6 +176,22 @@ def verify(connection, config, experiment_id):
                             raise ManifestError('Model source snapshot differs from committed implementation')
                 if selected[algorithm]==model['model_run_id']:
                     test=report['test_results'][algorithm]
+                    with connection.cursor() as cursor:
+                        cursor.execute("SELECT * FROM task_run WHERE batch_id=%s AND task_name=%s AND status='SUCCEEDED' ORDER BY attempt DESC LIMIT 1",
+                            (experiment['batch_id'],'test_'+experiment_id.replace('-','')+'_'+algorithm))
+                        test_task=cursor.fetchone()
+                    connection.rollback()
+                    if not test_task:
+                        raise ManifestError('Selected model lacks a successful TEST task')
+                    test_root=str(Path(test_task['output_manifest_path']).parent)
+                    test_local=fetch(storage,test_root,temporary/'downloads')
+                    snapshots.bind(test_root,test_local)
+                    test_manifest=read_json(snapshots,test_task['output_manifest_path'])
+                    verify_manifest(test_manifest,snapshots,expected(test_task),heartbeat=tick)
+                    if (test_manifest['execution']['model_run_id']!=model['model_run_id']
+                            or test_manifest['execution']['selection_sha256']!=json_hash(selection)
+                            or test_manifest['execution']['test_result']!=test):
+                        raise ManifestError('TEST task evidence differs from frozen selection/report')
                     if test['cohorts']!=prepared['summary']['test']['cohorts'] or test['truth_sha256']!=prepared['summary']['test']['truth_sha256']:
                         raise ManifestError('TEST report uses different frozen labels/cohorts')
                     for metric in test['metrics']:
