@@ -102,10 +102,16 @@ def verify(connection, config, experiment_id):
                     'validation_warm':result['metrics'][0],'reload_max_error':result['details']['reload_max_error']}
                 if algorithm=='ALS':
                     metadata=json.loads(next((directory/'spark_model/metadata').glob('part-*')).read_text())
-                    params=metadata['paramMap']
+                    runtime=json.loads((directory/'als-runtime.json').read_text())
+                    params=runtime['parameters']
                     if (params['rank']!=parameters['hyperparameters']['rank'] or params['regParam']!=parameters['hyperparameters']['reg_param']
                             or params['maxIter']!=10 or params['alpha']!=10 or not params['implicitPrefs'] or not params['nonnegative'] or params['seed']!=42):
                         raise ManifestError('Persisted Spark metadata differs from frozen ALS parameters')
+                    if (runtime['loaded_rank']!=params['rank'] or runtime['spark_version']!='3.5.7'
+                            or not runtime['java_version'].startswith('1.8.') or runtime['master']!='local[2]'
+                            or runtime['driver_memory']!='2g' or runtime['shuffle_partitions']!='4'
+                            or not metadata['class'].endswith('ALSModel') or metadata['paramMap']['coldStartStrategy']!='drop'):
+                        raise ManifestError('Actual Spark runtime/model metadata differs from baseline')
                 if algorithm=='NCF':
                     if model['device']!='CUDA' or not all(result['details']['first_batch_cuda_audit'].values()) or not result['details']['device'].startswith('cuda'):
                         raise ManifestError('Formal NCF lacks CUDA graph evidence')

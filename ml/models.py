@@ -97,9 +97,10 @@ def fit_als(train, data_directory, directory, params):
         frame = (spark.read.option('sep', '\t').schema('user int,item int,count long,last string')
                  .csv((Path(data_directory) / 'positive_interactions.tsv').resolve().as_uri())
                  .select('user', 'item', F.log1p('count').cast('float').alias('rating')))
-        model = ALS(rank=params['rank'], regParam=params['reg_param'], maxIter=10, alpha=10.,
+        estimator = ALS(rank=params['rank'], regParam=params['reg_param'], maxIter=10, alpha=10.,
                     implicitPrefs=True, nonnegative=True, seed=42, numUserBlocks=2, numItemBlocks=2,
-                    coldStartStrategy='drop').fit(frame)
+                    coldStartStrategy='drop')
+        model = estimator.fit(frame)
         model_path = (directory / 'spark_model').resolve().as_uri()
         model.save(model_path)
         loaded = ALSModel.load(model_path)
@@ -109,7 +110,9 @@ def fit_als(train, data_directory, directory, params):
             'master': spark.sparkContext.master,
             'driver_memory': spark.sparkContext.getConf().get('spark.driver.memory'),
             'shuffle_partitions': spark.conf.get('spark.sql.shuffle.partitions'),
-            'parameters': {p.name: value for p,value in loaded.extractParamMap().items()}})
+            'loaded_rank': loaded.rank,
+            'parameters': {p.name: value for p,value in estimator.extractParamMap().items()},
+            'model_parameters': {p.name: value for p,value in loaded.extractParamMap().items()}})
 
         def factors(value):
             users = sorted(value.userFactors.collect(), key=lambda r: r.id)
