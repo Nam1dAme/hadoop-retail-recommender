@@ -30,6 +30,9 @@ def main():
     ingestion.add_argument('--source-metadata',type=Path)
     ingestion.add_argument('--sheet')
     ingestion.add_argument('--source-date-format')
+    pipeline=sub.add_parser('pipeline')
+    pipeline.add_argument('--batch-id',required=True)
+    pipeline.add_argument('--reducers',type=int,default=2)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -66,6 +69,9 @@ def main():
                     if not args.dry_run and not result['quality_gate_passed']:
                         print(json.dumps(result,default=str))
                         return 6
+                elif args.command=='pipeline':
+                    from orchestration.pipeline import pipeline
+                    result=pipeline(connection,config,args.batch_id,reducers=args.reducers,dry_run=args.dry_run)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)

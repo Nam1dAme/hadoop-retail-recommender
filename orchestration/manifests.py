@@ -59,6 +59,11 @@ class Common(Strict):
         return self
 
 
+class DatasetOutput(Strict):
+    dataset_schema: list[str] = Field(alias='schema', min_length=1)
+    files: list[Input] = Field(min_length=1)
+
+
 class RunManifest(Common):
     run_id: str
     model_run_id: str | None = None
@@ -72,6 +77,8 @@ class RunManifest(Common):
     classification_counts: dict[str,int]
     application_id: str | None
     success_marker: str
+    datasets: dict[str, DatasetOutput] = Field(default_factory=dict)
+    execution: dict = Field(default_factory=dict)
 
     @field_validator('run_id','model_run_id')
     @classmethod
@@ -88,6 +95,14 @@ class RunManifest(Common):
             raise ValueError('Classification conservation failed')
         if sum(o.rows for o in self.outputs) != self.record_count:
             raise ValueError('Output row count differs')
+        if self.datasets:
+            for name, dataset in self.datasets.items():
+                if name not in DATASETS or dataset.dataset_schema != DATASETS[name].split(','):
+                    raise ValueError('Unknown output dataset schema')
+                if any(f.format != 'TSV' for f in dataset.files):
+                    raise ValueError('Pipeline outputs must be TSV')
+            if self.dataset not in self.datasets or self.datasets[self.dataset].files != self.outputs:
+                raise ValueError('Primary dataset differs from outputs')
         return self
 
 
@@ -123,6 +138,11 @@ DATASETS = {
  'item_pairs':'item_i,item_j,co_count', 'item_frequency':'stock_code,basket_count',
  'similarity':'stock_code,related_stock_code,similarity,co_count,confidence,lift,rank',
  'recommendations':'model_run_id,customer_id,stock_code,rank,score,reason_code,is_fallback',
+ 'pipeline_summary':'key,value',
+ 'rfm_base':'customer_id,last_purchase,frequency,monetary_pence',
+ 'rfm_scores':'metric,value,score',
+ 'customer_seen':'customer_id,stock_code',
+ 'occurrences':'kind,item_i,item_j,count',
 }
 
 
@@ -224,6 +244,9 @@ def verify_manifest(data, store, expected, formal=True,heartbeat=lambda:None):
             if PurePosixPath(manifest.success_marker).name != '_SUCCESS' or not store.exists(manifest.success_marker):
                 raise ManifestError('Missing success marker')
             files = manifest.inputs + manifest.outputs + manifest.artifacts
+            for name, dataset in manifest.datasets.items():
+                if name != manifest.dataset:
+                    files += dataset.files
         if formal and manifest.synthetic:
             raise ManifestError('Synthetic artifacts cannot be formal inputs')
         for key,value in expected.items():
@@ -234,12 +257,16 @@ def verify_manifest(data, store, expected, formal=True,heartbeat=lambda:None):
         paths=[f.path for f in files]
         if len(set(paths)) != len(paths):
             raise ManifestError('Duplicate artifact path')
+        verified = {}
         for file in files:
             if formal and any(part in ('synthetic','fixtures') for part in PurePosixPath(file.path).parts):
                 raise ManifestError('Test artifacts cannot be formal inputs')
-            digest,size,rows = fingerprint(store,file.path,
+            identity = (file.path, getattr(file,'format','TSV'), getattr(file,'sheet',None))
+            if identity not in verified:
+                verified[identity] = fingerprint(store,file.path,
                 file.format if isinstance(file,Input) else 'TSV',
                 file.sheet if isinstance(file,Input) else None,heartbeat)
+            digest,size,rows = verified[identity]
             if digest != file.sha256 or (isinstance(file,Artifact) and size != file.bytes) or (isinstance(file,Input) and rows != file.rows):
                 raise ManifestError('Artifact hash/size/rows mismatch')
         return manifest

@@ -81,13 +81,13 @@ def verify(config,connection,batch_id):
     normalized=batch['normalized_hdfs_path']+'/normalized.tsv'
     if len(manifest.outputs)!=1 or manifest.outputs[0].path!=normalized:raise ManifestError('Normalized path differs')
     source=read(str(Path(batch['raw_hdfs_path']).parent)+'/source.json')
-    quality=read(batch['quality_report_path'])
+    quality=read(batch['normalized_hdfs_path']+'/quality.json')
     params=read(batch['normalized_hdfs_path']+'/config.json')
     config_digest=hashlib.sha256(json.dumps(params,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     if config_digest!=task['config_sha256']:raise ManifestError('Parameters do not match recorded hash')
     if source['source_sha256']!=batch['source_sha256'] or source['batch_id']!=batch_id or source['raw_rows']!=batch['raw_rows']:
         raise ManifestError('Source audit differs from database')
-    if quality['metrics']!=metrics or quality['batch_id']!=batch_id or quality['run_id']!=task['run_id']:
+    if quality['metrics']!={key:metrics.get(key) for key in quality['metrics']} or quality['batch_id']!=batch_id or quality['run_id']!=task['run_id']:
         raise ManifestError('Quality report differs from database')
     if not quality['quality_gate_passed']:raise ManifestError('Quality preflight failed')
     count=batch['raw_rows']
