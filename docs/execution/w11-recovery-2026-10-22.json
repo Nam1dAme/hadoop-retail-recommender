@@ -1,0 +1,57 @@
+{
+  "backup_files_verified": 481,
+  "current_release_id": "R20261021104550ac6985a5",
+  "database": "restore_08f62264befc4e3d",
+  "elapsed_seconds": 295.39553606400295,
+  "hdfs_restore_root": "/retail/recovery/w11-20261022-final",
+  "isolated_server_stopped": true,
+  "physical_storage_gate": {
+    "passed": false,
+    "reason": "Local WSL filesystem; independent physical storage not established"
+  },
+  "release_id": "R20261021104550ac6985a5",
+  "status": "PASS",
+  "verification": {
+    "manifest_sha256": "b6f3f7a2075e0b8549f9a6bec97f21b1c2f65ece3a4651b2b28f72fcc48f6b25",
+    "release_id": "R20261021104550ac6985a5",
+    "status": "PASS",
+    "tables": {
+      "customer_recommendation": {
+        "rows": 173520,
+        "sha256": "17fc8513ba53410cfdb38edaad1b2a41389f66646eb4499f233eedd14fe5bd9d"
+      },
+      "customer_rfm": {
+        "rows": 4338,
+        "sha256": "5862864d39e6834579207f0e7528d36ca61c66b641873cc6aef0cf3dd5a888c0"
+      },
+      "customer_seen_item": {
+        "rows": 266221,
+        "sha256": "eca68e03e3f23d013e08f7e7496641e8a3ebdc1b49395626c4a2502f99ec40ff"
+      },
+      "item_similarity": {
+        "rows": 29765,
+        "sha256": "7d5d1c07e785247e1e0752bbecfccaa8112bae2a4986d481f9aa5c6ef2343e98"
+      },
+      "product_dim": {
+        "rows": 3827,
+        "sha256": "117f0f1ab5bb2c21f3dba2961c3deeff6643c158e5b5fffc408533fbe1a72aee"
+      },
+      "product_popularity": {
+        "rows": 3659,
+        "sha256": "b87a1b12085d185fa6bdb78be1e811cbfda20c7b7404d5fc30e9614500ed5194"
+      },
+      "sale_order": {
+        "rows": 19960,
+        "sha256": "d0d9e70b6fba5a23378bd6fb18c3079aead5b83d4c9a919a1ca9583248c02604"
+      },
+      "sale_order_item": {
+        "rows": 519597,
+        "sha256": "6ec1646b06ceff6131bf0c14f57ffd53ad3a9cab95750db41a6623a19c660a14"
+      },
+      "sales_cube": {
+        "rows": 307579,
+        "sha256": "7be58a26e3813129197aca95c32008d7e1db3c93ab4a6533300d7d8a0c93e5e0"
+      }
+    }
+  }
+}

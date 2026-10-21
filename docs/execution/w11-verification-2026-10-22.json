@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0",
+  "scope": "W11_VERIFICATION",
+  "baseline": "HL-DOC-1.0.0",
+  "status": "INCOMPLETE",
+  "project_complete": false,
+  "observed_at": "2026-10-21T18:13:16.985905+00:00",
+  "code_commit": "c97af7a77293d23e9722f606072ecb2e11ec497a",
+  "release_id": "R20261021104550ac6985a5",
+  "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+  "tests": {
+    "T-01": {
+      "status": "PASS",
+      "evidence": [
+        "W03"
+      ]
+    },
+    "T-02": {
+      "status": "PASS",
+      "evidence": [
+        "W03"
+      ]
+    },
+    "T-03": {
+      "status": "PASS",
+      "evidence": [
+        "W03"
+      ]
+    },
+    "T-04": {
+      "status": "PASS",
+      "evidence": [
+        "W04"
+      ]
+    },
+    "T-05": {
+      "status": "PASS",
+      "evidence": [
+        "W04"
+      ]
+    },
+    "T-06": {
+      "status": "PASS",
+      "evidence": [
+        "W04"
+      ]
+    },
+    "T-07": {
+      "status": "PASS",
+      "evidence": [
+        "W04"
+      ]
+    },
+    "T-08": {
+      "status": "PASS",
+      "evidence": [
+        "W05",
+        "W06"
+      ]
+    },
+    "T-09": {
+      "status": "PASS",
+      "evidence": [
+        "W06",
+        "W07"
+      ]
+    },
+    "T-10": {
+      "status": "PASS",
+      "evidence": [
+        "W05",
+        "W06"
+      ]
+    },
+    "T-11": {
+      "status": "PASS",
+      "evidence": [
+        "W06",
+        "W07"
+      ]
+    },
+    "T-12": {
+      "status": "PASS",
+      "evidence": [
+        "W06",
+        "W07",
+        "CUDA"
+      ]
+    },
+    "T-13": {
+      "status": "PASS",
+      "evidence": [
+        "W07"
+      ]
+    },
+    "T-14": {
+      "status": "PASS",
+      "evidence": [
+        "W08",
+        "RELEASE",
+        "REGRESSION"
+      ]
+    },
+    "T-15": {
+      "status": "PASS",
+      "evidence": [
+        "HTTP"
+      ]
+    },
+    "T-16": {
+      "status": "PASS",
+      "evidence": [
+        "BROWSER"
+      ]
+    },
+    "T-17": {
+      "status": "PASS",
+      "evidence": [
+        "HTTP",
+        "REGRESSION"
+      ]
+    },
+    "T-18": {
+      "status": "PASS",
+      "evidence": [
+        "API_PERFORMANCE",
+        "MR_PERFORMANCE"
+      ]
+    },
+    "T-19": {
+      "status": "PASS",
+      "evidence": [
+        "W08",
+        "RELEASE",
+        "RECOVERY",
+        "BACKUP_INTEGRITY",
+        "REGRESSION"
+      ]
+    },
+    "T-20": {
+      "status": "PASS",
+      "evidence": [
+        "REPORT",
+        "FROZEN",
+        "REGRESSION"
+      ]
+    }
+  },
+  "requirements": {
+    "FR-01": {
+      "status": "PASS",
+      "tests": [
+        "T-01"
+      ],
+      "extra_evidence": []
+    },
+    "FR-02": {
+      "status": "PASS",
+      "tests": [
+        "T-02",
+        "T-03"
+      ],
+      "extra_evidence": []
+    },
+    "FR-03": {
+      "status": "PASS",
+      "tests": [
+        "T-04",
+        "T-15",
+        "T-16"
+      ],
+      "extra_evidence": []
+    },
+    "FR-04": {
+      "status": "PASS",
+      "tests": [
+        "T-05",
+        "T-16"
+      ],
+      "extra_evidence": []
+    },
+    "FR-05": {
+      "status": "PASS",
+      "tests": [
+        "T-06",
+        "T-11"
+      ],
+      "extra_evidence": []
+    },
+    "FR-06": {
+      "status": "PASS",
+      "tests": [
+        "T-08",
+        "T-09",
+        "T-11"
+      ],
+      "extra_evidence": []
+    },
+    "FR-07": {
+      "status": "PASS",
+      "tests": [
+        "T-12",
+        "T-13"
+      ],
+      "extra_evidence": []
+    },
+    "FR-08": {
+      "status": "PASS",
+      "tests": [
+        "T-08",
+        "T-10"
+      ],
+      "extra_evidence": []
+    },
+    "FR-09": {
+      "status": "PASS",
+      "tests": [
+        "T-14",
+        "T-19"
+      ],
+      "extra_evidence": []
+    },
+    "FR-10": {
+      "status": "PASS",
+      "tests": [
+        "T-15",
+        "T-16"
+      ],
+      "extra_evidence": []
+    },
+    "FR-11": {
+      "status": "PASS",
+      "tests": [
+        "T-07",
+        "T-14",
+        "T-20"
+      ],
+      "extra_evidence": []
+    },
+    "FR-12": {
+      "status": "NOT_RUN",
+      "tests": [
+        "T-18",
+        "T-19",
+        "T-20"
+      ],
+      "extra_evidence": [
+        "EXTERNAL_BACKUP"
+      ]
+    },
+    "NF-01": {
+      "status": "PASS",
+      "tests": [
+        "T-02",
+        "T-04",
+        "T-05",
+        "T-10",
+        "T-14"
+      ],
+      "extra_evidence": []
+    },
+    "NF-02": {
+      "status": "PASS",
+      "tests": [
+        "T-18"
+      ],
+      "extra_evidence": []
+    },
+    "NF-03": {
+      "status": "PASS",
+      "tests": [
+        "T-12",
+        "T-13",
+        "T-18"
+      ],
+      "extra_evidence": []
+    },
+    "NF-04": {
+      "status": "PASS",
+      "tests": [
+        "T-01",
+        "T-08",
+        "T-09",
+        "T-13"
+      ],
+      "extra_evidence": []
+    },
+    "NF-05": {
+      "status": "NOT_RUN",
+      "tests": [
+        "T-14",
+        "T-19"
+      ],
+      "extra_evidence": [
+        "EXTERNAL_BACKUP"
+      ]
+    },
+    "NF-06": {
+      "status": "PASS",
+      "tests": [
+        "T-15",
+        "T-17"
+      ],
+      "extra_evidence": []
+    },
+    "NF-07": {
+      "status": "PASS",
+      "tests": [
+        "T-07",
+        "T-12",
+        "T-14",
+        "T-20"
+      ],
+      "extra_evidence": []
+    },
+    "NF-08": {
+      "status": "PASS",
+      "tests": [
+        "T-20"
+      ],
+      "extra_evidence": []
+    }
+  },
+  "gates": {
+    "G-DOC": {
+      "status": "PASS",
+      "evidence": [
+        "FROZEN",
+        "REPORT"
+      ]
+    },
+    "G-ENV": {
+      "status": "PASS",
+      "evidence": [
+        "W02",
+        "ENVIRONMENT",
+        "CUDA"
+      ]
+    },
+    "G-DATA": {
+      "status": "PASS",
+      "evidence": [
+        "W03",
+        "RELEASE"
+      ]
+    },
+    "G-MR": {
+      "status": "PASS",
+      "evidence": [
+        "W04",
+        "MR_PERFORMANCE"
+      ]
+    },
+    "G-MODEL": {
+      "status": "PASS",
+      "evidence": [
+        "W05",
+        "W06",
+        "W07",
+        "RELEASE"
+      ]
+    },
+    "G-GPU": {
+      "status": "PASS",
+      "evidence": [
+        "W06",
+        "W07",
+        "CUDA"
+      ]
+    },
+    "G-RELEASE": {
+      "status": "PASS",
+      "evidence": [
+        "W08",
+        "RELEASE"
+      ]
+    },
+    "G-APP": {
+      "status": "PASS",
+      "evidence": [
+        "HTTP",
+        "BROWSER",
+        "API_PERFORMANCE"
+      ]
+    },
+    "G-RECOVERY": {
+      "status": "NOT_RUN",
+      "evidence": [
+        "RECOVERY",
+        "BACKUP_INTEGRITY",
+        "EXTERNAL_BACKUP",
+        "REPORT"
+      ]
+    }
+  },
+  "evidence": {
+    "W02": {
+      "path": "docs/execution/w02-acceptance-2026-10-20.json",
+      "sha256": "b10dcee8156fa5b5e8d5dd4630184e4956f1499a54e4916ebfd788678c57eac7",
+      "status": "PASS"
+    },
+    "W03": {
+      "path": "docs/execution/w03-verification-2026-10-20.json",
+      "sha256": "cd15bbc0af7015344f3c025ea5e747a9ee7818dce6b6d59a0d599720f283b7ca",
+      "status": "PASS"
+    },
+    "W04": {
+      "path": "docs/execution/w04-verification-2026-10-20.json",
+      "sha256": "9f2c11baff0cd1f9f858b8610a5629c1cb8e980cea38200193e02f2f8c54daa7",
+      "status": "PASS"
+    },
+    "W05": {
+      "path": "docs/execution/w05-verification-2026-10-20.json",
+      "sha256": "d71577eda9e96bae7c0b1eca6b525095a293ccf4be95c4e5d83c24e09ab2ba5c",
+      "status": "PASS"
+    },
+    "W06": {
+      "path": "docs/execution/w06-verification-2026-10-21.json",
+      "sha256": "687d3265c169e3ceecc02628a39b696df13a17f440ffb8b755a753fd77fbaad6",
+      "status": "PASS"
+    },
+    "W07": {
+      "path": "docs/execution/w07-verification-2026-10-21.json",
+      "sha256": "c0c5f08a6760ad78af94a2e0221a707883dd7346bb2c351851670bb267acc321",
+      "status": "PASS"
+    },
+    "W08": {
+      "path": "docs/execution/w08-verification-2026-10-21.json",
+      "sha256": "44f9fd42e4969d7c59c25945ce79fa9e01d07434aba2c66ae4f4bad62eb69936",
+      "status": "PASS"
+    },
+    "API_PERFORMANCE": {
+      "path": "var/w11/api/api-performance.json",
+      "sha256": "edbe13e135d6eb65183aca0ec4b717cf78801de580b2e8a087343ec71c1ed0d3",
+      "status": "PASS"
+    },
+    "MR_PERFORMANCE": {
+      "path": "var/w11/mr-final/mr-performance.json",
+      "sha256": "93ed552840b8816f1de5b42d6c8176501a45e93ba8e8057fd0959e2d51f876fd",
+      "status": "PASS"
+    },
+    "RELEASE": {
+      "path": "var/w11/release-verify.json",
+      "sha256": "62ec2fd74df29599b50ac3f7cd911f2363ae63805a40fb47f999385eaf8ccb7a",
+      "status": "PASS"
+    },
+    "RECOVERY": {
+      "path": "var/w11/recovery/recovery.json",
+      "sha256": "adf5cd64a1db46632ef5f4baae7007ad7bd10a3fa7343caf66a3ffd46d8f812d",
+      "status": "PASS"
+    },
+    "HTTP": {
+      "path": "var/w11/http.json",
+      "sha256": "18e225e3e65f0d2053cdf8521193894ca3cb91078f9dfc6ad469d9139af70fef",
+      "status": "PASS"
+    },
+    "BROWSER": {
+      "path": "var/w11/browser.json",
+      "sha256": "3be25067fb9b9dc38f8c4ad63b969bfbc3c84d34974f9287cedb64bcaeab56a3",
+      "status": "PASS"
+    },
+    "CUDA": {
+      "path": "var/w11/cuda.json",
+      "sha256": "d68e89bc1ebc40a9a8a1cf57a45c7b6fd0b2f73da56ca4888e098986dd9baad9",
+      "status": "PASS"
+    },
+    "ENVIRONMENT": {
+      "path": "var/w11/environment.json",
+      "sha256": "17d09346efb302b8ede20d6606a3233d6e68f4c1d3319254191b4ad1bf85deeb",
+      "status": "PASS"
+    },
+    "REPORT": {
+      "path": "var/w11/report/report.json",
+      "sha256": "5516e831432aeb7a80df80e5f0ce932a78018f36d98507975495d13b518f76b2",
+      "status": "PASS"
+    },
+    "FROZEN": {
+      "status": "PASS",
+      "files": {
+        "00-governance.md": true,
+        "01-prd.md": true,
+        "02-ux.md": true,
+        "03-architecture.md": true,
+        "04-data-contracts.md": true,
+        "05-pipeline.md": true,
+        "06-database.md": true,
+        "07-models.md": true,
+        "08-api.md": true,
+        "09-environment.md": true,
+        "10-operations.md": true,
+        "11-acceptance.md": true,
+        "12-agent-plan.md": true,
+        "13-decisions-risks.md": true,
+        "14-traceability.md": true,
+        "15-evidence.md": true,
+        "16-freeze-review.md": true,
+        "README.md": true
+      }
+    },
+    "REGRESSION": {
+      "status": "PASS",
+      "path": "/home/hadoop/hadoop-lab/var/w11/pytest.xml",
+      "sha256": "92c1ba14bcaa5f1479c63ea5aba9c3c5e84f3975514191fa5d4b67ce1732cdd9",
+      "tests": 196,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "BACKUP_INTEGRITY": {
+      "status": "PASS",
+      "files": 481,
+      "path": "var/w08/release-backup",
+      "manifest_sha256": "2dd905ba5ad21af13599fd866fe791cbb2d7303d0ab9c40b6c0ec6aac715cee2"
+    },
+    "EXTERNAL_BACKUP": {
+      "status": "NOT_RUN",
+      "passed": false,
+      "reason": "Local WSL filesystem; independent physical storage not established"
+    }
+  },
+  "policy": "Historical W01-W10 evidence is retained with hashes; W11 revalidates immutable release, current HTTP/UI, resources and isolated restore. NOT_RUN is never PASS."
+}
