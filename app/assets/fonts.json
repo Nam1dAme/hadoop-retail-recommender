@@ -1,0 +1,26 @@
+[
+  {
+    "upstream": "IBMPlexSans",
+    "family": "Retail Numerals",
+    "source_sha256": "3b031aa4216174205bd8471f88a49b91f093169e9e87bd5262242bc5967fe2e3",
+    "subset_sha256": "3d0447c946bcd459899fdc7723b230ddf810ee3ab5ffee6ebac7225574556415",
+    "bytes": 86476,
+    "glyph_source": "UI and project-document characters plus U+0020..U+024F",
+    "weight_range": [
+      400,
+      700
+    ]
+  },
+  {
+    "upstream": "NotoSansSC",
+    "family": "Retail Chinese",
+    "source_sha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da",
+    "subset_sha256": "b1d5ce4182610b2b5ded24674d60521790af296dcf90199b1f56df9abab4cd7b",
+    "bytes": 326232,
+    "glyph_source": "UI and project-document characters plus U+0020..U+024F",
+    "weight_range": [
+      400,
+      700
+    ]
+  }
+]

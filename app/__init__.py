@@ -1,1 +1,1 @@
-"""Streamlit UI; the API is its sole data source (W10)."""
+"""Chinese Streamlit analytics views; W09 HTTP is the sole data source."""
