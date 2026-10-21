@@ -3,3 +3,5 @@
 *.pt binary
 *.png binary
 *.jpg binary
+# Archived CSV exports are covered by byte-exact SHA-256 manifests.
+docs/execution/**/*.csv -text
