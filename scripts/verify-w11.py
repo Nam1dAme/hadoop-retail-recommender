@@ -34,14 +34,15 @@ def main():
             value=json.loads(raw)
             passed=bool(predicate(value))
             payloads[name]=value
-            evidence[name]=dict(path=str(path.relative_to(ROOT)),sha256=hashlib.sha256(raw).hexdigest(),status='PASS' if passed else 'FAIL')
+            state='NOT_RUN' if value.get('status')=='RUNNING' else 'PASS' if passed else 'FAIL'
+            evidence[name]=dict(path=str(path.relative_to(ROOT)),sha256=hashlib.sha256(raw).hexdigest(),status=state)
         except FileNotFoundError:
             evidence[name]=dict(path=str(path),status='NOT_RUN')
         except (KeyError,ValueError,TypeError):
             evidence[name]=dict(path=str(path),status='FAIL',reason='Evidence schema/predicate mismatch')
 
     historical=ROOT/'docs/execution'
-    inspect('W02',historical/'w02-verification-2026-10-20.json',lambda d:d['w02_complete'] and d['g_env_complete'])
+    inspect('W02',historical/'w02-acceptance-2026-10-20.json',lambda d:d['w02_complete'] and d['database_gate_complete'] and d['account_separation'])
     inspect('W03',historical/'w03-verification-2026-10-20.json',lambda d:d['w03_complete'] and not d['remaining_w03_requirements'])
     inspect('W04',historical/'w04-verification-2026-10-20.json',lambda d:d['status']=='PASS' and d['w04_complete'] and d['verification']['status']=='PASS')
     inspect('W05',historical/'w05-verification-2026-10-20.json',lambda d:d['status']=='PASS')
