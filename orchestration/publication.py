@@ -232,6 +232,21 @@ def load_release(connection, config, release_id, *, tick=lambda: None, check_dep
     return manifest, local, row['manifest_sha256']
 
 
+def fail_unpublished_task(connection, control, run_id, release_id):
+    """A committed publication survives an error writing its task receipt.
+
+    Leave that task RUNNING for verified reconciliation on the next invocation;
+    its process identity, not an elapsed timeout, decides when recovery is safe.
+    """
+    connection.rollback()
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT status FROM data_release WHERE release_id=%s', (release_id,))
+        row = cursor.fetchone()
+    connection.rollback()
+    if not row or row['status'] != 'READY':
+        control.finish_task(run_id, 'FAILED', error_code='PUBLICATION_FAILED', terminal_check=lambda _: 'FAILED')
+
+
 def publish(connection, config, batch_id, experiment_id, model_ids, *, dry_run=False):
     require(len(model_ids) == len(set(model_ids)) == 4 and all(str(UUID(i)) == i for i in model_ids),
             'Four distinct canonical model UUIDs are required')
@@ -308,7 +323,7 @@ def publish(connection, config, batch_id, experiment_id, model_ids, *, dry_run=F
             ctx.tick.run_id = None
             return result | {'run_id': run_id, 'manifest_path': destination+'/release.json'}
         except BaseException:
-            control.finish_task(run_id, 'FAILED', error_code='PUBLICATION_FAILED', terminal_check=lambda _: 'FAILED')
+            fail_unpublished_task(connection, control, run_id, release_id)
             raise
 
 

@@ -271,3 +271,26 @@ def test_recovery_guards_and_archive_checksums(tmp_path):
     dump.write_text('changed')
     with pytest.raises(ManifestError):
         verify_backup(tmp_path)
+
+
+@pytest.mark.parametrize('published', [False, True])
+def test_receipt_error_after_commit_keeps_task_recoverable(release_fixture, published):
+    from orchestration.publication import fail_unpublished_task
+    from orchestration.runtime import process_start
+    from orchestration.manifests import LocalStore
+    from test_database import run_manifest
+    import os
+    c, m, directory = release_fixture
+    store = ControlStore(c)
+    run = store.create_task(m['batch_id'], 'publish_receipt_fixture', H, C, experiment_id=m['experiment_id'])
+    store.start_task(run, pid=os.getpid(), process_start_utc=process_start(os.getpid()))
+    with named_lock(c):
+        if published:
+            install(c, m, directory)
+        fail_unpublished_task(c, store, run, m['release_id'])
+    assert store.task_status(run)['status'] == ('RUNNING' if published else 'FAILED')
+    if published:
+        assert current(c) == m['release_id']
+        _, path = run_manifest(directory/'receipt', m['batch_id'], run)
+        store.finish_task(run, 'SUCCEEDED', manifest_path=str(path), store=LocalStore(directory))
+        assert store.task_status(run)['status'] == 'SUCCEEDED'
