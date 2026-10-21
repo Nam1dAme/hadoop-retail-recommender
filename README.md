@@ -1,6 +1,6 @@
 # Hadoop Lab
 
-基于 Hadoop 与 CUDA 神经协同过滤的电商分析及推荐系统。唯一真实数据源为 [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)，CC BY 4.0，金额 GBP、来源本地时间；已完成真实导入、Hadoop业务计算、四算法离线评价、全历史服务推荐、CPU/CUDA 对照及真实发布与本机恢复演练；API 与页面按后续阶段实现。
+基于 Hadoop 与 CUDA 神经协同过滤的电商分析及推荐系统。唯一真实数据源为 [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)，CC BY 4.0，金额 GBP、来源本地时间；已完成真实导入、Hadoop业务计算、四算法离线评价、全历史服务推荐、CPU/CUDA 对照、真实发布与本机恢复演练，以及只读 API；正式页面暂未实现。
 
 设计依据：[docs/README.md](docs/README.md)，冻结基线 `HL-DOC-1.0.0`。2026-10-19 起按新用户指令建立工程基础，保留冻结文档历史；实测进度见 [执行记录](docs/execution/2026-10-19-foundation.md)、[故障排查记录](docs/execution/2026-10-19-troubleshooting.md)、[uv 迁移记录](docs/execution/2026-10-19-uv-migration.md)。
 
@@ -17,6 +17,8 @@ W06 已完成：POP/ItemCF、四组ALS、两组真实CUDA NCF共八个EVAL候选
 W07 已完成：CPU/CUDA各三次真实NCF对照、四个FULLFIT模型与173,520条服务推荐通过独立验收，每算法覆盖全部4,338位RFM客户。CPU/CUDA训练中位数分别为13.34/25.25秒，加速比0.5285，本次固定规模下GPU更慢；成功命令全部复用原产物且相关控制表不变，最终回归116项通过。详见 [W07 执行记录](docs/execution/2026-10-21-w07.md) 和 [完整验收 JSON](docs/execution/w07-verification-2026-10-21.json)。
 
 W08 已实现并完成真实首发与本机恢复验收：版本 `R20261021104550ac6985a5` 为 READY，九张业务表共 1,328,466 行；重复发布及恢复前后生产库全部 23 张表哈希一致，最终回归 133 项通过。按用户选择使用本机副本演练，独立物理盘备份门禁尚未通过。命令见 [发布与恢复说明](orchestration/README.md)，证据见 [W08 执行记录](docs/execution/2026-10-21-w08.md) 和 [完整验收 JSON](docs/execution/w08-verification-2026-10-21.json)。
+
+W09 已完成：FastAPI 的 20 个只读端点接入上述真实发布版本，包含销售、RFM、四算法推荐、EVAL 指标、训练曲线、CPU/CUDA 对照与任务质量查询。全量回归 178 项通过；真实 HTTP/独立 SQL 对照 265 项检查通过，23 张表全部 reader 可见数据的前后摘要一致；5 并发短测 15 请求零错误，P95 为 1.234 秒，该短测不替代 W11 性能验收。启动方法见 [API 使用说明](service/README.md)，证据见 [W09 执行记录](docs/execution/2026-10-21-w09.md) 和 [完整验收 JSON](docs/execution/w09-verification-2026-10-21.json)。按用户要求，W10 暂不开展。
 
 Python 版本、虚拟环境和依赖统一由 uv 管理：`.python-version` 固定 3.12，`pyproject.toml` 为唯一依赖声明，`uv.lock` 为已解析生成的完整锁。PyTorch 仅从官方 cu124 索引解析；其他依赖默认 PyPI。旧 pip-tools 输入已移除。
 
@@ -66,4 +68,4 @@ CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用�
 | migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
 | var/ | 忽略的运行数据、缓存、日志与导出 |
 
-当前 W01—W07 已完成。W08—W11 的发布与恢复、API、页面及全链路验收按后续阶段实施。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
+当前已实现 W01—W09，W08 的独立物理盘正式备份门禁仍待外部存储。W10 页面与 W11 全链路验收尚未完成，G-APP 整体门禁也不因 API 完成而关闭。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。

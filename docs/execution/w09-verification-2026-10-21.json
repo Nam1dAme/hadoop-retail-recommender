@@ -1,0 +1,916 @@
+{
+  "after_tables": {
+    "current_release": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "ef018d63a9c1d9a6f1f92fb3feda53406235ab233c0f1e92049c458d42f60929"
+    },
+    "customer_recommendation": {
+      "columns": "*",
+      "rows": 173520,
+      "sha256": "e3587ba14971751ee413877f8b35275d66f2b534621ce00ad8957f2e818f3305"
+    },
+    "customer_rfm": {
+      "columns": "*",
+      "rows": 4338,
+      "sha256": "34f5260fa00a77e93c36eecc31bc9d84f3c084e94507ee6a812d079cd3f24d44"
+    },
+    "customer_seen_item": {
+      "columns": "*",
+      "rows": 266221,
+      "sha256": "164d47a4a6b1a09db2aa9732bd957b731588c959d88f49c1d6200833974b9c34"
+    },
+    "data_batch": {
+      "columns": "batch_id,status,source_name,source_sha256,policy_version,raw_rows,created_at,updated_at,min_source_date,max_source_date,quality_report_path",
+      "rows": 1,
+      "sha256": "8cba84b233f1e26329a1d6a68465b05b06116c8f8151c5d3d0806ef272edea5a"
+    },
+    "data_quality": {
+      "columns": "*",
+      "rows": 27,
+      "sha256": "55f455b191c4942e4cedff7198cee20b04e1358c19f102653e1a6df623a06b10"
+    },
+    "data_release": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "58635216229ab13f924894edc95208de3c56a8c701fd9bb87c2cc74cf607a5be"
+    },
+    "experiment": {
+      "columns": "experiment_id,batch_id,status,split_policy_version,champion_algorithm,created_at,finished_at,test_sealed_at",
+      "rows": 1,
+      "sha256": "f9513946563f794cdc296e05d1f5e8bf11dbe49bd88abbd43526097513f54c58"
+    },
+    "experiment_model": {
+      "columns": "*",
+      "rows": 4,
+      "sha256": "c25e7608b043f093f33dc96aec294f847865b801277e7c7d757dfca155e669d3"
+    },
+    "gpu_benchmark": {
+      "columns": "*",
+      "rows": 6,
+      "sha256": "17879f080d7c180b921bcb4251bcc7bed0519ddbcbc0e50545372cfaff675a10"
+    },
+    "item_similarity": {
+      "columns": "*",
+      "rows": 29765,
+      "sha256": "042a657e595ba0301c575bd3c7f0a348cba129683637b42030396f68445fd2fb"
+    },
+    "model_epoch": {
+      "columns": "*",
+      "rows": 37,
+      "sha256": "07b4b4c05361bfd3cef0d14f21e37e742cf308d800c8f8987e3ed55ed63fc44f"
+    },
+    "model_metric": {
+      "columns": "*",
+      "rows": 24,
+      "sha256": "c62db6d411c733a7d83ef5c3d40d8376709e15a4d42cf6ea22141fd24dc24092"
+    },
+    "model_run": {
+      "columns": "model_run_id,batch_id,experiment_id,algorithm,purpose,device,status,created_at,finished_at",
+      "rows": 13,
+      "sha256": "adcf702ea05a5764bc68a571cd3222e2b6ecddf467e5cc19937e3ae6b69ddc59"
+    },
+    "product_dim": {
+      "columns": "*",
+      "rows": 3827,
+      "sha256": "7fec2a3ec41648cbfb0a2583f8c2a8badb391951f9496a65ce4c658b844741f6"
+    },
+    "product_popularity": {
+      "columns": "*",
+      "rows": 3659,
+      "sha256": "6917ac5ee9e078369e1130296462bddebdc33ab22013fe012033b38fb1d07d4d"
+    },
+    "release_event": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "94dad37b74ec989b76761404a234819a06dc47037f7a735a27c5bdb907f5c5d5"
+    },
+    "release_model": {
+      "columns": "*",
+      "rows": 4,
+      "sha256": "defef85b26024019e5eb9e8f89cdf6ee9475f536aec6b20200975a7bb8a8e415"
+    },
+    "sale_order": {
+      "columns": "*",
+      "rows": 19960,
+      "sha256": "dcfe7da45f57e023b78bc969ff24423d84cc7f7adc7522c5d6d0f4b93b2ae332"
+    },
+    "sale_order_item": {
+      "columns": "*",
+      "rows": 519597,
+      "sha256": "faa1350f9aa1929610b2f271e999c04cb1d1aa4af1f448f47d4da7776bc9d1af"
+    },
+    "sales_cube": {
+      "columns": "*",
+      "rows": 307579,
+      "sha256": "f0e0df3f3b7e798b099c953cd8b73572784ffe7f93c5ece3385ac8330da3cc6c"
+    },
+    "schema_migration": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "1c47a9ab09c24ca6ec4f8b9d872e934894b7b03139abd56c3d08810a62b8cc46"
+    },
+    "task_run": {
+      "columns": "run_id,batch_id,parent_run_id,task_name,attempt,status,created_at,started_at,finished_at,heartbeat_at,application_id,error_code,error_message,output_manifest_path,log_path",
+      "rows": 49,
+      "sha256": "663ce1e9fd043f2bbafbc97fdf2a389e3f7e5719f95d28d517d19581a83867fd"
+    }
+  },
+  "baseline_version": "HL-DOC-1.0.0",
+  "batch_id": "B20261019194025b4f65854",
+  "before_tables": {
+    "current_release": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "ef018d63a9c1d9a6f1f92fb3feda53406235ab233c0f1e92049c458d42f60929"
+    },
+    "customer_recommendation": {
+      "columns": "*",
+      "rows": 173520,
+      "sha256": "e3587ba14971751ee413877f8b35275d66f2b534621ce00ad8957f2e818f3305"
+    },
+    "customer_rfm": {
+      "columns": "*",
+      "rows": 4338,
+      "sha256": "34f5260fa00a77e93c36eecc31bc9d84f3c084e94507ee6a812d079cd3f24d44"
+    },
+    "customer_seen_item": {
+      "columns": "*",
+      "rows": 266221,
+      "sha256": "164d47a4a6b1a09db2aa9732bd957b731588c959d88f49c1d6200833974b9c34"
+    },
+    "data_batch": {
+      "columns": "batch_id,status,source_name,source_sha256,policy_version,raw_rows,created_at,updated_at,min_source_date,max_source_date,quality_report_path",
+      "rows": 1,
+      "sha256": "8cba84b233f1e26329a1d6a68465b05b06116c8f8151c5d3d0806ef272edea5a"
+    },
+    "data_quality": {
+      "columns": "*",
+      "rows": 27,
+      "sha256": "55f455b191c4942e4cedff7198cee20b04e1358c19f102653e1a6df623a06b10"
+    },
+    "data_release": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "58635216229ab13f924894edc95208de3c56a8c701fd9bb87c2cc74cf607a5be"
+    },
+    "experiment": {
+      "columns": "experiment_id,batch_id,status,split_policy_version,champion_algorithm,created_at,finished_at,test_sealed_at",
+      "rows": 1,
+      "sha256": "f9513946563f794cdc296e05d1f5e8bf11dbe49bd88abbd43526097513f54c58"
+    },
+    "experiment_model": {
+      "columns": "*",
+      "rows": 4,
+      "sha256": "c25e7608b043f093f33dc96aec294f847865b801277e7c7d757dfca155e669d3"
+    },
+    "gpu_benchmark": {
+      "columns": "*",
+      "rows": 6,
+      "sha256": "17879f080d7c180b921bcb4251bcc7bed0519ddbcbc0e50545372cfaff675a10"
+    },
+    "item_similarity": {
+      "columns": "*",
+      "rows": 29765,
+      "sha256": "042a657e595ba0301c575bd3c7f0a348cba129683637b42030396f68445fd2fb"
+    },
+    "model_epoch": {
+      "columns": "*",
+      "rows": 37,
+      "sha256": "07b4b4c05361bfd3cef0d14f21e37e742cf308d800c8f8987e3ed55ed63fc44f"
+    },
+    "model_metric": {
+      "columns": "*",
+      "rows": 24,
+      "sha256": "c62db6d411c733a7d83ef5c3d40d8376709e15a4d42cf6ea22141fd24dc24092"
+    },
+    "model_run": {
+      "columns": "model_run_id,batch_id,experiment_id,algorithm,purpose,device,status,created_at,finished_at",
+      "rows": 13,
+      "sha256": "adcf702ea05a5764bc68a571cd3222e2b6ecddf467e5cc19937e3ae6b69ddc59"
+    },
+    "product_dim": {
+      "columns": "*",
+      "rows": 3827,
+      "sha256": "7fec2a3ec41648cbfb0a2583f8c2a8badb391951f9496a65ce4c658b844741f6"
+    },
+    "product_popularity": {
+      "columns": "*",
+      "rows": 3659,
+      "sha256": "6917ac5ee9e078369e1130296462bddebdc33ab22013fe012033b38fb1d07d4d"
+    },
+    "release_event": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "94dad37b74ec989b76761404a234819a06dc47037f7a735a27c5bdb907f5c5d5"
+    },
+    "release_model": {
+      "columns": "*",
+      "rows": 4,
+      "sha256": "defef85b26024019e5eb9e8f89cdf6ee9475f536aec6b20200975a7bb8a8e415"
+    },
+    "sale_order": {
+      "columns": "*",
+      "rows": 19960,
+      "sha256": "dcfe7da45f57e023b78bc969ff24423d84cc7f7adc7522c5d6d0f4b93b2ae332"
+    },
+    "sale_order_item": {
+      "columns": "*",
+      "rows": 519597,
+      "sha256": "faa1350f9aa1929610b2f271e999c04cb1d1aa4af1f448f47d4da7776bc9d1af"
+    },
+    "sales_cube": {
+      "columns": "*",
+      "rows": 307579,
+      "sha256": "f0e0df3f3b7e798b099c953cd8b73572784ffe7f93c5ece3385ac8330da3cc6c"
+    },
+    "schema_migration": {
+      "columns": "*",
+      "rows": 1,
+      "sha256": "1c47a9ab09c24ca6ec4f8b9d872e934894b7b03139abd56c3d08810a62b8cc46"
+    },
+    "task_run": {
+      "columns": "run_id,batch_id,parent_run_id,task_name,attempt,status,created_at,started_at,finished_at,heartbeat_at,application_id,error_code,error_message,output_manifest_path,log_path",
+      "rows": 49,
+      "sha256": "663ce1e9fd043f2bbafbc97fdf2a389e3f7e5719f95d28d517d19581a83867fd"
+    }
+  },
+  "benchmark": {
+    "comparison_valid": true,
+    "complete_repeats": true,
+    "cpu_median_seconds": 13.344851668996853,
+    "gpu_median_seconds": 25.250956080999458,
+    "speedup": 0.5284889659698244
+  },
+  "check_count": 265,
+  "checks": [
+    "20 documented GET endpoints",
+    "HTTP /health/live",
+    "request_id /health/live",
+    "JSON /health/live",
+    "live",
+    "HTTP /health/ready",
+    "request_id /health/ready",
+    "JSON /health/ready",
+    "ready",
+    "HTTP /releases/current",
+    "request_id /releases/current",
+    "JSON /releases/current",
+    "current release identity",
+    "source dates",
+    "HTTP /releases",
+    "request_id /releases",
+    "JSON /releases",
+    "READY versions only",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "fixed version /summary",
+    "summary equals independent SQL {}",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "fixed version /summary",
+    "summary equals independent SQL {'country': 'United Kingdom', 'start_date': '2011-11-01', 'end_date': '2011-11-30'}",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "fixed version /summary",
+    "summary equals independent SQL {'country': '__UNKNOWN_COUNTRY__'}",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "fixed version /summary",
+    "summary equals independent SQL {'start_date': '2026-01-01', 'end_date': '2026-12-31'}",
+    "HTTP /sales/trend",
+    "request_id /sales/trend",
+    "JSON /sales/trend",
+    "fixed version /sales/trend",
+    "trend exact totals DAY",
+    "trend sorted unique DAY",
+    "trend finite money DAY",
+    "HTTP /sales/trend",
+    "request_id /sales/trend",
+    "JSON /sales/trend",
+    "fixed version /sales/trend",
+    "trend exact totals MONTH",
+    "trend sorted unique MONTH",
+    "trend finite money MONTH",
+    "HTTP /sales/countries",
+    "request_id /sales/countries",
+    "JSON /sales/countries",
+    "fixed version /sales/countries",
+    "all countries counted",
+    "countries exact amounts",
+    "countries order counts",
+    "countries stable ordering",
+    "HTTP /products",
+    "request_id /products",
+    "JSON /products",
+    "fixed version /products",
+    "product ranking GROSS_DESC",
+    "distinct product orders DOT",
+    "distinct product orders 22423",
+    "distinct product orders 23843",
+    "distinct product orders 85123A",
+    "distinct product orders 47566",
+    "distinct product orders 85099B",
+    "distinct product orders 23166",
+    "HTTP /products",
+    "request_id /products",
+    "JSON /products",
+    "fixed version /products",
+    "product ranking QUANTITY_DESC",
+    "distinct product orders 23843",
+    "distinct product orders 23166",
+    "distinct product orders 22197",
+    "distinct product orders 84077",
+    "distinct product orders 85099B",
+    "distinct product orders 85123A",
+    "distinct product orders 84879",
+    "HTTP /customers",
+    "request_id /customers",
+    "JSON /customers",
+    "fixed version /customers",
+    "customer count",
+    "customer monetary",
+    "HTTP /customers/segments",
+    "request_id /customers/segments",
+    "JSON /customers/segments",
+    "fixed version /customers/segments",
+    "segments order",
+    "segments customer total",
+    "HTTP /products/10002/similar",
+    "request_id /products/10002/similar",
+    "JSON /products/10002/similar",
+    "fixed version /products/10002/similar",
+    "similarity exact",
+    "unknown customer absent",
+    "HTTP /customers/12346/recommendations",
+    "request_id /customers/12346/recommendations",
+    "JSON /customers/12346/recommendations",
+    "fixed version /customers/12346/recommendations",
+    "FULLFIT model POP",
+    "stored recommendation exact POP",
+    "candidates and exclusions POP",
+    "HTTP /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "request_id /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "JSON /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "fixed version /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "unknown fallback POP",
+    "HTTP /customers/12346/recommendations",
+    "request_id /customers/12346/recommendations",
+    "JSON /customers/12346/recommendations",
+    "fixed version /customers/12346/recommendations",
+    "FULLFIT model ITEMCF",
+    "stored recommendation exact ITEMCF",
+    "candidates and exclusions ITEMCF",
+    "HTTP /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "request_id /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "JSON /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "fixed version /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "unknown fallback ITEMCF",
+    "HTTP /customers/12346/recommendations",
+    "request_id /customers/12346/recommendations",
+    "JSON /customers/12346/recommendations",
+    "fixed version /customers/12346/recommendations",
+    "FULLFIT model ALS",
+    "stored recommendation exact ALS",
+    "candidates and exclusions ALS",
+    "HTTP /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "request_id /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "JSON /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "fixed version /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "unknown fallback ALS",
+    "HTTP /customers/12346/recommendations",
+    "request_id /customers/12346/recommendations",
+    "JSON /customers/12346/recommendations",
+    "fixed version /customers/12346/recommendations",
+    "FULLFIT model NCF",
+    "stored recommendation exact NCF",
+    "candidates and exclusions NCF",
+    "HTTP /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "request_id /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "JSON /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "fixed version /customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+    "unknown fallback NCF",
+    "HTTP /batches",
+    "request_id /batches",
+    "JSON /batches",
+    "HTTP /batches/B20261019194025b4f65854/quality",
+    "request_id /batches/B20261019194025b4f65854/quality",
+    "JSON /batches/B20261019194025b4f65854/quality",
+    "quality exact",
+    "HTTP /runs",
+    "request_id /runs",
+    "JSON /runs",
+    "HTTP /runs/56907e53-39e5-4b1e-981c-25e7273c2cc4",
+    "request_id /runs/56907e53-39e5-4b1e-981c-25e7273c2cc4",
+    "JSON /runs/56907e53-39e5-4b1e-981c-25e7273c2cc4",
+    "log metadata only",
+    "task batch context",
+    "HTTP /experiments",
+    "request_id /experiments",
+    "JSON /experiments",
+    "HTTP /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "request_id /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "JSON /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "four selected EVAL models VALIDATIONWARM",
+    "metric exact POPVALIDATIONWARM",
+    "metric exact ITEMCFVALIDATIONWARM",
+    "metric exact ALSVALIDATIONWARM",
+    "metric exact NCFVALIDATIONWARM",
+    "HTTP /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "request_id /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "JSON /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "four selected EVAL models VALIDATIONALL_ELIGIBLE",
+    "metric exact POPVALIDATIONALL_ELIGIBLE",
+    "metric exact ITEMCFVALIDATIONALL_ELIGIBLE",
+    "metric exact ALSVALIDATIONALL_ELIGIBLE",
+    "metric exact NCFVALIDATIONALL_ELIGIBLE",
+    "HTTP /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "request_id /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "JSON /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "four selected EVAL models TESTWARM",
+    "metric exact POPTESTWARM",
+    "metric exact ITEMCFTESTWARM",
+    "metric exact ALSTESTWARM",
+    "metric exact NCFTESTWARM",
+    "HTTP /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "request_id /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "JSON /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+    "four selected EVAL models TESTALL_ELIGIBLE",
+    "metric exact POPTESTALL_ELIGIBLE",
+    "metric exact ITEMCFTESTALL_ELIGIBLE",
+    "metric exact ALSTESTALL_ELIGIBLE",
+    "metric exact NCFTESTALL_ELIGIBLE",
+    "HTTP /models/96891c61-91db-4e8c-9093-a3764a5e8cd7/epochs",
+    "request_id /models/96891c61-91db-4e8c-9093-a3764a5e8cd7/epochs",
+    "JSON /models/96891c61-91db-4e8c-9093-a3764a5e8cd7/epochs",
+    "real epochs EVALNCF",
+    "HTTP /models/e2507953-39db-49a4-9738-9a4d66d6fef3/epochs",
+    "request_id /models/e2507953-39db-49a4-9738-9a4d66d6fef3/epochs",
+    "JSON /models/e2507953-39db-49a4-9738-9a4d66d6fef3/epochs",
+    "real epochs FULLFITNCF",
+    "HTTP /models/6efb8848-73bf-49ab-8d91-1cfab8d142de/epochs",
+    "request_id /models/6efb8848-73bf-49ab-8d91-1cfab8d142de/epochs",
+    "JSON /models/6efb8848-73bf-49ab-8d91-1cfab8d142de/epochs",
+    "real epochs FULLFITPOP",
+    "HTTP /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/benchmarks",
+    "request_id /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/benchmarks",
+    "JSON /experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/benchmarks",
+    "benchmark actual six repeats",
+    "benchmark truthful ratio",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "invalid parameter envelope /summary",
+    "HTTP /products",
+    "request_id /products",
+    "JSON /products",
+    "invalid parameter envelope /products",
+    "HTTP /runs",
+    "request_id /runs",
+    "JSON /runs",
+    "invalid parameter envelope /runs",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "invalid parameter envelope /summary",
+    "HTTP /summary",
+    "request_id /summary",
+    "JSON /summary",
+    "fixed version /summary",
+    "SQL injection literal",
+    "HTTP /products",
+    "request_id /products",
+    "JSON /products",
+    "fixed version /products",
+    "pagination beyond end",
+    "actual reader UPDATE denied",
+    "five-client probe no HTTP failures",
+    "all 23 reader-visible table digests unchanged",
+    "frozen 00-governance.md",
+    "frozen 01-prd.md",
+    "frozen 02-ux.md",
+    "frozen 03-architecture.md",
+    "frozen 04-data-contracts.md",
+    "frozen 05-pipeline.md",
+    "frozen 06-database.md",
+    "frozen 07-models.md",
+    "frozen 08-api.md",
+    "frozen 09-environment.md",
+    "frozen 10-operations.md",
+    "frozen 11-acceptance.md",
+    "frozen 12-agent-plan.md",
+    "frozen 13-decisions-risks.md",
+    "frozen 14-traceability.md",
+    "frozen 15-evidence.md",
+    "frozen 16-freeze-review.md",
+    "frozen README.md",
+    "18 frozen baseline documents"
+  ],
+  "code_commit": "7b3f2181acf3331b554d3f3bdaf862da8a390268",
+  "config_sha256": "f40631b9f533b1ed1a9f33b844eae23507faebe3242cc5c518dc2372c279077f",
+  "environment": {
+    "packages": {
+      "PyMySQL": "1.1.3",
+      "fastapi": "0.115.14",
+      "httpx": "0.28.1",
+      "pydantic": "2.14.1",
+      "uvicorn": "0.34.3"
+    },
+    "python": "3.12.3"
+  },
+  "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53",
+  "finite_score_fault_injection": {
+    "cases": [
+      {
+        "error_code": "INTERNAL_ERROR",
+        "http_status": 500,
+        "injected_value": "NaN",
+        "status": "PASS"
+      },
+      {
+        "error_code": "INTERNAL_ERROR",
+        "http_status": 500,
+        "injected_value": "positive infinity",
+        "status": "PASS"
+      },
+      {
+        "error_code": "INTERNAL_ERROR",
+        "http_status": 500,
+        "injected_value": "negative infinity",
+        "status": "PASS"
+      }
+    ],
+    "log_exception_text_hidden": true,
+    "scope": "In-process serialization fault injection on otherwise real reader query results; only in-memory response scores changed, no DB mutations"
+  },
+  "five_client_probe": {
+    "errors": 0,
+    "p95_seconds": 1.2337989309999102,
+    "requests": [
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.12632163300077082,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 1.2337989309999102,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.14633253600186436,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 0.991768754000077,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.12881102400206146,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 0.7489706299966201,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.03596110000216868,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 1.1054862000019057,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.02013179899950046,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 0.8859602800002904,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.024116104999848176,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 0.7665840860026947,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.026976989000104368,
+        "status": 200
+      },
+      {
+        "path": "/products",
+        "seconds": 0.7717638360009005,
+        "status": 200
+      },
+      {
+        "path": "/customers/12346/recommendations",
+        "seconds": 0.023721670000668382,
+        "status": 200
+      }
+    ],
+    "samples": 15,
+    "scope": "Short W09 list/recommendation regression probe; not full W11 T-18 acceptance"
+  },
+  "frozen_baseline": {
+    "00-governance.md": "0df2d41ef7421e0990331190b6d4e22d8957c8b5340f8215c33d0071ed5f8f96",
+    "01-prd.md": "92875fb62b3560466db008a58d224e04c1a8084c7571cd9f7cf0163cf2d74885",
+    "02-ux.md": "e37502d69bd92d586463ce7aff411669f8fc56bb3d8feb1bf32c4e552aa1ad5f",
+    "03-architecture.md": "8ce790d6dc8627072201e723f5776fe3fb55e859d9fb7f634389d47252db6537",
+    "04-data-contracts.md": "c17765f3723cec93c0d3036bfe7793bccdc8318200222cc5c9d7b462e34f1d43",
+    "05-pipeline.md": "53f3d920f53d3d81684ef04f6795ffad87a2f90648ab3b9823c2052e3cde105a",
+    "06-database.md": "cb044189289752bd2610962cdc145b29770440f62429dbb23a530a11bb2b9634",
+    "07-models.md": "0bb6b1c6bf37ead66659d28f565477f2562d2f465c3c6cdd11c59a960912df2b",
+    "08-api.md": "641fd11788e3a98e1450a002e43874cb17cfe93faa1c6e7d3daee270f357be25",
+    "09-environment.md": "4a93cc5bf0edbd3f08dd2c1702dae14a316ce55f563722436f9ac031d4a1150c",
+    "10-operations.md": "d91bbd272965fd032f1cb3c0494adfb81e7740c389294e35d06802361ef13d34",
+    "11-acceptance.md": "2bb1708e85b4a7e0949fb6202371bee2065092bbd7c61158374b58d4f5092e34",
+    "12-agent-plan.md": "0bdf3cfa77b58c1a09195736bf00c6eff39547430cfee52f08c9ca7ce5346db0",
+    "13-decisions-risks.md": "10dc58507889b72f33f9a14f4c6a9cfdc01546d9a97aaa16aa55e148a5b55470",
+    "14-traceability.md": "22d259502c93d847d91e90b8cc94d2af3c6d5529461cead661b1003ca1736c2d",
+    "15-evidence.md": "1208051d16a7e69929217e0509d08ddadeb0625c4863624683b7934720e1ca38",
+    "16-freeze-review.md": "46717ea24e2164f4356873f1f76270c60e3e7d549e047800e4bd780ce507083c",
+    "README.md": "3e0e4d2645b49985e7df80fdc1e601c84ccd056b94bb805dce001e3b8ed2c81f"
+  },
+  "observed_at": "2026-10-21T15:36:47.058700Z",
+  "reader_permissions": {
+    "account": "retail_reader@localhost",
+    "minimum_grants_match": true,
+    "probes": {
+      "create_denied": true,
+      "migration_history_write_denied": true,
+      "private_pid_denied": true,
+      "private_source_denied": true,
+      "write_denied": true
+    },
+    "status": "PASS"
+  },
+  "regression": {
+    "api_cases": 45,
+    "command": "uv run --locked python -m pytest -q --maxfail=2",
+    "failed": 0,
+    "log_path": "var/artifacts/w09-regression-final.log",
+    "passed": 178,
+    "seconds": 171.29,
+    "skipped": 0,
+    "warnings": [
+      "Existing Starlette TestClient AnyIO BlockingPortal alias deprecation"
+    ]
+  },
+  "release_id": "R20261021104550ac6985a5",
+  "requests": [
+    {
+      "path": "/health/live",
+      "seconds": 0.00244,
+      "status": 200
+    },
+    {
+      "path": "/health/ready",
+      "seconds": 0.026619,
+      "status": 200
+    },
+    {
+      "path": "/releases/current",
+      "seconds": 0.011209,
+      "status": 200
+    },
+    {
+      "path": "/releases",
+      "seconds": 0.013348,
+      "status": 200
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.296171,
+      "status": 200
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.505068,
+      "status": 200
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.011462,
+      "status": 200
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.010289,
+      "status": 200
+    },
+    {
+      "path": "/sales/trend",
+      "seconds": 0.251613,
+      "status": 200
+    },
+    {
+      "path": "/sales/trend",
+      "seconds": 0.470837,
+      "status": 200
+    },
+    {
+      "path": "/sales/countries",
+      "seconds": 0.545012,
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "seconds": 0.950669,
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "seconds": 0.668469,
+      "status": 200
+    },
+    {
+      "path": "/customers",
+      "seconds": 0.018497,
+      "status": 200
+    },
+    {
+      "path": "/customers/segments",
+      "seconds": 0.016052,
+      "status": 200
+    },
+    {
+      "path": "/products/10002/similar",
+      "seconds": 0.010755,
+      "status": 200
+    },
+    {
+      "path": "/customers/12346/recommendations",
+      "seconds": 0.0243,
+      "status": 200
+    },
+    {
+      "path": "/customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+      "seconds": 0.027718,
+      "status": 200
+    },
+    {
+      "path": "/customers/12346/recommendations",
+      "seconds": 0.021583,
+      "status": 200
+    },
+    {
+      "path": "/customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+      "seconds": 0.022081,
+      "status": 200
+    },
+    {
+      "path": "/customers/12346/recommendations",
+      "seconds": 0.020095,
+      "status": 200
+    },
+    {
+      "path": "/customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+      "seconds": 0.021753,
+      "status": 200
+    },
+    {
+      "path": "/customers/12346/recommendations",
+      "seconds": 0.021251,
+      "status": 200
+    },
+    {
+      "path": "/customers/__W09_UNKNOWN_CUSTOMER__/recommendations",
+      "seconds": 0.021283,
+      "status": 200
+    },
+    {
+      "path": "/batches",
+      "seconds": 0.009432,
+      "status": 200
+    },
+    {
+      "path": "/batches/B20261019194025b4f65854/quality",
+      "seconds": 0.009097,
+      "status": 200
+    },
+    {
+      "path": "/runs",
+      "seconds": 0.012062,
+      "status": 200
+    },
+    {
+      "path": "/runs/56907e53-39e5-4b1e-981c-25e7273c2cc4",
+      "seconds": 0.00844,
+      "status": 200
+    },
+    {
+      "path": "/experiments",
+      "seconds": 0.009908,
+      "status": 200
+    },
+    {
+      "path": "/experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+      "seconds": 0.009715,
+      "status": 200
+    },
+    {
+      "path": "/experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+      "seconds": 0.009077,
+      "status": 200
+    },
+    {
+      "path": "/experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+      "seconds": 0.009074,
+      "status": 200
+    },
+    {
+      "path": "/experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/metrics",
+      "seconds": 0.008969,
+      "status": 200
+    },
+    {
+      "path": "/models/96891c61-91db-4e8c-9093-a3764a5e8cd7/epochs",
+      "seconds": 0.009171,
+      "status": 200
+    },
+    {
+      "path": "/models/e2507953-39db-49a4-9738-9a4d66d6fef3/epochs",
+      "seconds": 0.009491,
+      "status": 200
+    },
+    {
+      "path": "/models/6efb8848-73bf-49ab-8d91-1cfab8d142de/epochs",
+      "seconds": 0.008252,
+      "status": 200
+    },
+    {
+      "path": "/experiments/acea8dc1-3b09-43b8-ac79-09571cfcca53/benchmarks",
+      "seconds": 0.01054,
+      "status": 200
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.001836,
+      "status": 422
+    },
+    {
+      "path": "/products",
+      "seconds": 0.002167,
+      "status": 422
+    },
+    {
+      "path": "/runs",
+      "seconds": 0.00192,
+      "status": 422
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.001764,
+      "status": 422
+    },
+    {
+      "path": "/summary",
+      "seconds": 0.009912,
+      "status": 200
+    },
+    {
+      "path": "/products",
+      "seconds": 0.142182,
+      "status": 200
+    }
+  ],
+  "scope": "Real loopback HTTP + SELECT-only reader; all 20 endpoints; independent SQL comparison; no production fixture writes; digest covers all reader-visible columns, not inaccessible control fields",
+  "source_sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+  "status": "PASS",
+  "summary": {
+    "average_order_value": "534.40",
+    "currency": "GBP",
+    "customer_count": 4338,
+    "gross_amount": "10666684.54",
+    "net_amount": "9769872.05",
+    "order_count": 19960,
+    "return_amount": "896812.49",
+    "return_quantity": 277574,
+    "sale_quantity": 5588372
+  },
+  "test_ids": [
+    "T-15",
+    "T-17"
+  ],
+  "tracked_code_dirty": false,
+  "uv_lock_sha256": "48eee008149d7925d592b530d8629420ac3993eec3becc0013db0e1c0128dbac"
+}
