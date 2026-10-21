@@ -66,6 +66,11 @@ def main():
     restoration.add_argument('--backup-dir',required=True,type=Path)
     restoration.add_argument('--output-dir',required=True,type=Path)
     restoration.add_argument('--hdfs-root',required=True)
+    reporting=sub.add_parser('report')
+    reporting.add_argument('--experiment-id',required=True)
+    reporting.add_argument('--release-id',required=True)
+    reporting.add_argument('--output-dir',required=True,type=Path)
+    reporting.add_argument('--acceptance-file',type=Path)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -151,6 +156,10 @@ def main():
                         result={'dry_run':True,'release_id':args.release_id,'output_directory':str(args.output_dir)}
                     else:
                         result=backup(connection,config,args.release_id,args.output_dir)
+                elif args.command=='report':
+                    from orchestration.delivery import report
+                    result=report(connection,config,args.experiment_id,args.release_id,args.output_dir,
+                        dry_run=args.dry_run,acceptance_file=args.acceptance_file)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)
