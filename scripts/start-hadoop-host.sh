@@ -102,7 +102,7 @@ output = status.stdout + status.stderr
 assert status.returncode == 0 and re.search(r'Final-State\s*:\s*SUCCEEDED', output), output
 record = {'status': 'PASS', 'observed_at': datetime.now(timezone.utc).isoformat(), 'fixture': True,
           'hdfs_root': sys.argv[2], 'application_id': applications[0], 'final_state': 'SUCCEEDED',
-          'word_counts': counts, 'scope': 'Environment WordCount only; business MapReduce unimplemented.'}
+          'word_counts': counts, 'scope': 'Environment WordCount only; business MapReduce requires separate acceptance evidence.'}
 (run / 'completed.json').write_text(json.dumps(record, indent=2)+'\n')
 print(json.dumps(record, indent=2))
 PY

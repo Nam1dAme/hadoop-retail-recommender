@@ -75,3 +75,9 @@ python -m orchestration.cli --config config/development.toml --baseline HL-DOC-1
 恢复工具校验归档后，把 HDFS 文件上传至全新的 `/retail/recovery/<名称>`，启动独立、仅 socket 监听的 MariaDB，恢复完整 dump。只读测试账号核对同 release 的全部金额、行数和推荐顺序/分数，结束后停止测试数据库；文件和 HDFS 恢复现场保留。清单中的原路径不改写，通过显式恢复根映射读取，原哈希得以保留。生产连接只用于持有共用任务锁，恢复 SQL 仅发送给测试实例，原 HDFS 根不覆盖。
 
 模块：`publication.py` 负责来源核对与 CLI 流程；`release_data.py` 负责九表导出及精确比对；`releases.py` 负责导入、切换及审计；`recovery.py` 负责备份与隔离恢复。API 和展示页面属于 W09/W10。
+
+## 只读报告导出（W11）
+
+`report --experiment-id --release-id --output-dir` 从同一个数据库只读快照导出选定 EVAL 指标、FULLFIT 绑定、实际训练历史、六次 CPU/CUDA 对照、销售总量和运行记录，附 CSV 与 SHA-256 清单。使用 reader 凭据和新输出目录，不重新训练或写入数据库。可选 `--acceptance-file` 附上同版本的最终验收记录；未附记录时完整项目验收状态为 `NOT_EVALUATED`。
+
+启动、更新数据、报告命令、性能实验和五分钟演示见 [交付说明](../docs/delivery.md)。
