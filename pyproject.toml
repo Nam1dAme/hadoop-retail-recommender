@@ -21,10 +21,15 @@ dependencies = [
     "PyMySQL>=1.1,<1.2",
     "plotly>=5.24,<5.25",
     "PyYAML>=6,<7",
+    "pyarrow==17.0.0",
 ]
 
 [dependency-groups]
-dev = ["pytest>=8,<9", "httpx>=0.28,<0.29"]
+dev = [
+    "pytest>=8,<9",
+    "httpx>=0.28,<0.29",
+    "playwright==1.56.0",
+]
 
 [tool.uv]
 required-version = ">=0.13.1"
@@ -46,6 +51,9 @@ default = true
 
 [tool.setuptools.packages.find]
 include = ["etl*", "ml*", "service*", "app*", "orchestration*"]
+
+[tool.setuptools.package-data]
+app = ["assets/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
