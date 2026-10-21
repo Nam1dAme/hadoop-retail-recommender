@@ -95,8 +95,12 @@ def test_schema_and_permissions(db):
         assert {r['COLLATION_NAME'] for r in cursor.fetchall()}=={'utf8mb4_bin'}
     with reader.cursor() as cursor:
         cursor.execute('SELECT run_id,error_code,error_message FROM task_run')
+        # W09 needs only the presence of the registered reports/logs. Its HTTP
+        # projection exposes booleans; all other private control columns stay denied.
+        cursor.execute('SELECT log_path IS NOT NULL FROM task_run')
+        cursor.execute('SELECT quality_report_path IS NOT NULL FROM data_batch')
         for sql in ("UPDATE current_release SET release_id=NULL",'CREATE TABLE forbidden (id INT)',
-                    'SELECT source_url FROM data_batch','SELECT log_path FROM task_run','SELECT pid FROM task_run'):
+                    'SELECT source_url FROM data_batch','SELECT process_start_utc FROM task_run','SELECT pid FROM task_run'):
             with pytest.raises(pymysql.MySQLError): cursor.execute(sql)
     with writer.cursor() as cursor:
         for sql in ('CREATE TABLE forbidden (id INT)','DELETE FROM schema_migration',

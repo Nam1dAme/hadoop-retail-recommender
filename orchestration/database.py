@@ -17,14 +17,14 @@ def utcnow():
     return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
-def connect(config, defaults_file=None):
+def connect(config, defaults_file=None, **timeouts):
     if defaults_file is not None:
-        return connect_defaults(config, defaults_file)
+        return connect_defaults(config, defaults_file, **timeouts)
     user, password = database_credentials()
-    return open_connection(**config['database'], user=user, password=password)
+    return open_connection(**config['database'], user=user, password=password, **timeouts)
 
 
-def connect_defaults(config, defaults_file):
+def connect_defaults(config, defaults_file, **timeouts):
     """Load only an explicitly supplied, owner-private MariaDB client file."""
     try:
         path = Path(defaults_file).expanduser()
@@ -56,13 +56,14 @@ def connect_defaults(config, defaults_file):
         # Parser errors may include credential lines; never propagate their text.
         raise ConfigError('Cannot read explicit database client configuration') from None
     return open_connection(host=host, port=port, name=database['name'], user=user,
-                           password=password, unix_socket=socket)
+                           password=password, unix_socket=socket, **timeouts)
 
 
-def open_connection(host='127.0.0.1', port=3306, name=None, user=None, password=None, unix_socket=None):
+def open_connection(host='127.0.0.1', port=3306, name=None, user=None, password=None, unix_socket=None,
+                    connect_timeout=5, read_timeout=10, write_timeout=10):
     connection = pymysql.connect(host=host, port=port, database=name, user=user, password=password,
-        unix_socket=unix_socket, charset='utf8mb4', autocommit=False, connect_timeout=5,
-        read_timeout=10, write_timeout=10, cursorclass=pymysql.cursors.DictCursor)
+        unix_socket=unix_socket, charset='utf8mb4', autocommit=False, connect_timeout=connect_timeout,
+        read_timeout=read_timeout, write_timeout=write_timeout, cursorclass=pymysql.cursors.DictCursor)
     with connection.cursor() as cursor:
         cursor.execute("SET time_zone = '+00:00'")
         cursor.execute("SET SESSION sql_mode = 'STRICT_ALL_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_ENGINE_SUBSTITUTION'")

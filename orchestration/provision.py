@@ -11,8 +11,8 @@ from orchestration.migrations import require_current
 BUSINESS = ('product_dim','sales_cube','sale_order','sale_order_item','customer_rfm',
     'customer_seen_item','item_similarity','product_popularity','customer_recommendation')
 READ_COLUMNS = {
- 'data_batch':'batch_id,status,source_name,source_sha256,policy_version,raw_rows,created_at,updated_at,min_source_date,max_source_date',
- 'task_run':'run_id,batch_id,parent_run_id,task_name,attempt,status,created_at,started_at,finished_at,heartbeat_at,application_id,error_code,error_message,output_manifest_path',
+ 'data_batch':'batch_id,status,source_name,source_sha256,policy_version,raw_rows,created_at,updated_at,min_source_date,max_source_date,quality_report_path',
+ 'task_run':'run_id,batch_id,parent_run_id,task_name,attempt,status,created_at,started_at,finished_at,heartbeat_at,application_id,error_code,error_message,output_manifest_path,log_path',
  'experiment':'experiment_id,batch_id,status,split_policy_version,champion_algorithm,created_at,finished_at,test_sealed_at',
  'model_run':'model_run_id,batch_id,experiment_id,algorithm,purpose,device,status,created_at,finished_at',
 }
