@@ -64,3 +64,11 @@ def test_report_cannot_attach_another_versions_acceptance(api,tmp_path):
     with pytest.raises(ManifestError):
         report(api['c'],{},api['eid'],api['rid'],tmp_path/'report',acceptance_file=evidence)
     assert not (tmp_path/'report').exists()
+
+
+def test_report_rejects_unsubstantiated_overall_pass(api,tmp_path):
+    evidence=tmp_path/'acceptance.json'
+    evidence.write_text(json.dumps(dict(status='PASS',release_id=api['rid'],experiment_id=api['eid'])))
+    with pytest.raises(ManifestError):
+        report(api['c'],{},api['eid'],api['rid'],tmp_path/'report',acceptance_file=evidence)
+    assert not (tmp_path/'report').exists()

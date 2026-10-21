@@ -55,10 +55,15 @@ def report(connection, config, experiment_id, release_id, directory, *, dry_run=
         if ({m['algorithm'] for m in models} != {'POP','ITEMCF','ALS','NCF'} or len(models) != 4
                 or {m['algorithm'] for m in fullfit} != {'POP','ITEMCF','ALS','NCF'} or len(fullfit) != 4
                 or any(m['purpose']!='EVAL' or m['status']!='SUCCEEDED' for m in models)
-                or any(m['purpose']!='FULLFIT' or m['status']!='SUCCEEDED' for m in fullfit)):
+                or any(m['purpose']!='FULLFIT' or m['status']!='SUCCEEDED' for m in fullfit)
+                or any(m['batch_id']!=release['batch_id'] or m['experiment_id']!=experiment_id for m in [*models,*fullfit])):
             raise ManifestError('Report model bindings are incomplete')
         metrics = query('''SELECT m.algorithm,v.* FROM experiment_model e JOIN model_run m USING(model_run_id)
             JOIN model_metric v USING(model_run_id) WHERE e.experiment_id=%s ORDER BY m.algorithm,v.split_name,v.cohort''', (experiment_id,))
+        expected_metrics={(a,s,c) for a in ('POP','ITEMCF','ALS','NCF') for s in ('VALIDATION','TEST') for c in ('WARM','ALL_ELIGIBLE')}
+        if (len(metrics)!=16 or {(r['algorithm'],r['split_name'],r['cohort']) for r in metrics}!=expected_metrics
+                or any(r['k']!=10 or r['candidate_policy_version']!='full-catalog-v1' for r in metrics)):
+            raise ManifestError('Report requires complete selected-model metrics')
         ncf = next(m['model_run_id'] for m in models if m['algorithm']=='NCF')
         benchmarks = query('SELECT * FROM gpu_benchmark WHERE model_run_id=%s ORDER BY device,repeat_index', (ncf,))
         history = query('''SELECT m.algorithm,m.purpose,h.* FROM model_epoch h JOIN model_run m USING(model_run_id)
@@ -95,6 +100,19 @@ def report(connection, config, experiment_id, release_id, directory, *, dry_run=
         acceptance = json.loads(acceptance_path.read_text())
         if acceptance.get('release_id') != release_id or acceptance.get('experiment_id') != experiment_id:
             raise ManifestError('Acceptance evidence belongs to another release/experiment')
+        expected_requirements={f'{kind}-{i:02d}' for kind,count in (('FR',12),('NF',8)) for i in range(1,count+1)}
+        expected_tests={f'T-{i:02d}' for i in range(1,21)}
+        expected_gates={'G-DOC','G-ENV','G-DATA','G-MR','G-MODEL','G-GPU','G-RELEASE','G-APP','G-RECOVERY'}
+        if (acceptance.get('schema_version')!='1.0' or acceptance.get('scope')!='W11_VERIFICATION'
+                or set(acceptance.get('requirements',{}))!=expected_requirements
+                or set(acceptance.get('tests',{}))!=expected_tests or set(acceptance.get('gates',{}))!=expected_gates):
+            raise ManifestError('Acceptance evidence does not cover the full project')
+        states=[r['status'] for group in ('requirements','tests','gates') for r in acceptance[group].values()]
+        complete=all(state=='PASS' for state in states)
+        if (any(state not in ('PASS','FAIL','NOT_RUN') for state in states)
+                or acceptance.get('status')!=('PASS' if complete else 'INCOMPLETE')
+                or acceptance.get('project_complete') is not complete):
+            raise ManifestError('Acceptance result contradicts its open gates')
         result['acceptance_evidence'] = dict(path=str(acceptance_path), sha256=hashlib.sha256(acceptance_path.read_bytes()).hexdigest(), report=acceptance)
         result['project_acceptance'] = acceptance['status']
     if dry_run:
