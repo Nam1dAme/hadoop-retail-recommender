@@ -49,6 +49,23 @@ def main():
     benchmark=sub.add_parser('benchmark')
     benchmark.add_argument('--experiment-id',required=True)
     benchmark.add_argument('--model-run-id',required=True)
+    publication=sub.add_parser('publish')
+    publication.add_argument('--batch-id',required=True)
+    publication.add_argument('--experiment-id',required=True)
+    publication.add_argument('--model-run-ids',nargs=4,required=True)
+    rollback=sub.add_parser('rollback')
+    rollback.add_argument('--release-id',required=True)
+    rollback.add_argument('--reason',required=True)
+    verification=sub.add_parser('verify')
+    verification.add_argument('--release-id',required=True)
+    verification.add_argument('--restore-root',help='Read an isolated HDFS restore while preserving original manifest hashes')
+    backup=sub.add_parser('backup')
+    backup.add_argument('--release-id',required=True)
+    backup.add_argument('--output-dir',required=True,type=Path)
+    restoration=sub.add_parser('restore')
+    restoration.add_argument('--backup-dir',required=True,type=Path)
+    restoration.add_argument('--output-dir',required=True,type=Path)
+    restoration.add_argument('--hdfs-root',required=True)
     provision=sub.add_parser('db-provision')
     provision.add_argument('--admin-user',required=True)
     provision.add_argument('--admin-socket',type=Path)
@@ -63,6 +80,22 @@ def main():
         if args.command=='storage-init':
             from orchestration.storage import initialize_storage
             result={'directories':initialize_storage(config,args.dry_run),'dry_run':args.dry_run}
+        elif args.command=='restore':
+            from orchestration.recovery import restore
+            if args.dry_run:
+                from orchestration.recovery import verify_backup,recovery_root
+                record=verify_backup(args.backup_dir)
+                result={'dry_run':True,'release_id':record['release_id'],'hdfs_root':recovery_root(config,args.hdfs_root)}
+            else:
+                # Use the host only for the shared job lock. SQL restoration is
+                # confined to the fresh socket-only test server.
+                from orchestration.database import named_lock
+                connection=connect(config,args.db_defaults_file)
+                try:
+                    with named_lock(connection):
+                        result=restore(config,args.backup_dir,args.output_dir,args.hdfs_root)
+                finally:
+                    connection.close()
         elif args.command=='db-provision':
             from orchestration.provision import provision
             if args.dry_run:
@@ -103,6 +136,21 @@ def main():
                 elif args.command=='benchmark':
                     from orchestration.w07 import benchmark as run_benchmark
                     result=run_benchmark(connection,config,args.experiment_id,args.model_run_id,dry_run=args.dry_run)
+                elif args.command=='publish':
+                    from orchestration.publication import publish
+                    result=publish(connection,config,args.batch_id,args.experiment_id,args.model_run_ids,dry_run=args.dry_run)
+                elif args.command=='rollback':
+                    from orchestration.publication import rollback
+                    result=rollback(connection,config,args.release_id,args.reason,dry_run=args.dry_run)
+                elif args.command=='verify':
+                    from orchestration.publication import verify
+                    result=verify(connection,config,args.release_id,restore_root=args.restore_root)
+                elif args.command=='backup':
+                    from orchestration.recovery import backup
+                    if args.dry_run:
+                        result={'dry_run':True,'release_id':args.release_id,'output_directory':str(args.output_dir)}
+                    else:
+                        result=backup(connection,config,args.release_id,args.output_dir)
                 elif args.command=='db-prepare-roles':
                     from orchestration.provision import prepare_roles
                     result=prepare_roles(connection,work/'secrets',args.dry_run)
