@@ -45,7 +45,14 @@ source scripts/dev-env.sh
 uv run --locked python -m app --config config/development.toml
 ```
 
-Windows 浏览器访问 <http://localhost:8501>。API 健康地址为 <http://localhost:8000/api/v1/health/ready>。页面进程会清除继承的数据库凭据，仅通过本机只读 HTTP 接口查询。
+Windows 浏览器建议访问 <http://127.0.0.1:8501>。API 健康地址为 <http://127.0.0.1:8000/api/v1/health/ready>。页面进程会清除继承的数据库凭据，仅通过本机只读 HTTP 接口查询。
+
+本机 Windows 复查中，IPv4 UI/API 均返回200；IPv6 `::1` 的 WSL 转发超时，部分 PowerShell/.NET 客户端使用 `localhost` 时未及时回退IPv4。因此检查命令建议明确使用 `127.0.0.1`，浏览器采用正常IPv4回退时 `localhost` 也可访问。该差异不需要将服务改成全网监听：
+
+```powershell
+curl.exe --noproxy "*" http://127.0.0.1:8501/_stcore/health
+curl.exe --noproxy "*" http://127.0.0.1:8000/api/v1/health/ready
+```
 
 ## 2. 五分钟演示路线
 

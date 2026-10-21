@@ -1,0 +1,11 @@
+{
+    "ui_status":  200,
+    "host":  "127.0.0.1",
+    "api_status":  200,
+    "localhost_addresses":  [
+                                "::1",
+                                "127.0.0.1"
+                            ],
+    "observed_at":  "2026-10-21T18:24:19.0128872Z",
+    "ui_body":  "ok"
+}

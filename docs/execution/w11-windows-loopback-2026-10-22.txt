@@ -1,0 +1,4 @@
+IPv4:200
+curl: (28) Connection timed out after 3004 milliseconds
+IPv6:000
+{"body":"ok","dotnet_ipv4_status":200}

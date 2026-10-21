@@ -1,0 +1,23 @@
+{
+    "partitions":  [
+                       {
+                           "DriveLetter":  "C",
+                           "DiskNumber":  0
+                       },
+                       {
+                           "DriveLetter":  "D",
+                           "DiskNumber":  0
+                       },
+                       {
+                           "DriveLetter":  "E",
+                           "DiskNumber":  0
+                       }
+                   ],
+    "disks":  [
+                  {
+                      "Number":  0,
+                      "BusType":  "NVMe",
+                      "Size":  1024209543168
+                  }
+              ]
+}
