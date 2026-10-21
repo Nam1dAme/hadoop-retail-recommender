@@ -30,6 +30,7 @@ def main():
     parser.add_argument('--output',required=True,type=Path)
     parser.add_argument('--screenshots',type=Path,default=ROOT/'var/w10/screenshots')
     args=parser.parse_args()
+    args.screenshots=args.screenshots.resolve()
     config=load_config(args.config)
     address=f"http://{config['ui']['host']}:{config['ui']['port']}"
     api=config['api']['url']
@@ -106,7 +107,8 @@ def main():
             check(f'{slug} main responsive {width}',page.locator('[data-testid="stMain"]').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1'))
             path=args.screenshots/f'{slug}-{width}.png'
             page.screenshot(path=str(path),full_page=False)
-            screenshots.append(dict(page=slug,width=width,path=str(path.relative_to(ROOT)),sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+            recorded=path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
+            screenshots.append(dict(page=slug,width=width,path=str(recorded),sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
 
         page=opened(1440)
         expected=['£'+format(Decimal(summary[key]),',.2f') for key in ('gross_amount','return_amount','net_amount')]
