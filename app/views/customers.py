@@ -12,12 +12,11 @@ def customers(api, release):
     defaults = dict(segment=None,customer_id='')
     current = defaults | st.session_state.get('applied_customers',{})
     with st.form('customer_filters',border=False):
-        a,b,c = st.columns([1.3,1.8,1.4])
+        a,b,c = st.columns([1.3,1.8,1.4],vertical_alignment='bottom')
         with a:segment = st.selectbox('客户分层',['ALL',*SEGMENTS],
             format_func=lambda x:SEGMENTS.get(x,'全部客户分层'),key=seed('view_customers_segment',current['segment'] or 'ALL'))
         with b:customer_id = st.text_input('客户编号',placeholder='输入公开数据中的 CustomerID',key=seed('view_customers_id',current['customer_id']),max_chars=32)
         with c:
-            st.html('<div class="button-spacer"></div>')
             x,y = st.columns(2)
             with x:submitted = st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=('customers',),use_container_width=True)
@@ -56,11 +55,10 @@ def associations(api, release):
         current = dict(stock_code=candidate,k=10)
     defaults = dict(stock_code='',k=10)
     with st.form('association_filters',border=False):
-        a,b,c = st.columns([2,1,1.4])
+        a,b,c = st.columns([2,1,1.4],vertical_alignment='bottom')
         with a:stock = st.text_input('商品编码',placeholder='例如来源数据中的 StockCode',key=seed('view_associations_stock',current['stock_code']),max_chars=32)
         with b:k = st.number_input('关联数量 K',min_value=1,max_value=10,step=1,key=seed('view_associations_k',current['k']))
         with c:
-            st.html('<div class="button-spacer"></div>')
             x,y = st.columns(2)
             with x:submitted = st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=('associations',),use_container_width=True)
@@ -93,12 +91,11 @@ def recommendations(api, release):
             st.session_state['lookup_default_customer']=users[0]['customer_id'] if users else ''
         current['customer_id'] = st.session_state['lookup_default_customer']
     with st.form('recommendation_filters',border=False):
-        a,b,c,d = st.columns([1.5,1.1,.8,1.4])
+        a,b,c,d = st.columns([1.5,1.1,.8,1.4],vertical_alignment='bottom')
         with a:customer = st.text_input('客户编号',placeholder='输入 CustomerID',max_chars=32,key=seed('view_recommendations_customer',current['customer_id']))
         with b:algorithm = st.selectbox('推荐算法',ALGORITHMS,key=seed('view_recommendations_algorithm',current['algorithm']))
         with c:k = st.number_input('推荐数量 K',min_value=1,max_value=10,step=1,key=seed('view_recommendations_k',current['k']))
         with d:
-            st.html('<div class="button-spacer"></div>')
             x,y = st.columns(2)
             with x:submitted = st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=('recommendations',),use_container_width=True)

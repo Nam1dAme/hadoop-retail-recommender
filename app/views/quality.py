@@ -20,10 +20,9 @@ def quality(api,release):
         a,b=st.columns([2,2])
         with a:batch_id=st.text_input('数据批次',key=seed('view_quality_batch',current['batch_id']),placeholder='输入 batch_id')
         with b:run_id=st.text_input('任务编号（可选）',key=seed('view_quality_run',current['run_id']),placeholder='输入 run_id 查看详情')
-        a,b=st.columns([2,1.4])
+        a,b=st.columns([2,1.4],vertical_alignment='bottom')
         with a:status=st.selectbox('任务状态',STATES,format_func=lambda x:STATUS.get(x,'全部状态'),key=seed('view_quality_status',current['status'] or 'ALL'))
         with b:
-            st.html('<div class="button-spacer"></div>')
             x,y=st.columns(2)
             with x:submitted=st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=('quality',),use_container_width=True)

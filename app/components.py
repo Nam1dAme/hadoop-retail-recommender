@@ -114,12 +114,11 @@ def sales_filters(api, release, page, *, extended=False):
     # reused across renders, and an outage still produces a visible query error.
     names = ['全部国家']+st.session_state['lookup_countries']
     with st.form(page+'_filters',border=False):
-        a,b,c,d = st.columns([1.2,1.2,1.7,1.4],gap='medium')
+        a,b,c,d = st.columns([1.2,1.2,1.7,1.4],gap='medium',vertical_alignment='bottom')
         with a:start = st.date_input('开始日期',value=None,min_value=date(1000,1,1),max_value=date.max,format='YYYY/MM/DD',key=seed('view_'+page+'_start',current['start_date']))
         with b:end = st.date_input('结束日期',value=None,min_value=date(1000,1,1),max_value=date.max,format='YYYY/MM/DD',key=seed('view_'+page+'_end',current['end_date']))
         with c:country = st.selectbox('国家或地区',names,key=seed('view_'+page+'_country',current['country'] or names[0]))
         with d:
-            st.html('<div class="button-spacer" aria-hidden="true"></div>')
             x,y = st.columns([1,1])
             with x:submitted = st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=(page,),use_container_width=True)

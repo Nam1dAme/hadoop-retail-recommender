@@ -43,7 +43,7 @@ def main():
         sample_run=next(r['run_id'] for r in all_runs if r['application_id'])
         batches=http.get(api+'/batches',params={'page_size':100}).json()['data']['items']
         source_sha256=next(r['source_sha256'] for r in batches if r['batch_id']==release['batch_id'])
-    checks=[];screenshots=[];js_errors=[];external=[]
+    checks=[];screenshots=[];js_errors=[];external=[];layouts=[]
     def check(label,condition):
         assert condition,label
         checks.append(label)
@@ -105,6 +105,35 @@ def main():
         def snapshot(page,slug,width):
             check(f'{slug} outer responsive {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
             check(f'{slug} main responsive {width}',page.locator('[data-testid="stMain"]').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1'))
+            geometry=page.evaluate('''()=>{
+                const box=el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};
+                const side=document.querySelector('[data-testid="stSidebar"]');
+                const main=document.querySelector('[data-testid="stMain"]');
+                const content=document.querySelector('[data-testid="stMainBlockContainer"]');
+                const forms=[...document.querySelectorAll('[data-testid="stForm"]')].map(form=>{
+                    const buttons=[...form.querySelectorAll('button')];
+                    const apply=buttons.find(el=>el.textContent.trim()==='应用');
+                    const clear=buttons.find(el=>el.textContent.trim()==='清空');
+                    if(!apply||!clear)return null;
+                    const inner=apply.closest('[data-testid="stColumn"]');
+                    const group=inner?.parentElement.closest('[data-testid="stColumn"]');
+                    const row=group?.closest('[data-testid="stHorizontalBlock"]');
+                    const peers=row?[...row.querySelectorAll('[data-baseweb="select"],[data-baseweb="input"]')].map(box):[];
+                    return {apply:box(apply),clear:box(clear),peers};
+                }).filter(Boolean);
+                return {main:box(main),content:box(content),sidebar:box(side),expanded:side.getAttribute('aria-expanded')==='true',forms};
+            }''')
+            layouts.append(dict(page=slug,viewport_width=width,**geometry))
+            main,content=geometry['main'],geometry['content']
+            check(f'{slug} content centered {width}',abs(content['x']+content['width']/2-main['x']-main['width']/2)<=1)
+            if not geometry['expanded']:
+                check(f'{slug} collapsed sidebar releases width {width}',geometry['sidebar']['width']<=1 and main['x']<=1 and abs(main['width']-width)<=1)
+            for form in geometry['forms']:
+                apply_box,clear_box=form['apply'],form['clear']
+                check(f'{slug} action buttons align {width}',abs(apply_box['bottom']-clear_box['bottom'])<=1 and abs(apply_box['height']-clear_box['height'])<=1)
+                peers=[r for r in form['peers'] if width>=768 or abs(r['y']-apply_box['y'])<40]
+                for peer in peers:
+                    check(f'{slug} actions align with inputs {width}',abs(peer['bottom']-apply_box['bottom'])<=1 and abs(peer['height']-apply_box['height'])<=1)
             path=args.screenshots/f'{slug}-{width}.png'
             page.screenshot(path=str(path),full_page=False)
             recorded=path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
@@ -176,6 +205,17 @@ def main():
         check('keyboard focus is visible',target.evaluate('(el)=>getComputedStyle(el).outlineStyle')!='none')
         page.close()
 
+        for width in (1440,1920):
+            page=opened(width)
+            snapshot(page,'overview-expanded',width)
+            sidebar(page,False)
+            page.wait_for_function('document.querySelector(\'[data-testid="stSidebar"]\').getAttribute("aria-expanded")==="false"')
+            snapshot(page,'overview-collapsed',width)
+            sidebar(page,True)
+            page.wait_for_function('document.querySelector(\'[data-testid="stSidebar"]\').getAttribute("aria-expanded")==="true"')
+            snapshot(page,'overview-restored',width)
+            page.close()
+
         for width in (1024,768,360):
             page=opened(width,1080)
             if width<768:sidebar(page,False)
@@ -203,7 +243,7 @@ def main():
         source_sha256=source_sha256,
         browser=dict(version=browser_version,engine='Chromium headless',gpu_disabled=True),
         environment=dict(python=platform.python_version(),packages={n:importlib.metadata.version(n) for n in ('streamlit','plotly','pandas','pyarrow','numpy','httpx','playwright')}),
-        checks=checks,check_count=len(checks),screenshots=screenshots,javascript_errors=js_errors,
+        checks=checks,check_count=len(checks),screenshots=screenshots,layouts=layouts,javascript_errors=js_errors,
         scope='Real loopback Streamlit and W09 API. No database writes, no model training, no fixture substitution. Lifecycle/outage cases are covered separately by isolated AppTest integration tests.')
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')

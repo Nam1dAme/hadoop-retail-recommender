@@ -40,13 +40,12 @@ def experiments(api,release):
         a,b = st.columns([3,1.4])
         with a:eid = st.text_input('实验编号',key=seed('view_experiments_id',current['experiment_id']),placeholder='输入已记录实验的 UUID')
         with b:algorithm = st.selectbox('关注算法',['全部算法',*ALGORITHMS],key=seed('view_experiments_algorithm',current['algorithm']))
-        a,b,c = st.columns([1,1.4,1.4])
+        a,b,c = st.columns([1,1.4,1.4],vertical_alignment='bottom')
         with a:split = st.selectbox('评价窗口',['TEST','VALIDATION'],
             format_func=lambda x:'测试集 TEST' if x=='TEST' else '验证集 VALIDATION',key=seed('view_experiments_split',current['split']))
         with b:cohort = st.selectbox('评价人群',['WARM','ALL_ELIGIBLE'],
             format_func=lambda x:'已知客户 WARM' if x=='WARM' else '全部可评价客户 ALL_ELIGIBLE',key=seed('view_experiments_cohort',current['cohort']))
         with c:
-            st.html('<div class="button-spacer"></div>')
             x,y=st.columns(2)
             with x:submitted=st.form_submit_button('应用',type='primary',use_container_width=True)
             with y:st.form_submit_button('清空',on_click=clear_callback,args=('experiments',),use_container_width=True)

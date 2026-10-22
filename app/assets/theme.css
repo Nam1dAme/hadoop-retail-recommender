@@ -4,10 +4,12 @@
 .stApp{background:var(--cloud);color:var(--ink)}
 .stApp,.stApp input,.stApp button,.stApp select,.stApp textarea,.stApp [data-testid="stMarkdownContainer"]{font-family:'Retail Numerals','Retail Chinese',sans-serif}
 .stApp p,.stApp li{line-height:1.65}
-[data-testid="stMainBlockContainer"]{max-width:1600px;padding:2rem 2.5rem 4rem}
+[data-testid="stMainBlockContainer"]{width:100%;max-width:1600px;margin-inline:auto;padding:2rem 2.5rem 4rem}
 [data-testid="stHeader"]{background:transparent;height:2rem}
 [data-testid="stToolbar"],#MainMenu,[data-testid="stAppDeployButton"],[data-testid="stDecoration"]{display:none}
-[data-testid="stSidebar"]{background:#FFF;border-right:1px solid var(--line);min-width:238px!important;max-width:238px!important}
+[data-testid="stSidebar"]{background:#FFF;border-right:1px solid var(--line)}
+[data-testid="stSidebar"][aria-expanded="true"]{min-width:238px!important;max-width:238px!important}
+[data-testid="stSidebar"][aria-expanded="false"]{width:0!important;min-width:0!important;max-width:0!important;border-right:0}
 [data-testid="stSidebarContent"]{padding:1.5rem 1rem}
 [data-testid="stSidebarUserContent"]{padding:0}
 [data-testid="stVerticalBlock"]{gap:1rem}
@@ -42,7 +44,8 @@
 [data-testid="stTextInput"] input,[data-testid="stDateInput"] input{font-size:14px}
 [data-baseweb="input"],[data-baseweb="select"]>div{border-radius:6px;background-color:#FFF}
 [data-testid="stWidgetLabel"] p{font-size:12px;color:#556680}
-.button-spacer{height:25px}
+.stApp [data-testid="stFormSubmitButton"] button{min-height:40px}
+[data-testid="stForm"] [data-baseweb="input"]{min-height:40px}
 .metric-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px;padding:20px 0 23px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 4px;font-variant-numeric:tabular-nums}
 .metric{padding:0 12px 0 1px;min-width:0}
 .metric span{font-size:12px;color:#5C6C84;display:block;margin-bottom:9px}
@@ -92,7 +95,7 @@ button[data-baseweb="tab"]{font-size:13px;padding:5px 2px 10px;min-height:36px}
 @media(min-width:1280px){.metric-strip:has(.metric:nth-child(6)){grid-template-columns:1.5fr 1.25fr 1.5fr .8fr .8fr 1fr;gap:12px}.metric strong{font-size:22px}}
 @media(min-width:1550px){.metric strong{font-size:25px}}
 @media(max-width:1000px){[data-testid="stMainBlockContainer"]{padding:1.7rem 1.5rem 3rem}.metric strong{font-size:25px}.pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:767px){[data-testid="stMainBlockContainer"]{padding:1.7rem 1rem 2.5rem}[data-testid="stHorizontalBlock"]{flex-wrap:wrap!important}[data-testid="stColumn"]{min-width:0!important;flex:1 1 100%!important;width:100%!important}[data-testid="stForm"] [data-testid="stColumn"]{flex:1 1 140px!important}.metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.metric strong{font-size:24px}.metric small{font-size:10px}.page-heading h1{font-size:26px}.context-bar{gap:8px 14px;font-size:11px}[class*="st-key-panel_"]{padding:18px 14px}.button-spacer{height:3px}.pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.rec-list li{grid-template-columns:26px 1fr;gap:12px}.rec-score{grid-column:2;text-align:left;font-size:13px}.rec-score small{display:inline;margin-left:8px}.rec-rank{font-size:18px}}
+@media(max-width:767px){[data-testid="stMainBlockContainer"]{padding:1.7rem 1rem 2.5rem}[data-testid="stHorizontalBlock"]{flex-wrap:wrap!important}[data-testid="stColumn"]{min-width:0!important;flex:1 1 100%!important;width:100%!important}[data-testid="stForm"] [data-testid="stColumn"]{flex:1 1 140px!important}.metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.metric strong{font-size:24px}.metric small{font-size:10px}.page-heading h1{font-size:26px}.context-bar{gap:8px 14px;font-size:11px}[class*="st-key-panel_"]{padding:18px 14px}.pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.rec-list li{grid-template-columns:26px 1fr;gap:12px}.rec-score{grid-column:2;text-align:left;font-size:13px}.rec-score small{display:inline;margin-left:8px}.rec-rank{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media(max-width:420px){.metric strong{font-size:20px}}
 @media(max-width:767px){.page-crumb{padding-left:52px}}
