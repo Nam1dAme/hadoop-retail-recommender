@@ -103,6 +103,14 @@ def main():
             page.get_by_role('option',name=value,exact=True).click()
 
         def snapshot(page,slug,width):
+            # Sidebar state changes before Plotly's ResizeObserver updates the
+            # charts. Wait for the same overflow condition we assert below,
+            # rather than sampling a transient stale chart width. Persistent
+            # overflow still fails after this bounded wait.
+            page.wait_for_function('''()=>{
+                const main=document.querySelector('[data-testid="stMain"]');
+                return main && main.scrollWidth<=main.clientWidth+1;
+            }''',timeout=5000)
             check(f'{slug} outer responsive {width}',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
             check(f'{slug} main responsive {width}',page.locator('[data-testid="stMain"]').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1'))
             geometry=page.evaluate('''()=>{
