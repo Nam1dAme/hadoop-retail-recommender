@@ -1,0 +1,83 @@
+# 项目实施与环境记录汇总
+
+本文由原根目录 README 于 2026-10-25 迁入，保存 W01—W11 的实施进度、环境排障、验收结果及运维说明。以下保留各阶段的历史表述；当前交付情况以 [交付复查记录](2026-10-25-handoff.md) 为准，项目介绍见 [仓库首页](../../README.md)。文中的命令和代码路径均以仓库根目录为起点。
+
+基于 Hadoop 与 CUDA 神经协同过滤的电商分析及推荐系统。唯一真实数据源为 [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)，CC BY 4.0，金额 GBP、来源本地时间；已完成真实导入、Hadoop业务计算、四算法离线评价、全历史服务推荐、CPU/CUDA 对照、真实发布与本机恢复演练，并通过只读 API 与七页中文工作台展示。
+
+设计依据：[docs/README.md](../README.md)，冻结基线 `HL-DOC-1.0.0`。2026-10-19 起按新用户指令建立工程基础，保留冻结文档历史；实测进度见 [执行记录](2026-10-19-foundation.md)、[故障排查记录](2026-10-19-troubleshooting.md)、[uv 迁移记录](2026-10-19-uv-migration.md)。
+
+**2026-10-25 交付范围更新：** 用户明确要求暂不处理外部备份，继续其余部分。W01—W11 的软件功能、本机验收、演示手册与 [GPU 优化实验方案](../gpu-optimization-plan.md) 按此要求交付；本轮复查见 [交付记录](2026-10-25-handoff.md)。下方各阶段保留当时结果与正式门禁状态；外部存储不再阻塞本轮工作。
+
+2026-10-20 已复查当前会话：PyPI/PyTorch/Maven/GitHub HTTPS、Git 远程读取、真实 CUDA 矩阵计算和反向传播正常。W02 已实现完整 001 迁移、角色配置、批次/任务/实验控制和 manifest 核验；33 项测试通过，其中数据库测试使用独立 MariaDB 10.11.14 实例。正式 HDFS `/retail/v1` 命名空间已建立。现有 MariaDB 已按用户授权完成正式 001 迁移；migration/writer/reader 三账号最小权限均已实测通过，W02 及 G-ENV 对应的数据库门禁已完成，详见 [W02 执行记录](2026-10-20-w02.md) 和 [迁移使用说明](../../migrations/README.md)。
+
+W03 已完成：真实 UCI 文件 541,909 行已原样归档 HDFS 并生成标准化 TSV、来源审计、拒绝/warning 报告及 manifest。首次导入与再次导入复用同一批次/任务，独立扫描验证全部源行追溯和 5,268 条重复超额行；重复交易均保留。W03 验收时导入任务 SUCCEEDED、批次 PROCESSING，后续已由 W04 完成业务流水线。历史验收见 [W03 执行记录](2026-10-20-w03.md)，命令及模块说明见 [导入说明](../../etl/README.md)。
+
+W04 已完成：J01—J08 的十二个真实 YARN 应用全部成功，独立验算通过 37,830 项检查；原批次现为 SUCCEEDED。产出 19,960 个正向订单、4,338 个客户的 RFM，以及销售、完整购买交互和相似商品结果。重复执行复用同一批任务，完整回归 86 项通过，W03 兼容验收通过。构建/使用见 [MapReduce 说明](../../mapreduce/README.md)，真实应用、金额及源码证据见 [W04 执行记录](2026-10-20-w04.md) 和 [完整验收 JSON](w04-verification-2026-10-20.json)。
+
+W05 已完成实验数据与评价协议验收：训练窗 3,314 位客户、3,388 个候选商品、162,426 对购买交互；五个 TRAIN 窗口 YARN 应用成功，独立从 clean 重建两套映射、交互、热门和评价标签均一致。说明见 [实验与模型使用说明](../../ml/README.md)，证据见 [W05 执行记录](2026-10-20-w05.md)。
+
+W06 已完成：POP/ItemCF、四组ALS、两组真实CUDA NCF共八个EVAL候选成功，四算法TEST评价完成并封存。验证选出的默认算法为ALS（rank32/reg0.1），NCF选定lr0.001、第15轮checkpoint；最终回归105项通过，独立模型/负采样/封存验收及同实验幂等复查均通过。一次POP归档失败及重试记录完整保留。详见 [W06 执行记录](2026-10-21-w06.md) 和 [完整验收 JSON](w06-verification-2026-10-21.json)。
+
+W07 已完成：CPU/CUDA各三次真实NCF对照、四个FULLFIT模型与173,520条服务推荐通过独立验收，每算法覆盖全部4,338位RFM客户。CPU/CUDA训练中位数分别为13.34/25.25秒，加速比0.5285，本次固定规模下GPU更慢；成功命令全部复用原产物且相关控制表不变，最终回归116项通过。详见 [W07 执行记录](2026-10-21-w07.md) 和 [完整验收 JSON](w07-verification-2026-10-21.json)。
+
+W08 已实现并完成真实首发与本机恢复验收：版本 `R20261021104550ac6985a5` 为 READY，九张业务表共 1,328,466 行；重复发布及恢复前后生产库全部 23 张表哈希一致，最终回归 133 项通过。按用户选择使用本机副本演练，独立物理盘备份门禁尚未通过。命令见 [发布与恢复说明](../../orchestration/README.md)，证据见 [W08 执行记录](2026-10-21-w08.md) 和 [完整验收 JSON](w08-verification-2026-10-21.json)。
+
+W09 已完成：FastAPI 的 20 个只读端点接入上述真实发布版本，包含销售、RFM、四算法推荐、EVAL 指标、训练曲线、CPU/CUDA 对照与任务质量查询。全量回归 178 项通过；真实 HTTP/独立 SQL 对照 265 项检查通过，23 张表全部 reader 可见数据的前后摘要一致；5 并发短测 15 请求零错误，P95 为 1.234 秒，该短测不替代 W11 性能验收。启动方法见 [API 使用说明](../../service/README.md)，证据见 [W09 执行记录](2026-10-21-w09.md) 和 [完整验收 JSON](w09-verification-2026-10-21.json)。
+
+W10 已完成：按 frontend-design skill 重新设计“零售观察”，七页 Streamlit 全部接入真实 API，包含固定版本、筛选/分页、图表与精确数据表、EVAL/FULLFIT 曲线、未知客户兜底、空态和错误恢复。提交后全量回归 191 项通过，真实浏览器 153 项检查通过，17 张截图覆盖 1440/1024/768/390/360 像素，GPU 禁用渲染。启动后访问 **http://127.0.0.1:8501**；命令及演示路线见 [页面说明](../../app/README.md)，视觉与验收见 [W10 执行记录](2026-10-22-w10.md) 和 [浏览器证据](w10-browser-2026-10-22.json)。
+
+W11 本机验收与交付已执行：196 项回归、265 项真实 HTTP/SQL 对照、153 项浏览器检查通过；13 类查询各 5 并发、100 次测量，零错误，最高 P95 为 0.874 秒。J03 原始/5倍/10倍各三次真实 YARN 实验通过，耗时中位数 29.054/39.069/52.062 秒；481 文件的新隔离恢复通过，九表 1,328,466 行与首发一致。新增只读 `report` 导出及 [启动与五分钟演示手册](../delivery.md)、[实际报告](w11-report-2026-10-22/report.md)、[W11 证据与限制](2026-10-22-w11.md)。独立物理盘正式备份仍未通过，完整项目验收保持 **INCOMPLETE**，不将本机恢复冒充正式备份门禁。
+
+本机交付归档后，已整理独立的 [GPU 优化实验方案](../gpu-optimization-plan.md)：数据常驻显存、编译/优化器、批量与模型规模扫描、AMP分组对照，并区分首次运行和稳态计时。本阶段交付方案，优化实验尚未执行，原0.5285×基准继续保留。
+
+Windows 演示建议访问 **http://127.0.0.1:8501**，IPv4 UI/API 健康均已复查返回200。当前 `::1` 的 WSL 转发超时，部分客户端使用 `localhost` 会等待IPv6；具体检查命令见交付手册，不需要改变服务的回环监听。
+
+Python 版本、虚拟环境和依赖统一由 uv 管理：`.python-version` 固定 3.12，`pyproject.toml` 为唯一依赖声明，`uv.lock` 为已解析生成的完整锁。PyTorch 仅从官方 cu124 索引解析；其他依赖默认 PyPI。旧 pip-tools 输入已移除。
+
+首次在普通 WSL、hadoop 用户终端执行：
+
+```bash
+bash scripts/bootstrap-host.sh
+```
+
+该脚本依次核实宿主盘空间、执行 `uv lock` / `uv sync --locked`、运行 CUDA 与 ALS 冒烟、Maven package、保存环境报告；任何步骤失败立即停止。它不启动 Hadoop 服务、不创建数据库/迁移、不修改驱动。只有这些自动阶段全部通过才生成 completed.json，数据库权限及服务等门禁仍需另行验收。
+
+Hadoop 服务须独立启动，`source scripts/dev-env.sh` 只加载环境变量。`bash scripts/start-hadoop-host.sh` 用于普通 WSL 中启动已停止的本地集群并运行 WordCount 环境冒烟；会先检查进程、备份元数据，保留已有 HDFS 数据。发现已有 Hadoop 进程时会拒绝重复启动。首次验收见 [Hadoop 续检记录](2026-10-19-hadoop-startup.md)；2026-10-20 因服务未运行导致连接被拒绝，恢复后导入目录可读且 YARN WordCount 成功，见 [重启与排障记录](2026-10-20-hadoop-restart.md)。数据查看命令见 [导入说明](../../etl/README.md#查看已导入数据)。
+
+当前标准 `.git` 指针已接通 `.git-local`，普通 Git 可使用现有提交历史；该元数据目录已忽略，不应清理。远程仓库为 [hadoop-retail-recommender](https://github.com/Nam1dAme/hadoop-retail-recommender)，本地 origin 以 `git remote -v` 为准。`scripts/connect-git.sh` 可在缺少标准入口时建立指针，遇到其他 `.git` 会拒绝覆盖。
+
+W01 已归档至 `f62b3cc`；清理及网络/GPU 复查和推送流程见 [收尾记录](2026-10-19-cleanup.md)。普通 WSL 执行 `bash scripts/push-host.sh https://github.com/Nam1dAme/hadoop-retail-recommender.git`，通过实测检查后提交本次报告并推送 main，最后核对远程 commit。
+
+用户配置提交作者后已创建首次提交 `02d564b`。只读诊断脚本可用于对比普通 WSL 与代理会话的网络/GPU/服务访问差异，采集成功不代表 G-ENV 通过。
+
+首次锁定、同步成功后，日常在项目根目录使用：
+
+```bash
+source scripts/dev-env.sh
+uv sync --locked
+uv run --locked python -m pytest
+uv run --locked python scripts/check-environment.py --config config/development.toml --output var/artifacts/environment.json
+uv run --locked python scripts/diagnose-environment.py --output var/artifacts/host-diagnostics.json
+git status
+```
+
+添加或调整依赖使用 `uv add` / `uv remove`，随后检查 pyproject.toml 与 uv.lock 的变更。测试工具位于 dev 依赖组，默认同步安装。Python 选择/建环境使用 `uv python` / `uv venv`；不再调用 pip 或 pip-compile 管理本项目。项目缓存位于 `var/cache/uv`。
+
+安装需要网络和 VHDX 宿主卷至少 15 GiB 余量；已实测 VHDX 位于 E 盘且空间门禁通过。完整脚本每次重新核实空间。当前会话的网络、GPU 可见性、MariaDB 登录及角色权限均已通过实测。uv.lock 已生成，依赖同步、兼容性检查与真实 CUDA 计算通过，见 uv 迁移记录中的原始报告。
+
+CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用隔离小样本在本地文件系统做 fit/save/load，不代表业务模型验收。首次 ALS 的保存路径问题已修复，真实重跑、Maven package 及 Hadoop WordCount 均通过，W01 工程基础检查通过。W02 数据库角色/迁移已验收，详见 W02 执行记录；业务系统仍需后续任务实现。配置说明见 [config/README.md](../../config/README.md)。
+
+数据库凭据由相应角色进程显式注入，示例在 `.env.example`。需要本地文件时用 `umask 077; cp .env.example .env`，填写后仅在相应进程的 shell 显式加载；不要让 UI 继承 writer/migration 凭据。
+
+| 目录 | 职责 |
+|---|---|
+| docs/、docs/execution/ | 冻结规范、独立执行证据 |
+| config/、scripts/ | 非敏感配置、依赖输入/锁、环境工具 |
+| etl/、mapreduce/ | 标准化导入、Java8/Hadoop provided 构建 |
+| ml/ | 四算法、时间切分、评价与 GPU 对照 |
+| orchestration/ | 配置、retailctl、任务编排及后续发布 |
+| service/、app/ | FastAPI 只读接口、Streamlit API 展示 |
+| migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
+| var/ | 忽略的运行数据、缓存、日志与导出 |
+
+当前已实现 W01—W11 的本机功能、性能实验、隔离恢复与交付材料。2026-10-25 按用户指令暂不处理外部备份；FR-12、NF-05 和 G-RECOVERY 的历史正式门禁记录保留，不影响本轮软件与方案交付。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
