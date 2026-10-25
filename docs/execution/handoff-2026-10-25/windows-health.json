@@ -1,0 +1,12 @@
+[
+  {
+    "url": "http://127.0.0.1:8501/_stcore/health",
+    "status_code": 200,
+    "body": "ok"
+  },
+  {
+    "url": "http://127.0.0.1:8000/api/v1/health/ready",
+    "status_code": 200,
+    "body": "{\"data\":{\"status\":\"READY\"},\"meta\":{\"request_id\":\"0228ec4e-8476-4ffb-9e57-42fabac0092c\",\"schema_version\":\"1.0\",\"release_id\":null,\"batch_id\":null}}"
+  }
+]

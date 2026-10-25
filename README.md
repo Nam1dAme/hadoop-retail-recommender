@@ -4,6 +4,8 @@
 
 设计依据：[docs/README.md](docs/README.md)，冻结基线 `HL-DOC-1.0.0`。2026-10-19 起按新用户指令建立工程基础，保留冻结文档历史；实测进度见 [执行记录](docs/execution/2026-10-19-foundation.md)、[故障排查记录](docs/execution/2026-10-19-troubleshooting.md)、[uv 迁移记录](docs/execution/2026-10-19-uv-migration.md)。
 
+**2026-10-25 交付范围更新：** 用户明确要求暂不处理外部备份，继续其余部分。W01—W11 的软件功能、本机验收、演示手册与 [GPU 优化实验方案](docs/gpu-optimization-plan.md) 按此要求交付；本轮复查见 [交付记录](docs/execution/2026-10-25-handoff.md)。下方各阶段保留当时结果与正式门禁状态；外部存储不再阻塞本轮工作。
+
 2026-10-20 已复查当前会话：PyPI/PyTorch/Maven/GitHub HTTPS、Git 远程读取、真实 CUDA 矩阵计算和反向传播正常。W02 已实现完整 001 迁移、角色配置、批次/任务/实验控制和 manifest 核验；33 项测试通过，其中数据库测试使用独立 MariaDB 10.11.14 实例。正式 HDFS `/retail/v1` 命名空间已建立。现有 MariaDB 已按用户授权完成正式 001 迁移；migration/writer/reader 三账号最小权限均已实测通过，W02 及 G-ENV 对应的数据库门禁已完成，详见 [W02 执行记录](docs/execution/2026-10-20-w02.md) 和 [迁移使用说明](migrations/README.md)。
 
 W03 已完成：真实 UCI 文件 541,909 行已原样归档 HDFS 并生成标准化 TSV、来源审计、拒绝/warning 报告及 manifest。首次导入与再次导入复用同一批次/任务，独立扫描验证全部源行追溯和 5,268 条重复超额行；重复交易均保留。W03 验收时导入任务 SUCCEEDED、批次 PROCESSING，后续已由 W04 完成业务流水线。历史验收见 [W03 执行记录](docs/execution/2026-10-20-w03.md)，命令及模块说明见 [导入说明](etl/README.md)。
@@ -20,7 +22,7 @@ W08 已实现并完成真实首发与本机恢复验收：版本 `R2026102110455
 
 W09 已完成：FastAPI 的 20 个只读端点接入上述真实发布版本，包含销售、RFM、四算法推荐、EVAL 指标、训练曲线、CPU/CUDA 对照与任务质量查询。全量回归 178 项通过；真实 HTTP/独立 SQL 对照 265 项检查通过，23 张表全部 reader 可见数据的前后摘要一致；5 并发短测 15 请求零错误，P95 为 1.234 秒，该短测不替代 W11 性能验收。启动方法见 [API 使用说明](service/README.md)，证据见 [W09 执行记录](docs/execution/2026-10-21-w09.md) 和 [完整验收 JSON](docs/execution/w09-verification-2026-10-21.json)。
 
-W10 已完成：按 frontend-design skill 重新设计“零售观察”，七页 Streamlit 全部接入真实 API，包含固定版本、筛选/分页、图表与精确数据表、EVAL/FULLFIT 曲线、未知客户兜底、空态和错误恢复。提交后全量回归 191 项通过，真实浏览器 153 项检查通过，17 张截图覆盖 1440/1024/768/390/360 像素，GPU 禁用渲染。启动后访问 **http://localhost:8501**；命令及演示路线见 [页面说明](app/README.md)，视觉与验收见 [W10 执行记录](docs/execution/2026-10-22-w10.md) 和 [浏览器证据](docs/execution/w10-browser-2026-10-22.json)。
+W10 已完成：按 frontend-design skill 重新设计“零售观察”，七页 Streamlit 全部接入真实 API，包含固定版本、筛选/分页、图表与精确数据表、EVAL/FULLFIT 曲线、未知客户兜底、空态和错误恢复。提交后全量回归 191 项通过，真实浏览器 153 项检查通过，17 张截图覆盖 1440/1024/768/390/360 像素，GPU 禁用渲染。启动后访问 **http://127.0.0.1:8501**；命令及演示路线见 [页面说明](app/README.md)，视觉与验收见 [W10 执行记录](docs/execution/2026-10-22-w10.md) 和 [浏览器证据](docs/execution/w10-browser-2026-10-22.json)。
 
 W11 本机验收与交付已执行：196 项回归、265 项真实 HTTP/SQL 对照、153 项浏览器检查通过；13 类查询各 5 并发、100 次测量，零错误，最高 P95 为 0.874 秒。J03 原始/5倍/10倍各三次真实 YARN 实验通过，耗时中位数 29.054/39.069/52.062 秒；481 文件的新隔离恢复通过，九表 1,328,466 行与首发一致。新增只读 `report` 导出及 [启动与五分钟演示手册](docs/delivery.md)、[实际报告](docs/execution/w11-report-2026-10-22/report.md)、[W11 证据与限制](docs/execution/2026-10-22-w11.md)。独立物理盘正式备份仍未通过，完整项目验收保持 **INCOMPLETE**，不将本机恢复冒充正式备份门禁。
 
@@ -76,4 +78,4 @@ CUDA 脚本要求真实 CUDA 张量矩阵乘法和反向传播；ALS 脚本用�
 | migrations/、tests/ | 有序迁移、自动化测试及隔离 fixtures |
 | var/ | 忽略的运行数据、缓存、日志与导出 |
 
-当前已实现 W01—W11 的本机功能、性能实验、隔离恢复与交付材料。W08/W11 的独立物理盘正式备份仍待外部存储，FR-12、NF-05 和 G-RECOVERY 因此保持未关闭；完整项目尚未正式结项。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。
+当前已实现 W01—W11 的本机功能、性能实验、隔离恢复与交付材料。2026-10-25 按用户指令暂不处理外部备份；FR-12、NF-05 和 G-RECOVERY 的历史正式门禁记录保留，不影响本轮软件与方案交付。实现及测试、执行证据与运维文档按独立主题归档，真实输入和运行数据保留在 Git 忽略的 var/ 与 HDFS。

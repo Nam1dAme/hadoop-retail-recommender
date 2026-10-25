@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-10-25T08:34:25.860630+00:00",
+  "scope": "Current local HDFS/YARN environment WordCount and loopback API/UI health; business MR acceptance uses retained W04/W11 evidence.",
+  "hadoop": {
+    "hdfs_report": {
+      "command": [
+        "hdfs",
+        "dfsadmin",
+        "-report"
+      ],
+      "returncode": 0,
+      "stdout": "Configured Capacity: 1081101176832 (1006.85 GB)\nPresent Capacity: 943525019648 (878.73 GB)\nDFS Remaining: 937646759936 (873.25 GB)\nDFS Used: 5878259712 (5.47 GB)\nDFS Used%: 0.62%\nReplicated Blocks:\n\tUnder replicated blocks: 0\n\tBlocks with corrupt replicas: 0\n\tMissing blocks: 0\n\tMissing blocks (with replication factor 1): 0\n\tLow redundancy blocks with highest priority to recover: 0\n\tPending deletion blocks: 0\nErasure Coded Block Groups: \n\tLow redundancy block groups: 0\n\tBlock groups with corrupt internal blocks: 0\n\tMissing block groups: 0\n\tLow redundancy blocks with highest priority to recover: 0\n\tPending deletion blocks: 0\n\n-------------------------------------------------\nLive datanodes (1):\n\nName: 127.0.0.1:9866 (localhost)\nHostname: LAPTOP-OMM0KTB5.localdomain\nDecommission Status : Normal\nConfigured Capacity: 1081101176832 (1006.85 GB)\nDFS Used: 5878259712 (5.47 GB)\nNon DFS Used: 82583801856 (76.91 GB)\nDFS Remaining: 937646759936 (873.25 GB)\nDFS Used%: 0.54%\nDFS Remaining%: 86.73%\nConfigured Cache Capacity: 0 (0 B)\nCache Used: 0 (0 B)\nCache Remaining: 0 (0 B)\nCache Used%: 100.00%\nCache Remaining%: 0.00%\nXceivers: 0\nLast contact: Sun Oct 25 16:34:17 CST 2026\nLast Block Report: Sun Oct 25 16:23:40 CST 2026\nNum of Blocks: 1504\n\n\n",
+      "stderr": ""
+    },
+    "yarn_nodes": {
+      "command": [
+        "yarn",
+        "node",
+        "-list"
+      ],
+      "returncode": 0,
+      "stdout": "Total Nodes:1\n         Node-Id\t     Node-State\tNode-Http-Address\tNumber-of-Running-Containers\nLAPTOP-OMM0KTB5.localdomain:46379\t        RUNNING\tLAPTOP-OMM0KTB5.localdomain:8042\t                           0\n",
+      "stderr": "2026-10-25 16:34:21,440 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032\n"
+    },
+    "wordcount_application": {
+      "command": [
+        "yarn",
+        "application",
+        "-status",
+        "application_1792916624605_0001"
+      ],
+      "returncode": 0,
+      "stdout": "Application Report : \n\tApplication-Id : application_1792916624605_0001\n\tApplication-Name : word count\n\tApplication-Type : MAPREDUCE\n\tUser : hadoop\n\tQueue : default\n\tApplication Priority : 0\n\tStart-Time : 1792916658341\n\tFinish-Time : 1792916675596\n\tProgress : 100%\n\tState : FINISHED\n\tFinal-State : SUCCEEDED\n\tTracking-URL : http://LAPTOP-OMM0KTB5.localdomain:19888/jobhistory/job/job_1792916624605_0001\n\tRPC Port : 46559\n\tAM Host : LAPTOP-OMM0KTB5.localdomain\n\tAggregate Resource Allocation : 19075 MB-seconds, 30 vcore-seconds\n\tAggregate Resource Preempted : 0 MB-seconds, 0 vcore-seconds\n\tLog Aggregation Status : DISABLED\n\tDiagnostics : \n\tUnmanaged Application : false\n\tApplication Node Label Expression : <Not set>\n\tAM container Node Label Expression : <DEFAULT_PARTITION>\n\tTimeoutType : LIFETIME\tExpiryTime : UNLIMITED\tRemainingTime : -1seconds\n\n",
+      "stderr": "2026-10-25 16:34:22,969 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032\n2026-10-25 16:34:23,508 INFO conf.Configuration: resource-types.xml not found\n2026-10-25 16:34:23,509 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.\n"
+    },
+    "wordcount_success": {
+      "command": [
+        "hdfs",
+        "dfs",
+        "-test",
+        "-e",
+        "/user/hadoop/environment-smoke-hadoop-host-20261025T082330Z-15125/output/_SUCCESS"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "wordcount_output": {
+      "command": [
+        "hdfs",
+        "dfs",
+        "-cat",
+        "/user/hadoop/environment-smoke-hadoop-host-20261025T082330Z-15125/output/part-r-00000"
+      ],
+      "returncode": 0,
+      "stdout": "hadoop\t2\nspark\t1\nuv\t1\n",
+      "stderr": ""
+    }
+  },
+  "http": {
+    "api": {
+      "url": "http://127.0.0.1:8000/api/v1/health/ready",
+      "status_code": 200,
+      "body": {
+        "data": {
+          "status": "READY"
+        },
+        "meta": {
+          "request_id": "5bd8a66b-f310-4dd3-95eb-769398be4cb5",
+          "schema_version": "1.0",
+          "release_id": null,
+          "batch_id": null
+        }
+      }
+    },
+    "ui": {
+      "url": "http://127.0.0.1:8501/_stcore/health",
+      "status_code": 200,
+      "body": "ok"
+    }
+  }
+}

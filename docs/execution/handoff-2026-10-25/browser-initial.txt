@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/hadoop/hadoop-lab/scripts/verify-w10.py", line 253, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/hadoop/hadoop-lab/scripts/verify-w10.py", line 216, in main
+    snapshot(page,'overview-restored',width)
+  File "/home/hadoop/hadoop-lab/scripts/verify-w10.py", line 107, in snapshot
+    check(f'{slug} main responsive {width}',page.locator('[data-testid="stMain"]').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1'))
+  File "/home/hadoop/hadoop-lab/scripts/verify-w10.py", line 48, in check
+    assert condition,label
+           ^^^^^^^^^
+AssertionError: overview-restored main responsive 1440

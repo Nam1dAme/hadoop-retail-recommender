@@ -1,0 +1,10 @@
+{
+  "files": {
+    "benchmarks.csv": "588ece4eed2d196cb2865ae184555db13c6e23d91aca2ec8d6f678b0dc302933",
+    "metrics.csv": "2f775ace3f8680bbb9acd5ba195df83035582882823085a3d9451165b3d1c37e",
+    "report.json": "ef890cd5cd86b70903ae48dfd8b1eeb953a7b4b4dfd410a4665acfb20f0b0031",
+    "report.md": "ef31fffe456f3597a110615fe351f50fdbc934d37dfb0b4f0715c51fedfff18b"
+  },
+  "release_id": "R20261021104550ac6985a5",
+  "experiment_id": "acea8dc1-3b09-43b8-ac79-09571cfcca53"
+}

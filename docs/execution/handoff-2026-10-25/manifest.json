@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-25T08:39:02.759972+00:00",
+  "files": {
+    "browser-initial.txt": "d58efbdd5875cf2cf96feb64f5fd4fbd7853152386a5a7c3ebfb0bec63200e31",
+    "browser.json": "e663e771c1eb9c9a7d96774890913ebb847bbf97c5edd2add62da9526e8f74c7",
+    "http.json": "aeac5690922210ffd141373eb3eef45a384254ff43c3bba55957ecbe87d4005b",
+    "layout-diagnostic.json": "b294b749743d19de82d1f67aec197aa1319ea6f8aadd5000fdb0b9a9d4ccc68e",
+    "overview-390.png": "6ec293d02410e3b9f19a264b9746d07b385fcbcc705f037fd74ececfe7346681",
+    "overview-collapsed-1920.png": "eca3e43a0587f673e6954453ae6d41da178e78aeee8ff704a9c75326313db24e",
+    "release-verify.json": "62ec2fd74df29599b50ac3f7cd911f2363ae63805a40fb47f999385eaf8ccb7a",
+    "report/benchmarks.csv": "588ece4eed2d196cb2865ae184555db13c6e23d91aca2ec8d6f678b0dc302933",
+    "report/manifest.json": "886ad4c28b324b1a199bc4edd34f15d00e71655e3aa4c571128e70b7df70897e",
+    "report/metrics.csv": "2f775ace3f8680bbb9acd5ba195df83035582882823085a3d9451165b3d1c37e",
+    "report/report.json": "ef890cd5cd86b70903ae48dfd8b1eeb953a7b4b4dfd410a4665acfb20f0b0031",
+    "report/report.md": "ef31fffe456f3597a110615fe351f50fdbc934d37dfb0b4f0715c51fedfff18b",
+    "runtime.json": "c3f66eb048772b3ba503adda1d3398337368968e6c6560964463147fff9ae4a1",
+    "verification.json": "68af6558dcb35ff81047906b005f47d0781024c1c474f7a7e1882bd47f948b7b",
+    "windows-health.json": "f4a95d0130abcb3ca3d3f1ea36c2543fb1469857611da1301660b7a446daa87f"
+  }
+}

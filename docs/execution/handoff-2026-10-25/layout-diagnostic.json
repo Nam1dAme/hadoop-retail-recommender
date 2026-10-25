@@ -1,0 +1,1724 @@
+[
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 65,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1400,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 303,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": [
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlock",
+        "class": "stVerticalBlock st-emotion-cache-kswft9 e1f1d6gn2",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stHorizontalBlock",
+        "class": "stHorizontalBlock st-emotion-cache-ocqkz7 e1f1d6gn5",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stColumn",
+        "class": "stColumn st-emotion-cache-ax0btj e1f1d6gn3",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlockBorderWrapper",
+        "class": "st-emotion-cache-0 e1f1d6gn0",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": null,
+        "class": "st-emotion-cache-1wmy9hl e1f1d6gn1",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 65,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1400,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 303,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": [
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlock",
+        "class": "stVerticalBlock st-emotion-cache-kswft9 e1f1d6gn2",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stHorizontalBlock",
+        "class": "stHorizontalBlock st-emotion-cache-ocqkz7 e1f1d6gn5",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stColumn",
+        "class": "stColumn st-emotion-cache-ax0btj e1f1d6gn3",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlockBorderWrapper",
+        "class": "st-emotion-cache-0 e1f1d6gn0",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": null,
+        "class": "st-emotion-cache-1wmy9hl e1f1d6gn1",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 65,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 65,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 65,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1400,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 954.03125,
+        "scroll": 954,
+        "client": 954
+      },
+      {
+        "x": 303,
+        "width": 1310,
+        "scroll": 1310,
+        "client": 1310
+      }
+    ],
+    "overflow": [
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlock",
+        "class": "stVerticalBlock st-emotion-cache-kswft9 e1f1d6gn2",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stHorizontalBlock",
+        "class": "stHorizontalBlock st-emotion-cache-ocqkz7 e1f1d6gn5",
+        "x": 278,
+        "width": 1360,
+        "scroll": 1360,
+        "client": 1360
+      },
+      {
+        "tag": "DIV",
+        "id": "stColumn",
+        "class": "stColumn st-emotion-cache-ax0btj e1f1d6gn3",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": "stVerticalBlockBorderWrapper",
+        "class": "st-emotion-cache-0 e1f1d6gn0",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      },
+      {
+        "tag": "DIV",
+        "id": null,
+        "class": "st-emotion-cache-1wmy9hl e1f1d6gn1",
+        "x": 1332.15625,
+        "width": 305.859375,
+        "scroll": 306,
+        "client": 306
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1440,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1202,
+      "scroll": 1202,
+      "client": 1202
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 303,
+        "width": 774.890625,
+        "scroll": 775,
+        "client": 775
+      },
+      {
+        "x": 303,
+        "width": 1072,
+        "scroll": 1072,
+        "client": 1072
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 0,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 1,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 0,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 100,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 400,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": false,
+    "delay_ms": 1000,
+    "main": {
+      "x": 0,
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    "side": {
+      "x": -336,
+      "width": 0,
+      "scroll": 32,
+      "client": 0
+    },
+    "plots": [
+      {
+        "x": 225,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 225,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 0,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 100,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 400,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  },
+  {
+    "width": 1920,
+    "cycle": 2,
+    "expanded": true,
+    "delay_ms": 1000,
+    "main": {
+      "x": 238,
+      "width": 1682,
+      "scroll": 1682,
+      "client": 1682
+    },
+    "side": {
+      "x": 0,
+      "width": 238,
+      "scroll": 243,
+      "client": 237
+    },
+    "plots": [
+      {
+        "x": 344,
+        "width": 1074.453125,
+        "scroll": 1074,
+        "client": 1074
+      },
+      {
+        "x": 344,
+        "width": 1470,
+        "scroll": 1470,
+        "client": 1470
+      }
+    ],
+    "overflow": []
+  }
+]

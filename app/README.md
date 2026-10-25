@@ -20,7 +20,7 @@ source scripts/dev-env.sh
 uv run --locked python -m app --config config/development.toml
 ```
 
-Windows 浏览器打开 **http://localhost:8501**。API 与 UI 均仅监听回环地址；分别在各自终端按 `Ctrl+C` 停止。UI 启动器会从子进程环境移除项目数据库凭据及常用数据库密码变量，只传入显式项目配置路径；不要给页面传 writer/migration 凭据。
+Windows 浏览器打开 **http://127.0.0.1:8501**。本机部分客户端使用 `localhost` 时会等待 IPv6 转发，排查方法见 [交付手册](../docs/delivery.md)。API 与 UI 均仅监听回环地址；分别在各自终端按 `Ctrl+C` 停止。UI 启动器会从子进程环境移除项目数据库凭据及常用数据库密码变量，只传入显式项目配置路径；不要给页面传 writer/migration 凭据。
 
 重新安装项目依赖使用 `uv sync --locked`。PyArrow 固定为 17.0.0，兼容项目的 NumPy 1.26.4；未升级 NumPy、PyTorch、CUDA 或 Spark。此前锁中的 PyArrow 26.0.0 在实际表格渲染时报“requires NumPy 2.0 or newer”，本轮已在真实导入与 DataFrame 展示中修复。背景依据见 [Arrow 17 安装与依赖说明](https://arrow.apache.org/docs/17.0/python/install.html#dependencies)，实际兼容性以本项目测试为准。
 
@@ -49,7 +49,7 @@ Windows 浏览器打开 **http://localhost:8501**。API 与 UI 均仅监听回�
 - 无 release 时业务页禁用提交，但实验/任务仍可查看控制数据。版本退休提示显式切换；结果未完成显示未就绪，不补齐虚构曲线或加速比。
 - 所有商品描述在 HTML 中转义；不存在真实姓名、头像、商品图片、点击/转化率或社交关系等来源中没有的数据。
 
-可直接打开 `http://localhost:8501/?page=experiments` 等入口。slug 依次为 `overview/sales/customers/associations/recommendations/experiments/quality`。页面使用自定义七项导航；业务代码放在 `app/views/`，避免 Streamlit 把模块文件名自动显示成额外页面。
+可直接打开 `http://127.0.0.1:8501/?page=experiments` 等入口。slug 依次为 `overview/sales/customers/associations/recommendations/experiments/quality`。页面使用自定义七项导航；业务代码放在 `app/views/`，避免 Streamlit 把模块文件名自动显示成额外页面。
 
 ## 设计与文件
 
